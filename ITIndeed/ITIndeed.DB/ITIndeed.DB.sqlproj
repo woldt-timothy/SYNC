@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DefaultData\Temp.sql" />
+    <None Include="ITIndeed.DB.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Script.PreDeployment1.sql" />
