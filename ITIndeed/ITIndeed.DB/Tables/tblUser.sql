@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[tblTemp]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
-    [UserName] VARCHAR(50) NOT NULL
+    [UserName] VARCHAR(50) NOT NULL, 
+    [Password] VARCHAR(50) NOT NULL
 )
