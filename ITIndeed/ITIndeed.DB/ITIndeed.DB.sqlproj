@@ -72,7 +72,7 @@
     <None Include="ITIndeed.DB.publish.xml" />
     <None Include="DefaultData\Employer.sql" />
     <None Include="DefaultData\Event.sql" />
-    <None Include="DefaultData\EvenShowing.sql" />
+    <None Include="DefaultData\EventShowing.sql" />
     <None Include="DefaultData\Student.sql" />
     <None Include="DefaultData\User.sql" />
   </ItemGroup>
