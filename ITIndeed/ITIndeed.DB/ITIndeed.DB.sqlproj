@@ -70,6 +70,11 @@
   <ItemGroup>
     <None Include="DefaultData\Temp.sql" />
     <None Include="ITIndeed.DB.publish.xml" />
+    <None Include="DefaultData\Employer.sql" />
+    <None Include="DefaultData\Event.sql" />
+    <None Include="DefaultData\EvenShowing.sql" />
+    <None Include="DefaultData\Student.sql" />
+    <None Include="DefaultData\User.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Script.PreDeployment1.sql" />
