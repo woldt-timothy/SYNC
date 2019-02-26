@@ -9,4 +9,9 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-:r DefaultData\Temp.sql
+
+:r DefaultData\Employer.sql
+:r DefaultData\Event.sql
+:r DefaultData\EventShowing.sql
+:r DefaultData\Student.sql
+:r DefaultData\User.sql

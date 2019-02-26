@@ -9,4 +9,9 @@
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-DROP TABLE IF EXISTS dbo.tblTemp
+DROP TABLE IF EXISTS dbo.tblEmployer
+DROP TABLE IF EXISTS dbo.tblEvent
+DROP TABLE IF EXISTS dbo.tblEventShowing
+DROP TABLE IF EXISTS dbo.tblStudent
+DROP TABLE IF EXISTS dbo.tblUser
+

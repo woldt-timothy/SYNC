@@ -1,6 +1,6 @@
-﻿CREATE TABLE [dbo].[tblTemp]
+﻿CREATE TABLE [dbo].[tblUser]
 (
-	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY, 
     [UserName] VARCHAR(50) NOT NULL, 
     [Password] VARCHAR(50) NOT NULL
 )
