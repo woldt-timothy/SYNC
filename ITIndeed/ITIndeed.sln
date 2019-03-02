@@ -12,10 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		FirstDatabaseScript.txt = FirstDatabaseScript.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITIndeed.BL", "ITIndeed.BL\ITIndeed.BL.csproj", "{E1D77D23-7FD6-4C96-AC1C-5CC2A89C866E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITIndeed.PL", "ITIndeed.PL\ITIndeed.PL.csproj", "{68AF2853-E608-4195-A963-33EF5CFB9CEB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,14 +28,6 @@ Global
 		{6B6D21FC-FE9B-4EAE-BB2F-D556F131EB49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B6D21FC-FE9B-4EAE-BB2F-D556F131EB49}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6B6D21FC-FE9B-4EAE-BB2F-D556F131EB49}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{E1D77D23-7FD6-4C96-AC1C-5CC2A89C866E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E1D77D23-7FD6-4C96-AC1C-5CC2A89C866E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E1D77D23-7FD6-4C96-AC1C-5CC2A89C866E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E1D77D23-7FD6-4C96-AC1C-5CC2A89C866E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{68AF2853-E608-4195-A963-33EF5CFB9CEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{68AF2853-E608-4195-A963-33EF5CFB9CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{68AF2853-E608-4195-A963-33EF5CFB9CEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{68AF2853-E608-4195-A963-33EF5CFB9CEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
