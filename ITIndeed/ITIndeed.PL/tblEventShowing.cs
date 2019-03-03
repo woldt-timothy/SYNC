@@ -14,8 +14,8 @@ namespace ITIndeed.PL
     
     public partial class tblEventShowing
     {
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public int EventId { get; set; }
+        public System.Guid Id { get; set; }
+        public System.Guid UserId { get; set; }
+        public System.Guid EventId { get; set; }
     }
 }

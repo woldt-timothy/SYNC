@@ -4,7 +4,7 @@
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseName>woldt</TargetDatabaseName>
     <DeployScriptFileName>ITIndeed.DB.sql</DeployScriptFileName>
-    <ProfileVersionNumber>1</ProfileVersionNumber>
     <TargetConnectionString>Data Source=woldt.database.windows.net;Persist Security Info=True;User ID=woldt;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True</TargetConnectionString>
+    <ProfileVersionNumber>1</ProfileVersionNumber>
   </PropertyGroup>
 </Project>

@@ -60,14 +60,14 @@ PRINT N'Creating [dbo].[tblEmployer]...';
 
 
 GO
-CREATE TABLE [dbo].[tblEmployer] (
-    [Id]        INT          NOT NULL,
-    [FirstName] VARCHAR (50) NOT NULL,
-    [LastName]  VARCHAR (50) NOT NULL,
-    [Phone]     VARCHAR (50) NOT NULL,
-    [Email]     VARCHAR (50) NOT NULL,
-    [UserId]    INT          NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
+CREATE TABLE [dbo].[tblEmployer]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [FirstName] VARCHAR(50) NOT NULL, 
+    [LastName] VARCHAR(50) NOT NULL, 
+    [Phone] VARCHAR(50) NOT NULL, 
+    [Email] VARCHAR(50) NOT NULL, 
+    [UserId] UNIQUEIDENTIFIER NOT NULL
 );
 
 
@@ -76,13 +76,13 @@ PRINT N'Creating [dbo].[tblEvent]...';
 
 
 GO
-CREATE TABLE [dbo].[tblEvent] (
-    [Id]        INT          NOT NULL,
-    [Name]      VARCHAR (50) NOT NULL,
-    [Type]      VARCHAR (50) NOT NULL,
-    [StartDate] DATETIME     NOT NULL,
-    [EndDate]   DATETIME     NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
+CREATE TABLE [dbo].[tblEvent]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [Name] VARCHAR(50) NOT NULL, 
+    [Type] VARCHAR(50) NOT NULL, 
+    [StartDate] DATETIME NOT NULL, 
+    [EndDate] DATETIME NOT NULL
 );
 
 
@@ -91,11 +91,11 @@ PRINT N'Creating [dbo].[tblEventShowing]...';
 
 
 GO
-CREATE TABLE [dbo].[tblEventShowing] (
-    [Id]      INT NOT NULL,
-    [UserId]  INT NOT NULL,
-    [EventId] INT NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
+CREATE TABLE [dbo].[tblEventShowing]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [UserId] UNIQUEIDENTIFIER NOT NULL, 
+    [EventId] UNIQUEIDENTIFIER NOT NULL
 );
 
 
@@ -104,16 +104,16 @@ PRINT N'Creating [dbo].[tblStudent]...';
 
 
 GO
-CREATE TABLE [dbo].[tblStudent] (
-    [Id]        INT          NOT NULL,
-    [FirstName] VARCHAR (50) NOT NULL,
-    [LastName]  VARCHAR (50) NOT NULL,
-    [Phone]     VARCHAR (50) NOT NULL,
-    [Email]     VARCHAR (50) NOT NULL,
-    [School]    VARCHAR (50) NOT NULL,
-    [Field]     VARCHAR (50) NOT NULL,
-    [UserId]    INT          NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
+CREATE TABLE [dbo].[tblStudent]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [FirstName] VARCHAR(50) NOT NULL, 
+    [LastName] VARCHAR(50) NOT NULL, 
+    [Phone] VARCHAR(50) NOT NULL, 
+    [Email] VARCHAR(50) NOT NULL, 
+    [School] VARCHAR(50) NOT NULL, 
+    [Field] VARCHAR(50) NOT NULL, 
+    [UserId] UNIQUEIDENTIFIER NOT NULL
 );
 
 
@@ -124,11 +124,11 @@ PRINT N'Creating [dbo].[tblUser]...';
 
 
 GO
-CREATE TABLE [dbo].[tblUser] (
-    [Id]       INT          NOT NULL,
-    [UserName] VARCHAR (50) NOT NULL,
-    [Password] VARCHAR (50) NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
+CREATE TABLE [dbo].[tblUser]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [UserName] VARCHAR(50) NOT NULL, 
+    [Password] VARCHAR(50) NOT NULL
 );
 
 
@@ -149,40 +149,40 @@ Post-Deployment Script Template
 BEGIN
 	INSERT INTO [dbo].[tblEmployer] (Id, FirstName,LastName,Phone,Email,UserId)
 	VALUES
-	(1, 'Alex', 'Smith','(920)111-1111','alex@email.com',1),
-	(2, 'Jess', 'Jones','(920)222-2222','jess@email.com',2),
-	(3, 'Abby', 'Williams','(920)333-3333','abby@email.com',3)
+	(NEWID(), 'Alex', 'Smith','(920)111-1111','alex@email.com',NEWID()),
+	(NEWID(), 'Jess', 'Jones','(920)222-2222','jess@email.com',NEWID()),
+	(NEWID(), 'Abby', 'Williams','(920)333-3333','abby@email.com',NEWID())
 END
 BEGIN
 	INSERT INTO [dbo].tblEvent(Id,Name,Type,StartDate,EndDate)
 	VALUES
-	(1, 'Coffee at Starbucks', 'meetup','05/29/2015 05:00','05/29/2015 06:00'),
-	(2, 'X Networking Event','networking event','04/29/2015 02:00','04/29/2015 05:00'),
-	(3, 'Lunch with x Employer', 'meetup','03/29/2015 01:00','03/29/2015 02:00')
+	(NEWID(), 'Coffee at Starbucks', 'meetup','05/29/2015 05:00','05/29/2015 06:00'),
+	(NEWID(), 'X Networking Event','networking event','04/29/2015 02:00','04/29/2015 05:00'),
+	(NEWID(), 'Lunch with x Employer', 'meetup','03/29/2015 01:00','03/29/2015 02:00')
 END
 BEGIN
 	INSERT INTO [dbo].tblEventShowing(Id,UserId,EventId)
 	VALUES
-	(1, 1, 1),
-	(2, 2, 2),
-	(3, 3, 3)
+	(NEWID(), NEWID(), NEWID()),
+	(NEWID(), NEWID(), NEWID()),
+	(NEWID(), NEWID(), NEWID())
 END
 BEGIN
 	INSERT INTO [dbo].tblStudent(Id, FirstName,LastName,Phone,Email,School,Field,UserId)
 	VALUES
-	(1, 'Amy', 'Adams','(920)444-4444','amy@email.com',4, 'Networking', 1),
-	(2, 'Bob', 'Ross','(920)555-5555','bob@email.com',5, 'User Support',2 ),
-	(3, 'Daryll', 'Kay','(920)666-6666','daryll@email.com',6, 'UI/UX', 3 )
+	(NEWID(), 'Amy', 'Adams','(920)444-4444','amy@email.com','FVTC', 'Networking', NEWID()),
+	(NEWID(), 'Bob', 'Ross','(920)555-5555','bob@email.com','FVTC', 'User Support',NEWID()),
+	(NEWID(), 'Daryll', 'Kay','(920)666-6666','daryll@email.com','FVTC', 'UI/UX', NEWID())
 END
 BEGIN
 	INSERT INTO [dbo].tblUser(Id,Username,Password)
 	VALUES
-	(1, 'alex1', 'password1'),
-	(2, 'jess2', 'password2'),
-	(3, 'abby3', 'password3'),
-	(4, 'amy4', 'password4'),
-	(5, 'bob5', 'password5'),
-	(6, 'daryll6', 'password6')
+	(NEWID(), 'alex1', 'password1'),
+	(NEWID(), 'jess2', 'password2'),
+	(NEWID(), 'abby3', 'password3'),
+	(NEWID(), 'amy4', 'password4'),
+	(NEWID(), 'bob5', 'password5'),
+	(NEWID(), 'daryll6', 'password6')
 END
 GO
 

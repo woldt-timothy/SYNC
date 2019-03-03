@@ -1,7 +1,7 @@
 ﻿BEGIN
 	INSERT INTO [dbo].tblStudent(Id, FirstName,LastName,Phone,Email,School,Field,UserId)
 	VALUES
-	(1, 'Amy', 'Adams','(920)444-4444','amy@email.com',4, 'Networking', 1),
-	(2, 'Bob', 'Ross','(920)555-5555','bob@email.com',5, 'User Support',2 ),
-	(3, 'Daryll', 'Kay','(920)666-6666','daryll@email.com',6, 'UI/UX', 3 )
+	(NEWID(), 'Amy', 'Adams','(920)444-4444','amy@email.com','FVTC', 'Networking', NEWID()),
+	(NEWID(), 'Bob', 'Ross','(920)555-5555','bob@email.com','FVTC', 'User Support',NEWID()),
+	(NEWID(), 'Daryll', 'Kay','(920)666-6666','daryll@email.com','FVTC', 'UI/UX', NEWID())
 END

@@ -14,13 +14,13 @@ namespace ITIndeed.PL
     
     public partial class tblStudent
     {
-        public int Id { get; set; }
+        public System.Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public string School { get; set; }
         public string Field { get; set; }
-        public int UserId { get; set; }
+        public System.Guid UserId { get; set; }
     }
 }

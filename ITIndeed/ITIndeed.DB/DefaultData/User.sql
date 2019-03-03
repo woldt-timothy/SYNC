@@ -1,10 +1,10 @@
 ﻿BEGIN
 	INSERT INTO [dbo].tblUser(Id,Username,Password)
 	VALUES
-	(1, 'alex1', 'password1'),
-	(2, 'jess2', 'password2'),
-	(3, 'abby3', 'password3'),
-	(4, 'amy4', 'password4'),
-	(5, 'bob5', 'password5'),
-	(6, 'daryll6', 'password6')
+	(NEWID(), 'alex1', 'password1'),
+	(NEWID(), 'jess2', 'password2'),
+	(NEWID(), 'abby3', 'password3'),
+	(NEWID(), 'amy4', 'password4'),
+	(NEWID(), 'bob5', 'password5'),
+	(NEWID(), 'daryll6', 'password6')
 END

@@ -10,7 +10,13 @@ namespace ITIndeed.BL
     public class User
     {
         // Properties
-        public int Id { get; set; }
+
+
+        /// <summary>
+        /// I CHANGED ALL OF THE IDs to be GUIDs - taw - 03022019
+        /// </summary>
+
+        public Guid Id { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
 
@@ -21,7 +27,7 @@ namespace ITIndeed.BL
 
         }
 
-        public User(int id, string userName, string password)
+        public User(Guid id, string userName, string password)
         {
             Id = id;
             UserName = userName;
@@ -29,7 +35,7 @@ namespace ITIndeed.BL
         }
 
         // Methods
-        public bool LoadById(int id)
+        public bool LoadById(Guid id)
         {
             try
             {
@@ -41,6 +47,7 @@ namespace ITIndeed.BL
                     {
                         this.Id = user.Id;
                         this.UserName = user.UserName;
+                        this.Password = user.Password;
 
                         return true;
                     }
@@ -109,6 +116,13 @@ namespace ITIndeed.BL
                 throw e;
             }
         }
+
+
+
+
+
+
+
         public bool LoadByUserName(string username)
         {
             try
@@ -142,12 +156,12 @@ namespace ITIndeed.BL
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
+
+                    ///CHECKS TO SEE IF THERE IS A USER IN THE DATABASE IF NOT THEN INSERTS A NEW USER WITH A GUID AS THE Id
                     if (dc.tblUsers.Where(u => u.UserName == this.UserName).FirstOrDefault() == null)
                     {
                         tblUser user = new tblUser();
-                        this.Id = dc.tblUsers.Any() ? dc.tblUsers.Max(u => u.Id) + 1 : 1;
-
-                        user.Id = this.Id;
+                        user.Id = Guid.NewGuid();
                         user.UserName = this.UserName;
                         user.Password = GetHash();
 
@@ -179,7 +193,7 @@ namespace ITIndeed.BL
                     if (user != null)
                     {
                         user.UserName = this.UserName;
-                        user.Password = this.Password;
+                        user.Password = GetHash();
 
                         dc.SaveChanges();
                     }

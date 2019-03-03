@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4a0cfa6d138f4c2f8392b11464570f03" Name="Diagram1">
-        <EntityTypeShape EntityType="ITIndeedModel.tblEmployer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ITIndeedModel.tblEvent" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ITIndeedModel.tblEventShowing" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ITIndeedModel.tblStudent" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ITIndeedModel.tblUser" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITIndeedModel.tblEmployer" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ITIndeedModel.tblEvent" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ITIndeedModel.tblEventShowing" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ITIndeedModel.tblStudent" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ITIndeedModel.tblUser" Width="1.5" PointX="4.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
