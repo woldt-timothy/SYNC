@@ -34,6 +34,12 @@ namespace ITIndeed.BL
             Password = password;
         }
 
+        public User(Guid id, string userName)
+        {
+            Id = id;
+            UserName = userName;
+        }
+
         // Methods
         public bool LoadById(Guid id)
         {

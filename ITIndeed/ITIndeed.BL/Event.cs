@@ -37,14 +37,60 @@ namespace ITIndeed.BL
         // Methods
 
 
-        public void AddUserToEvent() // Add a user to this event
+        public bool AddUserToEvent(Guid userId) // Add a user to this event
         {
+            try
+            {
+                using (ITIndeedEntities dc = new ITIndeedEntities())
+                {
+                    tblEventShowing eventShowing = dc.tblEventShowings.Where(e => (e.UserId == userId) && (e.EventId == this.Id)).FirstOrDefault(); // Check to see if user already joined event
 
+                    if (eventShowing == null)
+                    {
+                        eventShowing = new tblEventShowing();
+                        eventShowing.Id = Guid.NewGuid();
+                        eventShowing.UserId = userId;
+                        eventShowing.EventId = this.Id;
+
+                        dc.tblEventShowings.Add(eventShowing);
+                        dc.SaveChanges();
+
+                        return true;
+                    }
+                    else
+                    {
+                        return false; // User is already attending event.
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
-
-        public void LoadUsers() // Load list of users attending the event
+        public void LoadUsers(Guid id) // Load list of users attending the event
         {
+            try
+            {
+                using (ITIndeedEntities dc = new ITIndeedEntities())
+                {
+                    Users = new List<User>();
 
+                    var eventShowings = dc.tblEventShowings.Where(e => e.EventId == id);
+
+                    foreach (var eventShowing in eventShowings)
+                    {
+                        tblUser user = dc.tblUsers.Where(u => u.Id == eventShowing.UserId).FirstOrDefault();
+                        Users.Add(new User(user.Id, user.UserName));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
         public bool LoadById(Guid id)
         {
@@ -139,6 +185,9 @@ namespace ITIndeed.BL
 
                     if (tevent != null)
                     {
+                        var eventShowings = dc.tblEventShowings.Where(e => e.EventId == this.Id);
+
+                        dc.tblEventShowings.RemoveRange(eventShowings);
                         dc.tblEvents.Remove(tevent);
 
                         dc.SaveChanges();
