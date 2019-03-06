@@ -161,7 +161,9 @@ namespace ITIndeed.BL
                     if (dc.tblUsers.Where(u => u.UserName == this.UserName).FirstOrDefault() == null)
                     {
                         tblUser user = new tblUser();
-                        user.Id = Guid.NewGuid();
+                        this.Id = Guid.NewGuid(); // Changed this to give the this.Id the new guid to avoid not having a Id set after creating a user.
+
+                        user.Id = this.Id;
                         user.UserName = this.UserName;
                         user.Password = GetHash();
 
