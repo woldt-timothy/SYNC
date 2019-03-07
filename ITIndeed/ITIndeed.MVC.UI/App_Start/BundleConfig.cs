@@ -25,6 +25,20 @@ namespace ITIndeed.MVC.UI
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/Theme/css").Include(
+                      "~/Content/Theme/css/bootstrap.min.css",
+                      "~/Content/Theme/css/font-awesome.min.css",
+                      "~/Content/Theme/css/animate.css",
+                      "~/Content/Theme/css/style.css"));
+
+            bundles.Add(new ScriptBundle("~/Content/Theme/js").Include(
+                      "~/Theme/js/jquery-2.1.1.min.js",
+                      "~/Theme/js/bootstrap.min.js",
+                      "~/Theme/js/jquery.prettyPhoto.js",
+                      "~/Theme/js/jquery.isotope.min.js",
+                      "~/Theme/js/wow.min.js",
+                      "~/Theme/js/functions.js"));
         }
     }
 }
