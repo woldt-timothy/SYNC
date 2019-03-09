@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace ITIndeed.BL
 {
+
+
+    /// <summary>
+    /// This class should never be instantiated i.e never do  User user = new User(); In reality, I believe it should be a static class or an abstract class, maybe we can fix later
+    /// That is part of the reason why I named the UserId BaseUserID for now
+    /// </summary>
+
     public class User
     {
         // Properties
@@ -16,7 +23,7 @@ namespace ITIndeed.BL
         /// I CHANGED ALL OF THE IDs to be GUIDs - taw - 03022019
         /// </summary>
 
-        public Guid Id { get; set; }
+        public Guid BaseUserID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
 
@@ -27,31 +34,31 @@ namespace ITIndeed.BL
 
         }
 
-        public User(Guid id, string userName, string password)
+        public User(Guid baseUserID, string userName, string password)
         {
-            Id = id;
+            BaseUserID = baseUserID;
             UserName = userName;
             Password = password;
         }
 
-        public User(Guid id, string userName)
+        public User(Guid baseUserID, string userName)
         {
-            Id = id;
+            BaseUserID = baseUserID;
             UserName = userName;
         }
 
         // Methods
-        public bool LoadById(Guid id)
+        public bool UserLoadById(Guid baseUserId)
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    tblUser user = dc.tblUsers.Where(u => u.Id == id).FirstOrDefault();
+                    tblUser user = dc.tblUsers.Where(u => u.Id == baseUserId).FirstOrDefault();
 
                     if (user != null)
                     {
-                        this.Id = user.Id;
+                        this.BaseUserID = user.Id;
                         this.UserName = user.UserName;
                         this.Password = user.Password;
 
@@ -78,7 +85,7 @@ namespace ITIndeed.BL
             }
         }
 
-        public bool Login()
+        public bool UserLogin()
         {
             try
             {
@@ -90,10 +97,10 @@ namespace ITIndeed.BL
                         tblUser user = dc.tblUsers.FirstOrDefault(u => u.UserName == this.UserName);
                         if (user != null)
                         {
-                            if (user.Password == this.GetHash()) // Checked if password is correct
+                            if (user.Password == this.GetHash()) // Checks if password is correct
                             {
                                 // Successful login
-                                Id = user.Id;
+                                BaseUserID = user.Id;
                                 return true;
                             }
                             else
@@ -129,7 +136,7 @@ namespace ITIndeed.BL
 
 
 
-        public bool LoadByUserName(string username)
+        public bool UserLoadByUserName(string username)
         {
             try
             {
@@ -139,7 +146,7 @@ namespace ITIndeed.BL
 
                     if (user != null)
                     {
-                        this.Id = user.Id;
+                        this.BaseUserID = user.Id;
                         this.UserName = user.UserName;
 
                         return true;
@@ -156,20 +163,18 @@ namespace ITIndeed.BL
                 throw ex;
             }
         }
-        public bool Insert()
+        public bool UserInsert()
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
 
-                    ///CHECKS TO SEE IF THERE IS A USER IN THE DATABASE IF NOT THEN INSERTS A NEW USER WITH A GUID AS THE Id
+                    ///CHECKS TO SEE IF THERE IS A USER IN THE DATABASE IF NOT THEN INSERTS A NEW USER WITH A GUID AS THE ID
                     if (dc.tblUsers.Where(u => u.UserName == this.UserName).FirstOrDefault() == null)
                     {
                         tblUser user = new tblUser();
-                        this.Id = Guid.NewGuid(); // Changed this to give the this.Id the new guid to avoid not having a Id set after creating a user.
-
-                        user.Id = this.Id;
+                        user.Id = Guid.NewGuid();                         
                         user.UserName = this.UserName;
                         user.Password = GetHash();
 
@@ -190,13 +195,13 @@ namespace ITIndeed.BL
                 throw ex;
             }
         }
-        public void Update()
+        public void UserUpdate()
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    tblUser user = dc.tblUsers.Where(u => u.Id == this.Id).FirstOrDefault();
+                    tblUser user = dc.tblUsers.Where(u => u.Id == this.BaseUserID).FirstOrDefault();
 
                     if (user != null)
                     {
@@ -213,13 +218,13 @@ namespace ITIndeed.BL
                 throw ex;
             }
         }
-        public void Delete()
+        public void UserDelete()
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    tblUser user = dc.tblUsers.Where(u => u.Id == this.Id).FirstOrDefault();
+                    tblUser user = dc.tblUsers.Where(u => u.Id == this.BaseUserID).FirstOrDefault();
 
                     if (user != null)
                     {
@@ -239,7 +244,7 @@ namespace ITIndeed.BL
 
     public class UserList : List<User>
     {
-        public void Load()
+        public void UserListLoad()
         {
             try
             {

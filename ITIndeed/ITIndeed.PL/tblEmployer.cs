@@ -15,10 +15,12 @@ namespace ITIndeed.PL
     public partial class tblEmployer
     {
         public System.Guid Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string RepresentativeFirstName { get; set; }
+        public string RepresentativeLastName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public System.Guid UserId { get; set; }
+        public string OrganizationName { get; set; }
+        public string Industry { get; set; }
     }
 }

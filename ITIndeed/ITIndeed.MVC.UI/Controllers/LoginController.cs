@@ -32,7 +32,7 @@ namespace ITIndeed.MVC.UI.Controllers
         {
             try
             {
-                if (user.Login())
+                if (user.UserLogin())
                 {
                     ViewBag.Message = "Welcome. You're logged in.";
                     Session["user"] = user;

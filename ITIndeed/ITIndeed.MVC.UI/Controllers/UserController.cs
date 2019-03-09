@@ -23,7 +23,7 @@ namespace ITIndeed.MVC.UI.Controllers
         {
            
                 users = new UserList();
-                users.Load();
+                users.UserListLoad();
                 return View(users);
           
         }
@@ -32,7 +32,7 @@ namespace ITIndeed.MVC.UI.Controllers
         public ActionResult Details(Guid id)
         {
             User user = new User();
-            user.LoadById(id);
+            user.UserLoadById(id);
 
             return View(user);
         }
@@ -51,7 +51,7 @@ namespace ITIndeed.MVC.UI.Controllers
             try
             {
                 // TODO: Add insert logic here
-                user.Insert();
+                user.UserInsert();
                 
 
                 return RedirectToAction("Index");
@@ -66,7 +66,7 @@ namespace ITIndeed.MVC.UI.Controllers
         public ActionResult Edit(Guid id)
         {
             User user = new User();
-            user.LoadById(id);
+            user.UserLoadById(id);
             return View(user);
         }
 
@@ -77,7 +77,7 @@ namespace ITIndeed.MVC.UI.Controllers
             try
             {
                 // TODO: Add update logic here
-                user.Update();
+                user.UserUpdate();
                 return RedirectToAction("Index");
             }
             catch
@@ -90,7 +90,7 @@ namespace ITIndeed.MVC.UI.Controllers
         public ActionResult Delete(Guid id)
         {
             User user = new User();
-            user.LoadById(id);
+            user.UserLoadById(id);
             return View(user);
         }
 
@@ -101,7 +101,7 @@ namespace ITIndeed.MVC.UI.Controllers
             try
             {
                 // TODO: Add delete logic here
-                user.Delete();
+                user.UserDelete();
                 return RedirectToAction("Index");
             }
             catch

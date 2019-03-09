@@ -109,8 +109,8 @@ GO
 CREATE TABLE [dbo].[tblStudent]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
-    [FirstName] VARCHAR(50) NOT NULL, 
-    [LastName] VARCHAR(50) NOT NULL, 
+    [StudentFirstName] VARCHAR(50) NOT NULL, 
+    [StudentLastName] VARCHAR(50) NOT NULL, 
     [Phone] VARCHAR(50) NULL, 
     [Email] VARCHAR(50) NOT NULL, 
     [School] VARCHAR(50) NOT NULL, 
@@ -170,7 +170,7 @@ BEGIN
 	(NEWID(), NEWID(), NEWID())
 END
 BEGIN
-	INSERT INTO [dbo].tblStudent(Id, FirstName,LastName,Phone,Email,School,Field,UserId)
+	INSERT INTO [dbo].tblStudent(Id, StudentFirstName,StudentLastName,Phone,Email,School,Field,UserId)
 	VALUES
 	(NEWID(), 'Amy', 'Adams','(920)444-4444','amy@email.com','FVTC', 'Networking', NEWID()),
 	(NEWID(), 'Bob', 'Ross','(920)555-5555','bob@email.com','FVTC', 'User Support',NEWID()),

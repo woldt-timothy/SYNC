@@ -12,10 +12,12 @@ namespace ITIndeed.BL.Test
         [TestMethod]
         public void InsertTest()
         {
+
+            //UserName cannot be the same for two Users//Business Rule
             User user = new User();
-            user.UserName = "Dumb Jerk95";
+            user.UserName = "DickyBoy1757";
             user.Password = "maple";
-            user.Insert();
+            user.UserInsert();
 
             ITIndeedEntities dc = new ITIndeedEntities();
 
@@ -41,16 +43,16 @@ namespace ITIndeed.BL.Test
 
             //Make sure NO SPACES when pasting GUIDs from database - taw - 03022019
 
-            user.Id = Guid.Parse("6b444af5-21be-4341-8e67-212630d15549");
+            user.BaseUserID = Guid.Parse("6b444af5-21be-4341-8e67-212630d15549");
 
             user.UserName = "Dumb Jerk666";
             user.Password = "PassWordUpdateTest17";
-            user.Update();
+            user.UserUpdate();
 
             ITIndeedEntities dc = new ITIndeedEntities();
 
             User otherUserObject = new User();
-            otherUserObject.LoadById(user.Id);
+            otherUserObject.UserLoadById(user.BaseUserID);
 
             string expected1 = "Dumb Jerk666";
             string actual1 = otherUserObject.UserName;
@@ -76,10 +78,10 @@ namespace ITIndeed.BL.Test
 
             //Make sure NO SPACES when pasting GUIDs from database - taw - 03022019
 
-            user.Id = Guid.Parse("b859717c-8065-43d2-9a5f-4eeb69e6bc6a");
+            user.BaseUserID = Guid.Parse("b859717c-8065-43d2-9a5f-4eeb69e6bc6a");
 
            
-            user.Delete();
+            user.UserDelete();
 
             ITIndeedEntities dc = new ITIndeedEntities();
 
@@ -106,7 +108,7 @@ namespace ITIndeed.BL.Test
 
             //Make sure NO SPACES when pasting GUIDs from database - taw - 03022019
 
-            user.LoadById(Guid.Parse("7158cfc3-e8a8-4606-9033-934410ad7c41"));
+            user.UserLoadById(Guid.Parse("7158cfc3-e8a8-4606-9033-934410ad7c41"));
 
 
             string expected = "jess2";
@@ -126,7 +128,7 @@ namespace ITIndeed.BL.Test
 
             //Make sure NO SPACES when pasting GUIDs from database - taw - 03022019
 
-            user.LoadByUserName("jess2");
+            user.UserLoadByUserName("jess2");
 
 
             string expected = "jess2";
@@ -146,7 +148,7 @@ namespace ITIndeed.BL.Test
 
             UserList users = new UserList();
 
-            users.Load();
+            users.UserListLoad();
 
 
             int expected = 10;
@@ -169,9 +171,9 @@ namespace ITIndeed.BL.Test
             user.Password = "maple";
 
 
-            user.Login();
+            user.UserLogin();
 
-            Assert.AreEqual(user.Login(), true);
+            Assert.AreEqual(user.UserLogin(), true);
         
             
 

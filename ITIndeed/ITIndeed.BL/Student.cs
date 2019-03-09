@@ -7,15 +7,20 @@ using System.Threading.Tasks;
 
 namespace ITIndeed.BL
 {
-    public class Student
+
+        //Student Inherits from User
+
+    public class Student: User
     {
         // Properties
 
-        public Guid Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public Guid StudentID { get; set; }
+        public string StudentFirstName { get; set; }
+        public string StudentLastName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        public string School { get; set; }
+        public string FieldOfStudy { get; set; }
         public Guid UserId { get; set; }
 
         // Constructors
@@ -25,33 +30,45 @@ namespace ITIndeed.BL
 
         }
 
-        public Student(Guid id, string firstName, string lastName, string phone, string email, Guid userId)
+
+
+
+
+        public Student(Guid studentID, string studentFirstName, string studentLastName, string phone, string email, Guid userID, string school, string fieldOfStudy)
         {
-            Id = id;
-            FirstName = firstName;
-            LastName = lastName;
+            StudentID = studentID;
+            StudentFirstName = studentFirstName;
+            StudentLastName = studentLastName;
             Phone = phone;
             Email = email;
-            UserId = userId;
+            School = school;
+            FieldOfStudy = fieldOfStudy;
+            UserId = userID;
         }
 
         // Methods
 
-        public bool LoadById(Guid id)
+
+
+        //Updated Fields in Method but StudentLoadById Needs Unit Test // we also could implement inheritance and load everything into a Student Object
+
+        public bool StudentLoadById(Guid studentID)
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    tblStudent student = dc.tblStudents.Where(s => s.Id == id).FirstOrDefault();
+                    tblStudent student = dc.tblStudents.Where(s => s.Id == studentID).FirstOrDefault();
 
                     if (student != null)
                     {
-                        this.Id = student.Id;
-                        this.FirstName = student.FirstName;
-                        this.LastName = student.LastName;
+                        this.StudentID = student.Id;
+                        this.StudentFirstName = student.StudentFirstName;
+                        this.StudentLastName = student.StudentFirstName;
                         this.Phone = student.Phone;
                         this.Email = student.Email;
+                        this.School = student.School;
+                        this.FieldOfStudy = student.Field;
                         this.UserId = student.UserId;
 
                         return true;
@@ -68,24 +85,42 @@ namespace ITIndeed.BL
                 throw ex;
             }
         }
-        public bool Insert()
+
+        //***Marker For Tim //This is good to go
+        public bool StudentInsert()
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
 
-                    tblStudent student = new tblStudent();
-                    this.Id = Guid.NewGuid();
+                    //Insert User, then take UserId and Insert it into Student Table // this can all be done through student object because student inherits from user
+                    //This code is good, Please talk with me before changing it --Thanks--Tim
+                    tblUser user = new tblUser();
 
-                    student.Id = this.Id;
-                    student.FirstName = this.FirstName;
-                    student.LastName = this.LastName;
+                    user.UserName = this.UserName;
+                    user.Password = this.Password;
+                    this.UserInsert();
+
+
+                    tblUser userGetUserId = dc.tblUsers.Where(u => u.UserName == this.UserName).FirstOrDefault();
+
+                    Guid guidUserId = userGetUserId.Id;
+
+
+                    tblStudent student = new tblStudent();
+                    student.Id = Guid.NewGuid();
+                    student.StudentFirstName = this.StudentFirstName;
+                    student.StudentLastName = this.StudentLastName;
                     student.Phone = this.Phone;
                     student.Email = this.Email;
-                    student.UserId = this.UserId;
+                    student.School = this.School;
+                    student.Field = this.FieldOfStudy;
+                    student.UserId = guidUserId;
 
                     dc.tblStudents.Add(student);
+
+
                     dc.SaveChanges();
 
                     return true;
@@ -97,20 +132,25 @@ namespace ITIndeed.BL
                 throw ex;
             }
         }
-        public void Update()
+
+
+        //Updated Fields in Method but StudentUpdate Needs Unit Test  // I think we should implement inheritance in this as well  so we can update username and password from one object
+        public void StudentUpdate()
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    tblStudent student = dc.tblStudents.Where(s => s.Id == this.Id).FirstOrDefault();
+                    tblStudent student = dc.tblStudents.Where(s => s.Id == this.StudentID).FirstOrDefault();
 
                     if (student != null)
                     {
-                        student.FirstName = this.FirstName;
-                        student.LastName = this.LastName;
+                        student.StudentFirstName = this.StudentFirstName;
+                        student.StudentLastName = this.StudentLastName;
                         student.Phone = this.Phone;
                         student.Email = this.Email;
+                        student.School = this.School;
+                        student.Field = this.FieldOfStudy;
 
                         dc.SaveChanges();
                     }
@@ -122,13 +162,17 @@ namespace ITIndeed.BL
                 throw ex;
             }
         }
-        public void Delete()
+
+
+        //Needs Unit Test //This Method is also going to have to be written such that it updates the user table as well // this can all be done through the student object
+        //Since Student Inherits from User // It will basically be the opposite of StudentInsert
+        public void StudentDelete()
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    tblStudent student = dc.tblStudents.Where(s => s.Id == this.Id).FirstOrDefault();
+                    tblStudent student = dc.tblStudents.Where(s => s.Id == this.StudentID).FirstOrDefault();
 
                     if (student != null)
                     {
@@ -146,15 +190,17 @@ namespace ITIndeed.BL
         }
     }
 
+
+    //Needs Unit Test  // Updated Fields //We also could probably implement inheritance here
     public class StudentList : List<Student>
     {
-        public void Load()
+        public void StudentListLoad()
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    dc.tblStudents.ToList().ForEach(s => Add(new Student(s.Id, s.FirstName, s.LastName, s.Phone, s.Email, s.UserId)));
+                    dc.tblStudents.ToList().ForEach(s => Add(new Student(s.Id, s.StudentFirstName, s.StudentLastName, s.Phone, s.Email, s.UserId, s.Field, s.School)));
                 }
             }
             catch (Exception ex)

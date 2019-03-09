@@ -7,16 +7,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITIndeed.MVC.UI", "ITIndeed
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ITIndeed.DB", "ITIndeed.DB\ITIndeed.DB.sqlproj", "{6B6D21FC-FE9B-4EAE-BB2F-D556F131EB49}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{85E6811A-7547-45BA-86DD-039E8A0135B3}"
-	ProjectSection(SolutionItems) = preProject
-		FirstDatabaseScript.txt = FirstDatabaseScript.txt
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITIndeed.BL", "ITIndeed.BL\ITIndeed.BL.csproj", "{631CF3DE-AA94-42AD-B3CF-26D75D29CA61}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITIndeed.PL", "ITIndeed.PL\ITIndeed.PL.csproj", "{262E3BDD-8A8A-4986-8274-281BA8C5435E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITIndeed.BL.Test", "ITIndeed.BL.Test\ITIndeed.BL.Test.csproj", "{8E221B58-EAAC-45D3-BA0A-92C9E7D0097B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{A2193E9C-0C73-44B8-9CE6-AA71AEB51A52}"
+	ProjectSection(SolutionItems) = preProject
+		DatabasePublishScript.txt = DatabasePublishScript.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,7 +30,6 @@ Global
 		{9020E141-F39E-42E1-A8CB-54D49C0D6D9A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6B6D21FC-FE9B-4EAE-BB2F-D556F131EB49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6B6D21FC-FE9B-4EAE-BB2F-D556F131EB49}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6B6D21FC-FE9B-4EAE-BB2F-D556F131EB49}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{6B6D21FC-FE9B-4EAE-BB2F-D556F131EB49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B6D21FC-FE9B-4EAE-BB2F-D556F131EB49}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6B6D21FC-FE9B-4EAE-BB2F-D556F131EB49}.Release|Any CPU.Deploy.0 = Release|Any CPU

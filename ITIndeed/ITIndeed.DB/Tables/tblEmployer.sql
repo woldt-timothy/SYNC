@@ -1,9 +1,11 @@
 ﻿CREATE TABLE [dbo].[tblEmployer]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
-    [FirstName] VARCHAR(50) NOT NULL, 
-    [LastName] VARCHAR(50) NOT NULL, 
-    [Phone] VARCHAR(50) NOT NULL, 
+    [RepresentativeFirstName] VARCHAR(50) NOT NULL, 
+    [RepresentativeLastName] VARCHAR(50) NOT NULL, 
+    [Phone] VARCHAR(50) NULL, 
     [Email] VARCHAR(50) NOT NULL, 
-    [UserId] UNIQUEIDENTIFIER NOT NULL
+    [UserId] UNIQUEIDENTIFIER NOT NULL, 
+    [OrganizationName] VARCHAR(100) NOT NULL, 
+    [Industry] VARCHAR(100) NOT NULL
 )

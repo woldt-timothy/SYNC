@@ -15,8 +15,8 @@ namespace ITIndeed.PL
     public partial class tblStudent
     {
         public System.Guid Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string StudentFirstName { get; set; }
+        public string StudentLastName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public string School { get; set; }
