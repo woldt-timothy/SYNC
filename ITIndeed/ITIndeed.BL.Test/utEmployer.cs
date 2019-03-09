@@ -20,7 +20,7 @@ namespace ITIndeed.BL.Test
 
 
 
-            employer.UserName = "foxValleyBadgerMan";
+            employer.UserName = "foxValleyBadgerMan2";
             employer.Password = "maple";
             employer.RepresentativeFirstName= "Bonny444";
             employer.RepresentativeLastName= "Clyde444";

@@ -16,7 +16,7 @@ namespace ITIndeed.BL.Test
 
 
             Student student = new Student();
-            student.UserName = "tim";
+            student.UserName = "tim3";
             student.Password = "maple";
             student.StudentFirstName = "Bonny444";
             student.StudentLastName = "Clyde444";
