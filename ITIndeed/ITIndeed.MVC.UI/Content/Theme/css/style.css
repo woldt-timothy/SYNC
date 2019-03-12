@@ -397,9 +397,12 @@ a:hover {
 	margin-top:50px;
 }
 
-#conatcat-info{
-  background: #fff url(../images/contact.png) no-repeat 90% 0;
-  padding: 30px 0;
+#conatcat-info {
+    /*background: #fff url(../images/contact.png) no-repeat 90% 0;*/
+    padding: 30px 0;
+}
+.conatcat-info-page{
+    background-color:lightgray;
 }
 
 .contact-info i{
@@ -1238,4 +1241,7 @@ a.scrollup:hover{
 	opacity:1;
 	background-color:#ddd;
 	color:#1BBD36;
+}
+.FontColor {
+    color: #1CBD33;
 }
