@@ -152,16 +152,18 @@ namespace ITIndeed.BL
 
                     if (employer != null && user != null)
                     {
-                        employer.RepresentativeFirstName = this.RepresentativeFirstName;
-                        employer.RepresentativeLastName = this.RepresentativeLastName;
-                        employer.Phone = this.Phone;
-                        employer.Email = this.Email;
-                        employer.Industry = this.Industry;
-                        employer.OrganizationName = this.OrganizationName;
-                        user.UserName = this.UserName;
-                        user.Password = this.Password;
-                        
-                        
+
+
+                        employer.RepresentativeFirstName = (this.RepresentativeFirstName == null) ? employer.RepresentativeFirstName : this.RepresentativeFirstName;
+                        employer.RepresentativeLastName = (this.RepresentativeLastName == null) ? employer.RepresentativeLastName : this.RepresentativeLastName;
+                        employer.Phone = (this.Phone == null) ? employer.Phone: this.Phone;
+                        employer.Email = (this.Email == null) ? employer.Email : this.Email;
+                        employer.Industry = (this.Industry == null) ? employer.Industry : this.Industry;
+                        employer.OrganizationName = (this.OrganizationName == null) ? employer.OrganizationName: this.OrganizationName;
+                        user.UserName = (this.UserName == null) ? user.UserName : this.UserName;
+                        user.Password = (this.Password == null) ? user.Password: this.Password;
+
+
 
                         dc.SaveChanges();
                     }
