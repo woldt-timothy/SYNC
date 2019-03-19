@@ -77,7 +77,7 @@ namespace ITIndeed.BL.Test
         [TestMethod]
         public void LoadIDTest()
         {
-            //Tests to if Number of Employees is Equal to Number of Employees in Database
+            
 
 
             Employer employer = new Employer();

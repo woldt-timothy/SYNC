@@ -12,7 +12,7 @@ namespace ITIndeed.BL
 
     public class Employer : User
     {
-        // Properties
+       
 
         public Guid EmployerId { get; set; }
         public string RepresentativeFirstName { get; set; }
@@ -25,13 +25,6 @@ namespace ITIndeed.BL
 
 
 
-
-
-
-
-
-
-        // Constructors
 
         public Employer()
         {
@@ -50,7 +43,6 @@ namespace ITIndeed.BL
             Industry = industry;
         }
 
-        // Methods
 
 
         //***Marker //This is good to go
@@ -138,7 +130,8 @@ namespace ITIndeed.BL
         }
 
 
-        //
+        //***This is good to go
+        // Please talk with me before changing it --Thanks--Tim
 
         public void EmployerUpdate()
         {
