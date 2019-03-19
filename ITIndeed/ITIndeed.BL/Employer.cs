@@ -53,7 +53,8 @@ namespace ITIndeed.BL
         // Methods
 
 
-        //Updated Fields in Method but EmployerLoadById Needs Unit Test // we also could implement inheritance and load everything into a Employer Object
+        //***Marker //This is good to go
+        //***User ID == employer.UserId != employer.BaseUserId // Same Goes with UserName
 
         public bool EmployerLoadById(Guid employerId)
         {
@@ -204,7 +205,7 @@ namespace ITIndeed.BL
     {
 
 
-        // Updated Fields //We also could probably implement inheritance here // Also needs unit test
+        //***Marker //This is good to go
         public void EmployerListLoad()
         {
             try

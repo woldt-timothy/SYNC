@@ -53,5 +53,45 @@ namespace ITIndeed.BL.Test
 
 
         }
+
+        [TestMethod]
+        public void LoadTest()
+        {
+            //Tests to if Number of Employees is Equal to Number of Employees in Database
+
+
+            EmployerList employers = new EmployerList();
+            employers.EmployerListLoad();
+
+            int expected = 6;
+            int actual = employers.Count();
+
+
+
+            Assert.AreEqual(expected, actual);
+
+
+        }
+
+
+        [TestMethod]
+        public void LoadIDTest()
+        {
+            //Tests to if Number of Employees is Equal to Number of Employees in Database
+
+
+            Employer employer = new Employer();
+            employer.EmployerLoadById(Guid.Parse("677e6aab-075b-4329-9025-a99422bd1d77"));
+
+
+            string expected = "Alex";
+            string actual = employer.RepresentativeFirstName;
+
+
+
+            Assert.AreEqual(expected, actual);
+
+
+        }
     }
 }
