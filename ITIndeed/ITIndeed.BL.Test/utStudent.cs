@@ -48,5 +48,25 @@ namespace ITIndeed.BL.Test
 
 
         }
+
+        [TestMethod]
+        public void LoadTest()
+        {
+            //Tests to if Number of Students is Equal to Number of Employees in Database
+
+
+            StudentList students = new StudentList();
+            students.StudentListLoad();
+
+            int expected = 14;
+            int actual = students.Count();
+
+
+
+            Assert.AreEqual(expected, actual);
+
+
+        }
+
     }
 }

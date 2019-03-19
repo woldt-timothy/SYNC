@@ -48,7 +48,7 @@ namespace ITIndeed.BL
 
         // Methods
 
-
+        //***Marker For Tim //This is where I left off
 
         //Updated Fields in Method but StudentLoadById Needs Unit Test // we also could implement inheritance and load everything into a Student Object
 
@@ -191,7 +191,7 @@ namespace ITIndeed.BL
     }
 
 
-    //Needs Unit Test  // Updated Fields //We also could probably implement inheritance here
+    //***Marker //This is good to go
     public class StudentList : List<Student>
     {
         public void StudentListLoad()

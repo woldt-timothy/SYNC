@@ -45,7 +45,7 @@ namespace ITIndeed.BL
 
 
 
-        //***Marker //This is good to go
+        //***Marker //THIS IS NOT RIGHT - Tim Will Fix
         //***User ID == employer.UserId != employer.BaseUserId // Same Goes with UserName
 
         public bool EmployerLoadById(Guid employerId)
@@ -55,17 +55,20 @@ namespace ITIndeed.BL
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
                     tblEmployer employer = dc.tblEmployers.Where(e => e.Id == employerId).FirstOrDefault();
+                    tblUser user = dc.tblUsers.Where(u => u.Id == employer.UserId).FirstOrDefault();
 
-                    if (employer != null)
+                    if (employer != null & user != null)
                     {
                         this.EmployerId = employer.Id;
                         this.RepresentativeFirstName = employer.RepresentativeFirstName;
                         this.RepresentativeLastName = employer.RepresentativeLastName;
                         this.Phone = employer.Phone;
                         this.Email = employer.Email;
-                        this.UserId = employer.UserId;
                         this.OrganizationName = employer.OrganizationName;
                         this.Industry = employer.Industry;
+                        this.Password = user.Password;
+                        this.UserName = user.UserName;
+
 
                         return true;
                     }
