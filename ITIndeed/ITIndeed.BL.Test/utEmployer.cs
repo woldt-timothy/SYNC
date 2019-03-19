@@ -20,13 +20,13 @@ namespace ITIndeed.BL.Test
 
 
 
-            employer.UserName = "foxValleyBadgerMan2";
+            employer.UserName = "foxValleyBadgerMan3";
             employer.Password = "maple";
-            employer.RepresentativeFirstName= "Bonny444";
-            employer.RepresentativeLastName= "Clyde444";
-            employer.Email = "bonnytheman@bemis.com";
-            employer.Industry = "Retail";
-            employer.OrganizationName = "Bemis Company";
+            employer.RepresentativeFirstName= "Bonny443";
+            employer.RepresentativeLastName= "Clyde443";
+            employer.Email = "bonnytheman@bemis.com3";
+            employer.Industry = "Retail3";
+            employer.OrganizationName = "Bemis Company3";
             employer.Phone = null;
             
 
@@ -93,5 +93,60 @@ namespace ITIndeed.BL.Test
 
 
         }
+
+        [TestMethod]
+        public void DeleteTest()
+        {
+
+            Employer employer = new Employer();
+            employer.EmployerId = Guid.Parse("8368a3ce-7fd2-4ac3-a786-45007c87a817");
+            employer.EmployerDelete();
+
+
+            ITIndeedEntities dc = new ITIndeedEntities();
+
+            var users = dc.tblUsers;
+
+            int expectedUsers = 17;
+
+            int actualUsers = users.Count();
+
+
+
+            var employers = dc.tblEmployers;
+
+            int expectedEmployers = 5;
+
+            int actualEmployers = employers.Count();
+
+            Assert.AreEqual(expectedEmployers + expectedUsers, actualEmployers + actualUsers);
+
+
+        }
+
+
+        [TestMethod]
+        public void UpdateTest()
+        {
+
+            Employer employer = new Employer();
+            employer.EmployerId = Guid.Parse("a9bf5d34-54aa-4f48-9b90-009b2ee15bb7");
+            employer.UserName = "Test123!";
+            employer.Industry = "TestIndustry";
+            employer.EmployerUpdate();
+
+
+            employer.EmployerLoadById(Guid.Parse("a9bf5d34-54aa-4f48-9b90-009b2ee15bb7"));
+
+            string expected = "Test123!TestIndustry";
+            string actual = employer.UserName + employer.Industry;
+
+            Assert.AreEqual(expected, actual);
+
+
+        }
+
+
+
     }
 }

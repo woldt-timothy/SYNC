@@ -138,7 +138,7 @@ namespace ITIndeed.BL
         }
 
 
-        //Updated Fields in Method by EmployerUpdate Needs Unit Test // I think we should implement inheritance in this as well  so we can update username and password from one object
+        //
 
         public void EmployerUpdate()
         {
@@ -147,8 +147,10 @@ namespace ITIndeed.BL
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
                     tblEmployer employer = dc.tblEmployers.Where(e => e.Id == this.EmployerId).FirstOrDefault();
+                    tblUser user = dc.tblUsers.Where(u => u.Id == employer.UserId).FirstOrDefault();
 
-                    if (employer != null)
+
+                    if (employer != null && user != null)
                     {
                         employer.RepresentativeFirstName = this.RepresentativeFirstName;
                         employer.RepresentativeLastName = this.RepresentativeLastName;
@@ -156,6 +158,9 @@ namespace ITIndeed.BL
                         employer.Email = this.Email;
                         employer.Industry = this.Industry;
                         employer.OrganizationName = this.OrganizationName;
+                        user.UserName = this.UserName;
+                        user.Password = this.Password;
+                        
                         
 
                         dc.SaveChanges();
@@ -171,8 +176,9 @@ namespace ITIndeed.BL
 
 
 
-        //Needs Unit Test //This Method is also going to have to be written such that it updates the user table as well // this can all be done through the employer object
-        //Since employer Inherits from User // It will basically be the opposite of EmployerInsert
+        //***This is good to go
+       // Please talk with me before changing it --Thanks--Tim
+
 
         public void EmployerDelete()
         {
@@ -181,10 +187,11 @@ namespace ITIndeed.BL
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
                     tblEmployer employer = dc.tblEmployers.Where(e => e.Id == this.EmployerId).FirstOrDefault();
-
-                    if (employer != null)
+                    tblUser user = dc.tblUsers.Where(u => u.Id == employer.UserId).FirstOrDefault();
+                    if (employer != null & user != null)
                     {
                         dc.tblEmployers.Remove(employer);
+                        dc.tblUsers.Remove(user);
 
                         dc.SaveChanges();
                     }
