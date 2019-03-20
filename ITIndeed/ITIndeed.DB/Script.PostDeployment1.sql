@@ -10,8 +10,8 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
+:r DefaultData\User.sql
+:r DefaultData\Student.sql
 :r DefaultData\Employer.sql
 :r DefaultData\Event.sql
 :r DefaultData\EventShowing.sql
-:r DefaultData\Student.sql
-:r DefaultData\User.sql

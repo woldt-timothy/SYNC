@@ -19,5 +19,6 @@ namespace ITIndeed.PL
         public string Type { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
+        public System.Guid UserId { get; set; }
     }
 }
