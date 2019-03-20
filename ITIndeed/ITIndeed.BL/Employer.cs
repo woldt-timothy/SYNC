@@ -45,7 +45,7 @@ namespace ITIndeed.BL
 
 
 
-        //***Marker //THIS IS NOT RIGHT - Tim Will Fix
+        //***Marker For Tim //This is good to go
         //***User ID == employer.UserId != employer.BaseUserId // Same Goes with UserName
 
         public bool EmployerLoadById(Guid employerId)
@@ -68,6 +68,7 @@ namespace ITIndeed.BL
                         this.Industry = employer.Industry;
                         this.Password = user.Password;
                         this.UserName = user.UserName;
+                        this.UserId = employer.UserId;
 
 
                         return true;

@@ -20,7 +20,7 @@ namespace ITIndeed.BL.Test
 
 
 
-            employer.UserName = "foxValleyBadgerMan3";
+            employer.UserName = "foxValleyBadgerMan4";
             employer.Password = "maple";
             employer.RepresentativeFirstName= "Bonny443";
             employer.RepresentativeLastName= "Clyde443";
@@ -74,7 +74,7 @@ namespace ITIndeed.BL.Test
         }
 
 
-        //This Method is Not Accurate - Tim Will Fix
+        
 
         [TestMethod]
         public void LoadIDTest()
@@ -83,10 +83,10 @@ namespace ITIndeed.BL.Test
 
 
             Employer employer = new Employer();
-            employer.EmployerLoadById(Guid.Parse("677e6aab-075b-4329-9025-a99422bd1d77"));
+            employer.EmployerLoadById(Guid.Parse("d04a220b-8d5a-4620-8066-1c57311d2fbb"));
 
 
-            string expected = "Alex";
+            string expected = "Bonny443";
             string actual = employer.RepresentativeFirstName;
 
 

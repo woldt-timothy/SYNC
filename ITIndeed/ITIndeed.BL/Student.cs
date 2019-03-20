@@ -46,11 +46,8 @@ namespace ITIndeed.BL
             UserId = userID;
         }
 
-        // Methods
-
-        //***Marker For Tim //This is where I left off
-
-        //Updated Fields in Method but StudentLoadById Needs Unit Test // we also could implement inheritance and load everything into a Student Object
+        //***Marker For Tim //This is good to go
+        //***User ID == student.UserId != student.BaseUserId // Same Goes with UserName
 
         public bool StudentLoadById(Guid studentID)
         {
@@ -59,8 +56,10 @@ namespace ITIndeed.BL
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
                     tblStudent student = dc.tblStudents.Where(s => s.Id == studentID).FirstOrDefault();
+                    tblUser user = dc.tblUsers.Where(u => u.Id == student.UserId).FirstOrDefault();
 
-                    if (student != null)
+
+                    if (student != null & user != null)
                     {
                         this.StudentID = student.Id;
                         this.StudentFirstName = student.StudentFirstName;
@@ -70,6 +69,8 @@ namespace ITIndeed.BL
                         this.School = student.School;
                         this.FieldOfStudy = student.Field;
                         this.UserId = student.UserId;
+                        this.UserName = user.UserName;
+                        this.Password = user.Password;
 
                         return true;
                     }
@@ -134,7 +135,8 @@ namespace ITIndeed.BL
         }
 
 
-        //Updated Fields in Method but StudentUpdate Needs Unit Test  // I think we should implement inheritance in this as well  so we can update username and password from one object
+        //***This is good to go
+        // Please talk with me before changing it --Thanks--Tim
         public void StudentUpdate()
         {
             try
@@ -142,15 +144,18 @@ namespace ITIndeed.BL
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
                     tblStudent student = dc.tblStudents.Where(s => s.Id == this.StudentID).FirstOrDefault();
+                    tblUser user = dc.tblUsers.Where(u => u.Id == student.UserId).FirstOrDefault();
 
-                    if (student != null)
+                    if (student != null && user != null)
                     {
-                        student.StudentFirstName = this.StudentFirstName;
-                        student.StudentLastName = this.StudentLastName;
-                        student.Phone = this.Phone;
-                        student.Email = this.Email;
-                        student.School = this.School;
-                        student.Field = this.FieldOfStudy;
+                        student.StudentFirstName = (this.StudentFirstName == null) ? student.StudentFirstName: this.StudentFirstName;
+                        student.StudentLastName = (this.StudentLastName == null) ? student.StudentLastName: this.StudentLastName;
+                        student.Phone = this.Phone = (this.Phone == null) ? student.Phone : this.Phone;
+                        student.Email = (this.Email == null) ? student.Email : this.Email;
+                        student.School = (this.School == null) ? student.School : this.School;
+                        student.Field = (this.FieldOfStudy == null) ? student.Field : this.FieldOfStudy;
+                        user.UserName = (this.UserName == null) ? user.UserName : this.UserName;
+                        user.Password = (this.Password == null) ? user.Password : this.Password;
 
                         dc.SaveChanges();
                     }
@@ -164,8 +169,7 @@ namespace ITIndeed.BL
         }
 
 
-        //Needs Unit Test //This Method is also going to have to be written such that it updates the user table as well // this can all be done through the student object
-        //Since Student Inherits from User // It will basically be the opposite of StudentInsert
+        //***Marker For Tim //This is good to go
         public void StudentDelete()
         {
             try
@@ -173,10 +177,12 @@ namespace ITIndeed.BL
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
                     tblStudent student = dc.tblStudents.Where(s => s.Id == this.StudentID).FirstOrDefault();
+                    tblUser user = dc.tblUsers.Where(u => u.Id == student.UserId).FirstOrDefault();
 
                     if (student != null)
                     {
                         dc.tblStudents.Remove(student);
+                        dc.tblUsers.Remove(user);
 
                         dc.SaveChanges();
                     }

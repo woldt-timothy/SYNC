@@ -9,16 +9,25 @@ namespace ITIndeed.MVC.UI.Controllers
 {
     public class StudentController : Controller
     {
+
+        StudentList students;
+
         // GET: Student
         public ActionResult Index()
         {
-            return View();
+            students = new StudentList();
+            students.StudentListLoad();
+
+            return View(students);
         }
 
         // GET: Student/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+
+            Student student = new Student();
+            student.StudentLoadById(id);
+            return View(student);
         }
 
         // GET: Student/Create
@@ -45,46 +54,53 @@ namespace ITIndeed.MVC.UI.Controllers
         }
 
         // GET: Student/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+
+            Student student = new Student();
+            student.StudentLoadById(id);
+            return View(student);
         }
 
         // POST: Student/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Guid id, Student s)
         {
             try
             {
                 // TODO: Add update logic here
+                s.StudentUpdate();
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(s);
             }
         }
 
         // GET: Student/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            Student student = new Student();
+            student.StudentLoadById(id);
+
+            return View(student);
         }
 
         // POST: Student/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Guid id, Student s)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                s.StudentDelete();
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(s);
             }
         }
     }

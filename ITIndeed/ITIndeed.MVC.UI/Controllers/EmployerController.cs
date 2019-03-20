@@ -9,16 +9,26 @@ namespace ITIndeed.MVC.UI.Controllers
 {
     public class EmployerController : Controller
     {
+        EmployerList employers;
+
+
         // GET: Employee
         public ActionResult Index()
         {
-            return View();
+
+            employers = new EmployerList();
+            employers.EmployerListLoad();
+
+            return View(employers);
         }
 
         // GET: Employee/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            Employer employer = new Employer();
+            employer.EmployerLoadById(id);
+
+            return View(employer);
         }
 
         // GET: Employee/Create
@@ -46,46 +56,53 @@ namespace ITIndeed.MVC.UI.Controllers
         }
 
         // GET: Employee/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            Employer employer = new Employer();
+            employer.EmployerLoadById(id);
+
+            return View(employer);
         }
 
         // POST: Employee/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Guid id, Employer e)
         {
             try
             {
                 // TODO: Add update logic here
-
+                e.EmployerUpdate();
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(e);
             }
         }
 
         // GET: Employee/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            Employer employer = new Employer();
+            employer.EmployerLoadById(id);
+
+            return View(employer);
         }
 
         // POST: Employee/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Guid id, Employer e)
         {
             try
             {
                 // TODO: Add delete logic here
 
+                e.EmployerDelete();
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(e);
             }
         }
     }
