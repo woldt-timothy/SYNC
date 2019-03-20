@@ -16,6 +16,7 @@ namespace ITIndeed.BL
         public string Type { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public Guid UserId { get; set; }
         public List<User> Users { get; set; }
 
         // Constructors
@@ -25,17 +26,18 @@ namespace ITIndeed.BL
 
         }
 
-        public Event(Guid id, string name, string type, DateTime startDate, DateTime endDate)
+        public Event(Guid id, string name, string type, DateTime startDate, DateTime endDate, Guid userId)
         {
             Id = id;
             Name = name;
             Type = type;
             StartDate = startDate;
             EndDate = endDate;
+            UserId = userId;
         }
 
         // Methods
-
+        
 
         public bool AddUserToEvent(Guid userId) // Add a user to this event
         {
@@ -69,7 +71,7 @@ namespace ITIndeed.BL
                 throw ex;
             }
         }
-        public void LoadUsers(Guid id) // Load list of users attending the event
+        public void LoadUsers() // Load list of users attending the event
         {
             try
             {
@@ -77,7 +79,7 @@ namespace ITIndeed.BL
                 {
                     Users = new List<User>();
 
-                    var eventShowings = dc.tblEventShowings.Where(e => e.EventId == id);
+                    var eventShowings = dc.tblEventShowings.Where(e => e.EventId == this.Id);
 
                     foreach (var eventShowing in eventShowings)
                     {
@@ -107,6 +109,7 @@ namespace ITIndeed.BL
                         this.Type = tevent.Type;
                         this.StartDate = tevent.StartDate;
                         this.EndDate = tevent.EndDate;
+                        this.UserId = tevent.UserId;
 
                         return true;
                     }
@@ -137,6 +140,7 @@ namespace ITIndeed.BL
                     tevent.Type = this.Type;
                     tevent.StartDate = this.StartDate;
                     tevent.EndDate = this.EndDate;
+                    tevent.UserId = this.UserId;
 
                     dc.tblEvents.Add(tevent);
                     dc.SaveChanges();
@@ -210,7 +214,7 @@ namespace ITIndeed.BL
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    dc.tblEvents.ToList().ForEach(e => Add(new Event(e.Id, e.Name, e.Type, e.StartDate, e.EndDate)));
+                    dc.tblEvents.ToList().ForEach(e => Add(new Event(e.Id, e.Name, e.Type, e.StartDate, e.EndDate, e.UserId)));
                 }
             }
             catch (Exception ex)
@@ -218,6 +222,18 @@ namespace ITIndeed.BL
 
                 throw ex;
             }
+        }
+
+        // Load events the user has created.
+        public void LoadByUser(Guid id)
+        {
+
+        }
+
+        // Load events the user is attending.
+        public void LoadAttending(Guid id)
+        {
+
         }
     }
 }
