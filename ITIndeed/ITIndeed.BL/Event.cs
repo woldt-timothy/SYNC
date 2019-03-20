@@ -214,6 +214,7 @@ namespace ITIndeed.BL
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
+                    this.Clear();
                     dc.tblEvents.ToList().ForEach(e => Add(new Event(e.Id, e.Name, e.Type, e.StartDate, e.EndDate, e.UserId)));
                 }
             }
@@ -227,13 +228,44 @@ namespace ITIndeed.BL
         // Load events the user has created.
         public void LoadByUser(Guid id)
         {
+            try
+            {
+                using (ITIndeedEntities dc = new ITIndeedEntities())
+                {
+                    this.Clear();
+                    dc.tblEvents.Where(e => e.UserId == id).ToList().ForEach(e => Add(new Event(e.Id, e.Name, e.Type, e.StartDate, e.EndDate, e.UserId)));
+                }
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
         }
 
         // Load events the user is attending.
         public void LoadAttending(Guid id)
         {
+            try
+            {
+                using (ITIndeedEntities dc = new ITIndeedEntities())
+                {
+                    this.Clear();
+                    List<tblEventShowing> showings = dc.tblEventShowings.Where(es => es.UserId == id).ToList();
 
+                    foreach (var showing in showings)
+                    {
+                        tblEvent _event = dc.tblEvents.Where(e => e.Id == showing.EventId).FirstOrDefault();
+
+                        this.Add(new Event(_event.Id, _event.Name, _event.Type, _event.StartDate, _event.EndDate, _event.UserId));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }
