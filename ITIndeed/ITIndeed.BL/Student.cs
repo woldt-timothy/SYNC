@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace ITIndeed.BL
 {
@@ -15,11 +17,14 @@ namespace ITIndeed.BL
         // Properties
 
         public Guid StudentID { get; set; }
+        [DisplayName("First Name")]
         public string StudentFirstName { get; set; }
+        [DisplayName("Last Name")]
         public string StudentLastName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public string School { get; set; }
+        [DisplayName("Field of Study")]
         public string FieldOfStudy { get; set; }
         public Guid UserId { get; set; }
 

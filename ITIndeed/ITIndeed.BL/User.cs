@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace ITIndeed.BL
 {
@@ -24,6 +26,7 @@ namespace ITIndeed.BL
         /// </summary>
 
         public Guid BaseUserID { get; set; }
+        [DisplayName("User Name")]
         public string UserName { get; set; }
         public string Password { get; set; }
 

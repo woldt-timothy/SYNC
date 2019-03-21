@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace ITIndeed.BL
 {
@@ -14,7 +16,9 @@ namespace ITIndeed.BL
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
+        [DisplayName("Start Date")]
         public DateTime StartDate { get; set; }
+        [DisplayName("End Date")]
         public DateTime EndDate { get; set; }
         public Guid UserId { get; set; }
         public List<User> Users { get; set; }
