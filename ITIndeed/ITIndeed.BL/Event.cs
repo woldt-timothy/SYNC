@@ -41,7 +41,7 @@ namespace ITIndeed.BL
         }
 
         // Methods
-        
+
 
         public bool AddUserToEvent(Guid userId) // Add a user to this event
         {

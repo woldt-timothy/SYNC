@@ -7,5 +7,6 @@
     [Email] VARCHAR(50) NOT NULL, 
     [School] VARCHAR(50) NOT NULL, 
     [Field] VARCHAR(50) NOT NULL, 
-    [UserId] UNIQUEIDENTIFIER NOT NULL
+    [UserId] UNIQUEIDENTIFIER NOT NULL, 
+    [ProfilePicture] VARBINARY(MAX) NULL
 )

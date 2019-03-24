@@ -134,10 +134,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AreYouAnEmployerOrStudentController.cs" />
     <Compile Include="Controllers\EmployerController.cs" />
+    <Compile Include="Controllers\EmployerProfileController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\StudentProfileController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -193,6 +195,7 @@
     <Content Include="Content\Theme\images\blog\thumb2.jpg" />
     <Content Include="Content\Theme\images\blog\thumb3.jpg" />
     <Content Include="Content\Theme\images\contact.png" />
+    <Content Include="Content\Theme\images\employerprofile\employerprofilepicture.jpg" />
     <Content Include="Content\Theme\images\partners\partner1.png" />
     <Content Include="Content\Theme\images\partners\partner2.png" />
     <Content Include="Content\Theme\images\partners\partner3.png" />
@@ -266,6 +269,7 @@
     <Content Include="Content\Theme\images\services\3.jpg" />
     <Content Include="Content\Theme\images\slider\bg1.jpg" />
     <Content Include="Content\Theme\images\slider\img3.png" />
+    <Content Include="Content\Theme\images\studentprofile\studentprofilepicture.jpg" />
     <Content Include="Content\Theme\index.html" />
     <Content Include="Content\Theme\js\bootstrap.js" />
     <Content Include="Content\Theme\js\bootstrap.min.js" />
@@ -343,6 +347,21 @@
     <Content Include="Views\Event\Create.cshtml" />
     <Content Include="Views\Event\Edit.cshtml" />
     <Content Include="Views\Event\Delete.cshtml" />
+    <Content Include="Views\Profile\Create.cshtml" />
+    <Content Include="Views\Profile\Delete.cshtml" />
+    <Content Include="Views\Profile\Details.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\StudentProfile\Index.cshtml" />
+    <Content Include="Views\StudentProfile\Create.cshtml" />
+    <Content Include="Views\StudentProfile\Details.cshtml" />
+    <Content Include="Views\StudentProfile\Edit.cshtml" />
+    <Content Include="Views\StudentProfile\Delete.cshtml" />
+    <Content Include="Views\EmployerProfile\Index.cshtml" />
+    <Content Include="Views\EmployerProfile\Details.cshtml" />
+    <Content Include="Views\EmployerProfile\Create.cshtml" />
+    <Content Include="Views\EmployerProfile\Edit.cshtml" />
+    <Content Include="Views\EmployerProfile\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

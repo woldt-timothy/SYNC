@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="ITIndeedModel.tblEvent" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="ITIndeedModel.tblEventShowing" Width="1.5" PointX="2.75" PointY="3.75" />
         <EntityTypeShape EntityType="ITIndeedModel.tblStudent" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ITIndeedModel.tblUser" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ITIndeedModel.tblUser" Width="1.5" PointX="5.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -7,5 +7,6 @@
     [Email] VARCHAR(50) NOT NULL, 
     [UserId] UNIQUEIDENTIFIER NOT NULL, 
     [OrganizationName] VARCHAR(100) NOT NULL, 
-    [Industry] VARCHAR(100) NOT NULL
+    [Industry] VARCHAR(100) NOT NULL, 
+    [ProfilePicture] VARBINARY(MAX) NULL
 )
