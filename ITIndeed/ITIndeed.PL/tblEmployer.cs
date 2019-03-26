@@ -22,5 +22,6 @@ namespace ITIndeed.PL
         public System.Guid UserId { get; set; }
         public string OrganizationName { get; set; }
         public string Industry { get; set; }
+        public byte[] ProfilePicture { get; set; }
     }
 }

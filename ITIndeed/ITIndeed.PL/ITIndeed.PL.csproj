@@ -69,6 +69,9 @@
     <Compile Include="tblEmployer.cs">
       <DependentUpon>ITIndeedEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblEmployerPicture.cs">
+      <DependentUpon>ITIndeedEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblEvent.cs">
       <DependentUpon>ITIndeedEntities.tt</DependentUpon>
     </Compile>
@@ -76,6 +79,9 @@
       <DependentUpon>ITIndeedEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblStudent.cs">
+      <DependentUpon>ITIndeedEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblStudentPicture.cs">
       <DependentUpon>ITIndeedEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblUser.cs">

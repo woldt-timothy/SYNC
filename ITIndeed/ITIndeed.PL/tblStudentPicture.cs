@@ -12,16 +12,9 @@ namespace ITIndeed.PL
     using System;
     using System.Collections.Generic;
     
-    public partial class tblStudent
+    public partial class tblStudentPicture
     {
         public System.Guid Id { get; set; }
-        public string StudentFirstName { get; set; }
-        public string StudentLastName { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
-        public string School { get; set; }
-        public string Field { get; set; }
-        public System.Guid UserId { get; set; }
-        public byte[] ProfilePicture { get; set; }
+        public byte[] Photo { get; set; }
     }
 }

@@ -26,13 +26,11 @@ namespace ITIndeed.PL
         }
     
         public virtual DbSet<tblEmployer> tblEmployers { get; set; }
+        public virtual DbSet<tblEmployerPicture> tblEmployerPictures { get; set; }
         public virtual DbSet<tblEvent> tblEvents { get; set; }
         public virtual DbSet<tblEventShowing> tblEventShowings { get; set; }
         public virtual DbSet<tblStudent> tblStudents { get; set; }
+        public virtual DbSet<tblStudentPicture> tblStudentPictures { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
-
-        public System.Data.Entity.DbSet<ITIndeed.BL.Student> Students { get; set; }
-
-        public System.Data.Entity.DbSet<ITIndeed.BL.Employer> Employers { get; set; }
     }
 }

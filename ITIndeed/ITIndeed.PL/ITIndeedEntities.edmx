@@ -17,6 +17,14 @@
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="OrganizationName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Industry" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProfilePicture" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblEmployerPicture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Photo" Type="varbinary" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblEvent">
           <Key>
@@ -49,6 +57,14 @@
           <Property Name="School" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Field" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProfilePicture" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblStudentPicture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -60,9 +76,11 @@
         </EntityType>
         <EntityContainer Name="ITIndeedModelStoreContainer">
           <EntitySet Name="tblEmployer" EntityType="Self.tblEmployer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEmployerPicture" EntityType="Self.tblEmployerPicture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblEvent" EntityType="Self.tblEvent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblEventShowing" EntityType="Self.tblEventShowing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblStudent" EntityType="Self.tblStudent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStudentPicture" EntityType="Self.tblStudentPicture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -71,9 +89,11 @@
       <Schema Namespace="ITIndeedModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ITIndeedEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblEmployers" EntityType="ITIndeedModel.tblEmployer" />
+          <EntitySet Name="tblEmployerPictures" EntityType="ITIndeedModel.tblEmployerPicture" />
           <EntitySet Name="tblEvents" EntityType="ITIndeedModel.tblEvent" />
           <EntitySet Name="tblEventShowings" EntityType="ITIndeedModel.tblEventShowing" />
           <EntitySet Name="tblStudents" EntityType="ITIndeedModel.tblStudent" />
+          <EntitySet Name="tblStudentPictures" EntityType="ITIndeedModel.tblStudentPicture" />
           <EntitySet Name="tblUsers" EntityType="ITIndeedModel.tblUser" />
         </EntityContainer>
         <EntityType Name="tblEmployer">
@@ -88,6 +108,14 @@
           <Property Name="UserId" Type="Guid" Nullable="false" />
           <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Industry" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProfilePicture" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblEmployerPicture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="50" FixedLength="false" />
         </EntityType>
         <EntityType Name="tblEvent">
           <Key>
@@ -120,6 +148,14 @@
           <Property Name="School" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Field" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="ProfilePicture" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblStudentPicture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -138,6 +174,7 @@
           <EntitySetMapping Name="tblEmployers">
             <EntityTypeMapping TypeName="ITIndeedModel.tblEmployer">
               <MappingFragment StoreEntitySet="tblEmployer">
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
                 <ScalarProperty Name="Industry" ColumnName="Industry" />
                 <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -145,6 +182,14 @@
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="RepresentativeLastName" ColumnName="RepresentativeLastName" />
                 <ScalarProperty Name="RepresentativeFirstName" ColumnName="RepresentativeFirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEmployerPictures">
+            <EntityTypeMapping TypeName="ITIndeedModel.tblEmployerPicture">
+              <MappingFragment StoreEntitySet="tblEmployerPicture">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -173,6 +218,7 @@
           <EntitySetMapping Name="tblStudents">
             <EntityTypeMapping TypeName="ITIndeedModel.tblStudent">
               <MappingFragment StoreEntitySet="tblStudent">
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Field" ColumnName="Field" />
                 <ScalarProperty Name="School" ColumnName="School" />
@@ -180,6 +226,14 @@
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="StudentLastName" ColumnName="StudentLastName" />
                 <ScalarProperty Name="StudentFirstName" ColumnName="StudentFirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStudentPictures">
+            <EntityTypeMapping TypeName="ITIndeedModel.tblStudentPicture">
+              <MappingFragment StoreEntitySet="tblStudentPicture">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
