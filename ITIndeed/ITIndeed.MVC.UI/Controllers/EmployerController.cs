@@ -47,7 +47,7 @@ namespace ITIndeed.MVC.UI.Controllers
             {
                 // TODO: Add insert logic here
                 e.EmployerInsert();
-                return RedirectToAction("Index");
+                return RedirectToAction("../Content/Theme/index.html");
             }
             catch
             {

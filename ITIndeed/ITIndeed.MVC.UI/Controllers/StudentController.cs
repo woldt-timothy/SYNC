@@ -45,7 +45,7 @@ namespace ITIndeed.MVC.UI.Controllers
             {
                 // TODO: Add insert logic here
                 s.StudentInsert();
-                return RedirectToAction("Index");
+                return RedirectToAction("../Content/Theme/index.html");
             }
             catch
             {
