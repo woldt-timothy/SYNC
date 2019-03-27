@@ -27,16 +27,17 @@ namespace ITIndeed.BL
         public string OrganizationName { get; set; }
         public string Industry { get; set; }
         public Guid UserId { get; set; }
+        public Byte[] ProfilePicture{ get; set; }
 
 
 
 
-        public Employer()
+    public Employer()
         {
 
         }
 
-        public Employer(Guid employerId, string representativeFirstName, string representativeLastName, string phone, string email, string organizationName, string industry, Guid userId)
+        public Employer(Guid employerId, string representativeFirstName, string representativeLastName, string phone, string email, string organizationName, string industry, Guid userId, Byte[] profilePicture)
         {
             EmployerId = employerId;
             RepresentativeFirstName = representativeLastName;
@@ -46,6 +47,7 @@ namespace ITIndeed.BL
             UserId = userId;
             OrganizationName = organizationName;
             Industry = industry;
+            ProfilePicture = profilePicture;
         }
 
 
@@ -74,6 +76,7 @@ namespace ITIndeed.BL
                         this.Password = user.Password;
                         this.UserName = user.UserName;
                         this.UserId = employer.UserId;
+                        this.ProfilePicture = employer.ProfilePicture;
 
 
                         return true;
@@ -124,6 +127,7 @@ namespace ITIndeed.BL
                     employer.OrganizationName = this.OrganizationName;
                     employer.Industry = this.Industry;
                     employer.UserId = guidUserId;
+                    employer.ProfilePicture = this.ProfilePicture;
 
                     dc.tblEmployers.Add(employer);
                     dc.SaveChanges();
@@ -164,6 +168,7 @@ namespace ITIndeed.BL
                         employer.OrganizationName = (this.OrganizationName == null) ? employer.OrganizationName: this.OrganizationName;
                         user.UserName = (this.UserName == null) ? user.UserName : this.UserName;
                         user.Password = (this.Password == null) ? user.Password: this.Password;
+                        employer.ProfilePicture = (this.ProfilePicture == null) ? employer.ProfilePicture: this.ProfilePicture;
 
 
 
@@ -223,7 +228,7 @@ namespace ITIndeed.BL
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    dc.tblEmployers.ToList().ForEach(e => Add(new Employer(e.Id, e.RepresentativeFirstName, e.RepresentativeLastName, e.Phone, e.Email, e.OrganizationName, e.Industry, e.UserId)));
+                    dc.tblEmployers.ToList().ForEach(e => Add(new Employer(e.Id, e.RepresentativeFirstName, e.RepresentativeLastName, e.Phone, e.Email, e.OrganizationName, e.Industry, e.UserId, e.ProfilePicture)));
                 }
             }
             catch (Exception ex)

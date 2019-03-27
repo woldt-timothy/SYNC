@@ -27,6 +27,7 @@ namespace ITIndeed.BL
         [DisplayName("Field of Study")]
         public string FieldOfStudy { get; set; }
         public Guid UserId { get; set; }
+        public Byte[] ProfilePicture { get; set; }
 
         // Constructors
 
@@ -39,7 +40,7 @@ namespace ITIndeed.BL
 
 
 
-        public Student(Guid studentID, string studentFirstName, string studentLastName, string phone, string email, Guid userID, string school, string fieldOfStudy)
+        public Student(Guid studentID, string studentFirstName, string studentLastName, string phone, string email, Guid userID, string school, string fieldOfStudy, Byte[] profilePicture)
         {
             StudentID = studentID;
             StudentFirstName = studentFirstName;
@@ -49,6 +50,7 @@ namespace ITIndeed.BL
             School = school;
             FieldOfStudy = fieldOfStudy;
             UserId = userID;
+            ProfilePicture = profilePicture;
         }
 
         //***Marker For Tim //This is good to go
@@ -76,6 +78,7 @@ namespace ITIndeed.BL
                         this.UserId = student.UserId;
                         this.UserName = user.UserName;
                         this.Password = user.Password;
+                        this.ProfilePicture = (Byte[])(student.ProfilePicture);
 
                         return true;
                     }
@@ -123,6 +126,7 @@ namespace ITIndeed.BL
                     student.School = this.School;
                     student.Field = this.FieldOfStudy;
                     student.UserId = guidUserId;
+                    student.ProfilePicture = this.ProfilePicture;
 
                     dc.tblStudents.Add(student);
 
@@ -161,6 +165,7 @@ namespace ITIndeed.BL
                         student.Field = (this.FieldOfStudy == null) ? student.Field : this.FieldOfStudy;
                         user.UserName = (this.UserName == null) ? user.UserName : this.UserName;
                         user.Password = (this.Password == null) ? user.Password : this.Password;
+                        student.ProfilePicture = (this.ProfilePicture == null) ? student.ProfilePicture : this.ProfilePicture;
 
                         dc.SaveChanges();
                     }
@@ -211,7 +216,7 @@ namespace ITIndeed.BL
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    dc.tblStudents.ToList().ForEach(s => Add(new Student(s.Id, s.StudentFirstName, s.StudentLastName, s.Phone, s.Email, s.UserId, s.Field, s.School)));
+                    dc.tblStudents.ToList().ForEach(s => Add(new Student(s.Id, s.StudentFirstName, s.StudentLastName, s.Phone, s.Email, s.UserId, s.Field, s.School, s.ProfilePicture)));
                 }
             }
             catch (Exception ex)

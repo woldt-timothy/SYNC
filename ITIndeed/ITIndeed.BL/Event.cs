@@ -40,6 +40,15 @@ namespace ITIndeed.BL
             UserId = userId;
         }
 
+        public Event(Guid id, string name, DateTime startDate, DateTime endDate, string type)
+        {
+            Id = id;
+            Name = name;
+            StartDate = startDate;
+            EndDate = endDate;
+            Type = type;
+        }
+
         // Methods
 
 
@@ -75,6 +84,8 @@ namespace ITIndeed.BL
                 throw ex;
             }
         }
+
+
         public void LoadUsers() // Load list of users attending the event
         {
             try
@@ -98,6 +109,8 @@ namespace ITIndeed.BL
                 throw ex;
             }
         }
+
+
         public bool LoadById(Guid id)
         {
             try
@@ -113,7 +126,7 @@ namespace ITIndeed.BL
                         this.Type = tevent.Type;
                         this.StartDate = tevent.StartDate;
                         this.EndDate = tevent.EndDate;
-                        this.UserId = tevent.UserId;
+                        //Gage The Error Came from trying to pull a UserId from the Event Table, the user ID is part of the tblEventShowing Junction table -- i.e. A user can have many events and an event can have many users // otherwise looks good    
 
                         return true;
                     }
@@ -137,14 +150,12 @@ namespace ITIndeed.BL
                 {
 
                     tblEvent tevent = new tblEvent();
-                    this.Id = Guid.NewGuid();
-
-                    tevent.Id = this.Id;
+                    tevent.Id = Guid.NewGuid();
                     tevent.Name = this.Name;
                     tevent.Type = this.Type;
-                    tevent.StartDate = this.StartDate;
-                    tevent.EndDate = this.EndDate;
-                    tevent.UserId = this.UserId;
+                    tevent.StartDate = Convert.ToDateTime(this.StartDate);
+                    tevent.EndDate = Convert.ToDateTime(this.EndDate);
+                    //the error was the same thing as above all good now :)           
 
                     dc.tblEvents.Add(tevent);
                     dc.SaveChanges();
@@ -183,13 +194,17 @@ namespace ITIndeed.BL
                 throw ex;
             }
         }
+
+
         public void Delete()
         {
+
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
                     tblEvent tevent = dc.tblEvents.Where(e => e.Id == this.Id).FirstOrDefault();
+
 
                     if (tevent != null)
                     {
@@ -218,8 +233,8 @@ namespace ITIndeed.BL
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    this.Clear();
-                    dc.tblEvents.ToList().ForEach(e => Add(new Event(e.Id, e.Name, e.Type, e.StartDate, e.EndDate, e.UserId)));
+
+                    dc.tblEvents.ToList().ForEach(e => Add(new Event(e.Id, e.Name, e.StartDate, e.EndDate, e.Type)));
                 }
             }
             catch (Exception ex)
@@ -228,48 +243,92 @@ namespace ITIndeed.BL
                 throw ex;
             }
         }
+
+        // There might be a better way to do this --- But it works see unit test
+        public void LoadEventsForAUser(Guid id)
+        {
+            try
+            {
+                using (ITIndeedEntities dc = new ITIndeedEntities())
+                {
+
+                    var guidList = new List<Guid>();
+
+                    dc.tblEventShowings.Where(es => es.UserId == id).ToList().ForEach(es => guidList.Add(es.EventId));
+
+
+                    foreach (Guid g in guidList)
+
+                    {
+                        dc.tblEvents.Where(e => e.Id == g).ToList().ForEach(e => Add(new Event(g, e.Name, e.Type, e.StartDate, e.EndDate, id)));
+                    }
+
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+        //Gage - This Method Did not Work - We haven't given the user the ability to add an event yet so I wasn't sure what this method does, I left the code though
+
 
         // Load events the user has created.
-        public void LoadByUser(Guid id)
-        {
-            try
-            {
-                using (ITIndeedEntities dc = new ITIndeedEntities())
-                {
-                    this.Clear();
-                    dc.tblEvents.Where(e => e.UserId == id).ToList().ForEach(e => Add(new Event(e.Id, e.Name, e.Type, e.StartDate, e.EndDate, e.UserId)));
-                }
-            }
-            catch (Exception ex)
-            {
+        //public void LoadByUser(Guid id)
+        //{
+        //    try
+        //    {
+        //        using (ITIndeedEntities dc = new ITIndeedEntities())
+        //        {
+        //            this.Clear();
+        //            dc.tblEvents.Where(e => e.UserId == id).ToList().ForEach(e => Add(new Event(e.Id, e.Name, e.Type, e.StartDate, e.EndDate, e.UserId)));
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                throw ex;
-            }
-        }
+        //        throw ex;
+        //    }
+        //}
 
-        // Load events the user is attending.
-        public void LoadAttending(Guid id)
-        {
-            try
-            {
-                using (ITIndeedEntities dc = new ITIndeedEntities())
-                {
-                    this.Clear();
-                    List<tblEventShowing> showings = dc.tblEventShowings.Where(es => es.UserId == id).ToList();
 
-                    foreach (var showing in showings)
-                    {
-                        tblEvent _event = dc.tblEvents.Where(e => e.Id == showing.EventId).FirstOrDefault();
 
-                        this.Add(new Event(_event.Id, _event.Name, _event.Type, _event.StartDate, _event.EndDate, _event.UserId));
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
 
-                throw ex;
-            }
-        }
+
+
+
+        //Load events the user is attending. --- The LoadEventsForAUser(Guid id) I created based off of your code accomplishes this though -- so no need to rewrite this one - thanks - tim
+
+
+
+        //This method also did not work, but I left the code
+
+        //public void LoadAttending(Guid id)
+        //{
+        //    try
+        //    {
+        //        using (ITIndeedEntities dc = new ITIndeedEntities())
+        //        {
+        //            this.Clear();
+        //            List<tblEventShowing> showings = dc.tblEventShowings.Where(es => es.UserId == id).ToList();
+
+        //            foreach (var showing in showings)
+        //            {
+        //                tblEvent _event = dc.tblEvents.Where(e => e.Id == showing.EventId).FirstOrDefault();
+
+        //                this.Add(new Event(_event.Id, _event.Name, _event.Type, _event.StartDate, _event.EndDate, _event.UserId));
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        throw ex;
+        //    }
+        //}
     }
 }

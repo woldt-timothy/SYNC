@@ -35,7 +35,6 @@
           <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="StartDate" Type="datetime" Nullable="false" />
           <Property Name="EndDate" Type="datetime" Nullable="false" />
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="tblEventShowing">
           <Key>
@@ -126,7 +125,6 @@
           <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UserId" Type="Guid" Nullable="false" />
         </EntityType>
         <EntityType Name="tblEventShowing">
           <Key>
@@ -197,7 +195,6 @@
           <EntitySetMapping Name="tblEvents">
             <EntityTypeMapping TypeName="ITIndeedModel.tblEvent">
               <MappingFragment StoreEntitySet="tblEvent">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="Type" ColumnName="Type" />

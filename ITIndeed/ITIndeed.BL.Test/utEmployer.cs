@@ -18,16 +18,17 @@ namespace ITIndeed.BL.Test
             Employer employer = new Employer();
 
 
+            Byte[] arrBYTE = new Byte[10000];
 
-
-            employer.UserName = "foxValleyBadgerMan4";
+            employer.UserName = "foxValleyBadgerMan8";
             employer.Password = "maple";
-            employer.RepresentativeFirstName= "Bonny443";
-            employer.RepresentativeLastName= "Clyde443";
-            employer.Email = "bonnytheman@bemis.com3";
-            employer.Industry = "Retail3";
-            employer.OrganizationName = "Bemis Company3";
-            employer.Phone = null;
+            employer.RepresentativeFirstName= "Bonny4438";
+            employer.RepresentativeLastName= "Clyde4438";
+            employer.Email = "bonnytheman@bemis.com38";
+            employer.Industry = "Retail38";
+            employer.OrganizationName = "Bemis Company38";
+            employer.Phone = "888-888-8888";
+            employer.ProfilePicture = arrBYTE;
             
 
             employer.EmployerInsert();
@@ -37,7 +38,7 @@ namespace ITIndeed.BL.Test
 
             var users = dc.tblUsers;
 
-            int expectedUsers = 11;
+            int expectedUsers = 8;
 
             int actualUsers = users.Count();
 
@@ -45,7 +46,7 @@ namespace ITIndeed.BL.Test
 
             var employers = dc.tblEmployers;
 
-            int expectedEmployers = 4;
+            int expectedEmployers = 5;
 
             int actualEmployers = employers.Count();
 
@@ -83,10 +84,10 @@ namespace ITIndeed.BL.Test
 
 
             Employer employer = new Employer();
-            employer.EmployerLoadById(Guid.Parse("d04a220b-8d5a-4620-8066-1c57311d2fbb"));
+            employer.EmployerLoadById(Guid.Parse("af9411dd-a4bb-4dff-8e07-24c4180caa7e"));
 
 
-            string expected = "Bonny443";
+            string expected = "Bonny4438";
             string actual = employer.RepresentativeFirstName;
 
 
@@ -132,15 +133,15 @@ namespace ITIndeed.BL.Test
         {
 
             Employer employer = new Employer();
-            employer.EmployerId = Guid.Parse("a9bf5d34-54aa-4f48-9b90-009b2ee15bb7");
-            employer.UserName = "Test123!";
-            employer.Industry = "TestIndustry";
+            employer.EmployerId = Guid.Parse("38ffe608-d859-47b6-a5b7-909301ea1c47");
+            employer.UserName = "STUFF1";
+            employer.Industry = "STUFF1";
             employer.EmployerUpdate();
 
 
-            employer.EmployerLoadById(Guid.Parse("a9bf5d34-54aa-4f48-9b90-009b2ee15bb7"));
+            employer.EmployerLoadById(Guid.Parse("38ffe608-d859-47b6-a5b7-909301ea1c47"));
 
-            string expected = "Test123!TestIndustry";
+            string expected = "STUFF1STUFF1";
             string actual = employer.UserName + employer.Industry;
 
             Assert.AreEqual(expected, actual);

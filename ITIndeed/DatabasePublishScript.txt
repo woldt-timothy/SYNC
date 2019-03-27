@@ -62,7 +62,7 @@ PRINT N'Creating [dbo].[tblEmployer]...';
 GO
 CREATE TABLE [dbo].[tblEmployer]
 (
-		[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
     [RepresentativeFirstName] VARCHAR(50) NOT NULL, 
     [RepresentativeLastName] VARCHAR(50) NOT NULL, 
     [Phone] VARCHAR(50) NULL, 
@@ -153,9 +153,9 @@ Post-Deployment Script Template
 BEGIN
 	INSERT INTO [dbo].[tblEmployer] (Id, RepresentativeFirstName,RepresentativeLastName,Phone,Email,UserId, OrganizationName, Industry, ProfilePicture)
 	VALUES
-	(NEWID(), 'Alex', 'Smith','(920)111-1111','alex@bemis.com',@eUserId1,'Bemis Company','Manufacturing', 'employerprofilepicture.jpg'),
-	(NEWID(), 'Jess', 'Jones','(920)222-2222','jess@oshkoshtruck.com',@eUserId2, 'Oshkosh Truck', 'Manufacturing','employerprofilepicture.jpg'),
-	(NEWID(), 'Abby', 'Williams','(920)333-3333','abby@thrivent.com',@eUserId3, 'Thrivent Financial', 'Finance', 'employerprofilepicture.jpg')
+	(NEWID(), 'Alex', 'Smith','(920)111-1111','alex@email.com',NEWID(), 'Bemis Company', 'Manufacturing', convert(varbinary, 'employerprofilepicture.jpg') ), 
+	(NEWID(), 'Jess', 'Jones','(920)222-2222','jess@email.com',NEWID(), 'Oshkosh Truck', 'Manufacturing', convert(varbinary, 'employerprofilepicture2.jpg')),
+	(NEWID(), 'Abby', 'Williams','(920)333-3333','abby@email.com',NEWID(), 'Plexus', 'Manufacturing', convert(varbinary, 'employerprofilepicture2.jpg'))
 END
 BEGIN
 	INSERT INTO [dbo].tblEvent(Id,Name,Type,StartDate,EndDate)
@@ -174,9 +174,9 @@ END
 BEGIN
 	INSERT INTO [dbo].tblStudent(Id, StudentFirstName,StudentLastName,Phone,Email,School,Field,UserId, ProfilePicture)
 	VALUES
-	(NEWID(), 'Amy', 'Adams','(920)444-4444','amy@email.com','FVTC', 'Networking', @sUserId1, 'studentprofilepicture.jpg'),
-	(NEWID(), 'Bob', 'Ross','(920)555-5555','bob@email.com','FVTC', 'User Support',@sUserId2, 'studentprofilepicture.jpg'),
-	(NEWID(), 'Daryll', 'Kay','(920)666-6666','daryll@email.com','FVTC', 'UI/UX', @sUserId3, 'studentprofilepicture.jpg')
+	(NEWID(), 'Amy', 'Adams','(920)444-4444','amy@email.com','FVTC', 'Networking', NEWID(), convert(varbinary, 'studentprofilepicture.jpg1')),
+	(NEWID(), 'Bob', 'Ross','(920)555-5555','bob@email.com','FVTC', 'User Support',NEWID(), convert(varbinary, 'studentprofilepicture.jpg2')),
+	(NEWID(), 'Daryll', 'Kay','(920)666-6666','daryll@email.com','FVTC', 'UI/UX', NEWID(), convert(varbinary, 'studentprofilepicture.jpg3'))
 END
 BEGIN
 	INSERT INTO [dbo].tblUser(Id,Username,Password)

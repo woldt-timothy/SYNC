@@ -15,15 +15,19 @@ namespace ITIndeed.BL.Test
             //Tests to see if both records were inserted
 
 
+            Byte[] arrBYTE = new Byte[10000];
+
             Student student = new Student();
-            student.UserName = "tim5";
+            student.UserName = "tim6";
             student.Password = "maple";
-            student.StudentFirstName = "tim5";
-            student.StudentLastName = "Clyde444";
-            student.Email = "bonnytheman@fvtc,edu444";
-            student.FieldOfStudy = "Computer Engineering444";
-            student.School = "Fox Valley Technical College444";
-            student.Phone = null;
+            student.StudentFirstName = "tim6";
+            student.StudentLastName = "Clyde4446";
+            student.Email = "bonnytheman@fvtc,edu4446";
+            student.FieldOfStudy = "Computer Engineering4446";
+            student.School = "Fox Valley Technical College4446";
+            student.Phone = "666-666-6666";
+            student.ProfilePicture = arrBYTE;
+
             
             student.StudentInsert();
 
@@ -32,7 +36,7 @@ namespace ITIndeed.BL.Test
 
             var users = dc.tblUsers;
 
-            int expectedUsers = 10;
+            int expectedUsers = 9;
 
             int actualUsers = users.Count();
 
@@ -40,7 +44,7 @@ namespace ITIndeed.BL.Test
 
             var students = dc.tblStudents;
 
-            int expectedStudents = 7;
+            int expectedStudents = 8;
 
             int actualStudents = students.Count();
 
