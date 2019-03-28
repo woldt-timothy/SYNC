@@ -4,8 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - SYNC</title>
-    @Styles.Render("~/Content/Theme/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @*@Styles.Render("~/Content/Theme/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+    <link href="/Content/Theme/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/Theme/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/Content/Theme/css/animate.css" rel="stylesheet" />
+    <link href="/Content/Theme/css/style.css" rel="stylesheet" />
+
+    <script src="/Scripts/modernizr-2.8.3.js"></script>
 </head>
 <body>
     @RenderBody()
@@ -94,8 +100,9 @@
         </div>
     </footer>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/Content/Theme/js")
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/Content/Theme/js")*@
+    <script src="/Scripts/jquery-3.3.1.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

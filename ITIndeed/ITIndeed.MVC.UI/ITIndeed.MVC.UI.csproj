@@ -196,6 +196,7 @@
     <Content Include="Content\Theme\images\blog\thumb3.jpg" />
     <Content Include="Content\Theme\images\contact.png" />
     <Content Include="Content\Theme\images\employerprofile\employerprofilepicture.jpg" />
+    <Content Include="Content\Theme\images\logo.png" />
     <Content Include="Content\Theme\images\partners\partner1.png" />
     <Content Include="Content\Theme\images\partners\partner2.png" />
     <Content Include="Content\Theme\images\partners\partner3.png" />
@@ -268,6 +269,7 @@
     <Content Include="Content\Theme\images\services\2.jpg" />
     <Content Include="Content\Theme\images\services\3.jpg" />
     <Content Include="Content\Theme\images\slider\bg1.jpg" />
+    <Content Include="Content\Theme\images\slider\bg3.jpg" />
     <Content Include="Content\Theme\images\slider\img3.png" />
     <Content Include="Content\Theme\images\studentprofile\studentprofilepicture.jpg" />
     <Content Include="Content\Theme\index.html" />
@@ -298,6 +300,8 @@
     <Content Include="Content\Theme\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Properties\PublishProfiles\ITIndeed - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\ITIndeed - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\ITIndeed2 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\ITIndeed2 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
