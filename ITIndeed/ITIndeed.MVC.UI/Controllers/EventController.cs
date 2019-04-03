@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using ITIndeed.BL;
+using ITIndeed.MVC.UI.Models;
 
 namespace ITIndeed.MVC.UI.Controllers
 {
@@ -38,19 +39,43 @@ namespace ITIndeed.MVC.UI.Controllers
         }
 
         // POST: Event/Create
+  
+
+
+
+
+       
+        // POST: Event/Create
         [HttpPost]
         public ActionResult Create(Event e)
         {
+            if (string.IsNullOrEmpty(e.SelectedName))
+            {
+                return View(events);
+            }
+            else
+            {
             try
             {
-                // TODO: Add insert logic here
-                e.Insert();
-                return RedirectToAction("Index");
+                if (Authenticate.IsAuthenticated())
+                {
+                    User user = new User();
+                    user = (User)Session["user"];
+                    e.AddUserToEvent(user.BaseUserID);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Login");
+                }
             }
             catch
             {
                 return View(e);
             }
+            }
+
+  
         }
 
         // GET: Event/Edit/5

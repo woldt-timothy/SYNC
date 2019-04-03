@@ -23,6 +23,8 @@ namespace ITIndeed.BL
         public Guid UserId { get; set; }
         public List<User> Users { get; set; }
 
+        public string SelectedName { get; set; }
+
         // Constructors
 
         public Event()
