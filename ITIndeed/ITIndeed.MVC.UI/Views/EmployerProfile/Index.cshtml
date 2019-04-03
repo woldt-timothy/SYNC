@@ -4,85 +4,90 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
+    <h2>Index</h2>
+    <br />
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <p>
+        @using (Html.BeginForm("Index", "EmployerProfile", FormMethod.Get))
+        {
+            <b>Search By:</b>
+            <br />
+            @*@Html.RadioButton("searchBy", "OrganizationName", true)<text> Organization Name</text>*@
+            <input class="" checked="checked" id="searchBy" name="searchBy" type="radio" value="OrganizationName"><text> Organization Name</text>
+            <br />
+            @*@Html.RadioButton("searchBy", "Industry")<text>Industry</text>*@
+            <input id="searchBy" name="searchBy" type="radio" value="Industry"><text>Industry</text>
+            <br />
+            @Html.TextBox("search")<input type="submit" value="Search" />
 
-<h2>Index</h2>
+        }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RepresentativeFirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RepresentativeLastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrganizationName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Industry)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BaseUserID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th></th>
-    </tr>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RepresentativeFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RepresentativeLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrganizationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Industry)
+            </th>
+            <th>Action</th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RepresentativeFirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RepresentativeLastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrganizationName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Industry)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BaseUserID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EmployerId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EmployerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EmployerId })
-        </td>
-    </tr>
-}
+        </tr>
 
-</table>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="4">No records match search criteria</td>
+            </tr>
+        }
+        else
+        {
+
+
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RepresentativeFirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RepresentativeLastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrganizationName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Industry)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.EmployerId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.EmployerId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.EmployerId })
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>

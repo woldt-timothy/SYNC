@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ITIndeed.BL;
+using ITIndeed.MVC.UI.Models;
 
 namespace ITIndeed.MVC.UI.Controllers
 {
@@ -13,12 +14,38 @@ namespace ITIndeed.MVC.UI.Controllers
         EmployerList employers;
 
         // GET: EmployerProfile
-        public ActionResult Index()
+        public ActionResult Index(string searchBy, string search)
         {
-            employers = new EmployerList();
-            employers.EmployerListLoad();
+            if (Authenticate.IsAuthenticated())
+            {
+                employers = new EmployerList();
+                employers.EmployerListLoad();
 
-            return View(employers);
+                if (searchBy == "Industry")
+                {
+                    return View(employers.Where(x => x.Industry.StartsWith(search) || search == null).ToList());
+                    //return View(employers.Where(x => x.OrganizationName.StartsWith(search)).ToList());
+                }
+                else
+                {
+                    if (search == null)
+                    {
+                        return View(employers);
+                    }
+                    else
+                    {
+                        return View(employers.Where(x => x.OrganizationName.StartsWith(search) || search == null).ToList());
+                    }
+                }
+
+
+                //return View(employers);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { returnurl = HttpContext.Request.Url });
+            }
+            
         }
 
         // GET: EmployerProfile/Details/5

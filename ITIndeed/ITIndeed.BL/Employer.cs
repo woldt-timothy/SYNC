@@ -40,7 +40,7 @@ namespace ITIndeed.BL
         public Employer(Guid employerId, string representativeFirstName, string representativeLastName, string phone, string email, string organizationName, string industry, Guid userId, Byte[] profilePicture)
         {
             EmployerId = employerId;
-            RepresentativeFirstName = representativeLastName;
+            RepresentativeFirstName = representativeFirstName;
             RepresentativeLastName = representativeLastName;
             Phone = phone;
             Email = email;
