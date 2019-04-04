@@ -37,10 +37,12 @@ namespace ITIndeed.MVC.UI.Controllers
                     ViewBag.Message = "Welcome. You're logged in.";
                     Session["user"] = user;
 
-                    return RedirectToAction(returnurl);
+
+                    //Georgia An Tim Debug Session 04042019
+                    return Redirect(returnurl);
 
                     //return View(user);
-                    //return Redirect(returnurl);
+                    //return View(returnurl);
                 }
                 else
                 {
