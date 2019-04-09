@@ -110,6 +110,7 @@ namespace ITIndeed.MVC.UI.Controllers
         [HttpPost]
         public ActionResult AddUserToEvent(User u, Event ev)
         {
+            //
             try
             {
                 if (Authenticate.IsAuthenticated())
