@@ -107,6 +107,7 @@ namespace ITIndeed.MVC.UI.Controllers
             }
         }
 
+
         [HttpPost]
         public ActionResult AddUserToEvent(User u, Event ev)
         {
