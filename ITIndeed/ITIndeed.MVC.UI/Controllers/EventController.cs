@@ -108,14 +108,15 @@ namespace ITIndeed.MVC.UI.Controllers
         }
 
 
-        [HttpPost]
-        public ActionResult AddUserToEvent(User u, Event ev)
-        {
-            //
+        
+        public ActionResult AddUserToEvent(Guid id)
+        {            
             try
             {
                 if (Authenticate.IsAuthenticated())
                 {
+                    Event ev = new Event();
+                    ev.Id = id;
                     User user = new User();
                     user = (User)Session["user"];
                     ev.AddUserToEvent(user.BaseUserID);

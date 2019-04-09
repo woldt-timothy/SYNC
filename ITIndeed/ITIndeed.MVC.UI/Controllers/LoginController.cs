@@ -28,7 +28,7 @@ namespace ITIndeed.MVC.UI.Controllers
 
 
         [HttpPost]
-        public ActionResult Login(User user, string returnurl)
+        public ActionResult Login(User user/*, string returnurl*/)
         {
             try
             {
@@ -39,9 +39,9 @@ namespace ITIndeed.MVC.UI.Controllers
 
 
                     //Georgia An Tim Debug Session 04042019
-                    return Redirect(returnurl);
+                    //return Redirect(returnurl);
 
-                    //return View(user);
+                    return View(user);
                     //return View(returnurl);
                 }
                 else
