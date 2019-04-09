@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ITIndeed.MVC.UI.Models;
 
 
 namespace ITIndeed.MVC.UI.Controllers
@@ -103,6 +104,30 @@ namespace ITIndeed.MVC.UI.Controllers
             catch
             {
                 return View(e);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddUserToEvent(User u, Event ev)
+        {
+            try
+            {
+                if (Authenticate.IsAuthenticated())
+                {
+                    User user = new User();
+                    user = (User)Session["user"];
+                    ev.AddUserToEvent(user.BaseUserID);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Login");
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
             }
         }
     }
