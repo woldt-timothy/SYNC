@@ -133,5 +133,35 @@ namespace ITIndeed.MVC.UI.Controllers
                 throw e;
             }
         }
+
+        public ActionResult LoadListOfUsersAttendingEvent(Guid id)
+        {
+            try
+            {
+                if (Authenticate.IsAuthenticated())
+                {
+
+                    
+
+
+
+                    Event ev = new Event();
+                    ev.Id = id;
+                    ev.LoadUsers();
+                    
+                    
+                    return RedirectToAction("Details");
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Login");
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
     }
 }
