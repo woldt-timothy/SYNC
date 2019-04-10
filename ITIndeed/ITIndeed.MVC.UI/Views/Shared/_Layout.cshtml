@@ -41,11 +41,22 @@
                                 <li role="presentation"><a href="../../Content/Theme/blog.html">Blog</a></li>
                                 <li role="presentation"><a href="../../Content/Theme/contact.html">Contact</a></li>
                                 <li role="presentation">@Html.ActionLink("Employer Search", "Index", "EmployerProfile")</li>
-                                <li role="presentation">@Html.ActionLink("Login", "Login", "Login")</li>
-                                <li role="presentation">@Html.ActionLink("Logout", "Logout", "Login")</li>
+                                
                                 <li role="presentation">@Html.ActionLink("Events", "Index", "Event")</li>
-
-
+                                <li role="presentation">
+                                    <p>
+                                        <div class="btn-group">
+                                            <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Profile<span class="caret"></span></button>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-header"><a href="#">Profile</a></li>
+                                                <li class="dropdown-header"><a href="Login/Login">Login</a></li>
+                                                <li class="dropdown-header"><a href="Login/Logout">Logout</a></li>
+                                                @*<li>@Html.ActionLink("Login", "Login", "Login")</li>
+                <li>@Html.ActionLink("Logout", "Logout", "Login")</li>*@
+                                            </ul>
+                                        </div>
+                                    </p>
+                                </li>
                             </ul>
                         </div>
                     </div>
