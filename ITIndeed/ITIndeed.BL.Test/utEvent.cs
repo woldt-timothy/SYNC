@@ -14,14 +14,14 @@ namespace ITIndeed.BL.Test
         {
             //event is a keyword
             Event eventObject = new Event();
-            eventObject.Id = Guid.Parse("d7dfbf89-6a28-424c-8f18-7e48c2ba1bae");
-            eventObject.AddUserToEvent(Guid.Parse("1f5f618f-1271-4ce3-9f61-67fb2a8e5c55"));
+            eventObject.Id = Guid.Parse("8f615527-0239-46b2-b384-7cc6905c581a");
+            eventObject.AddUserToEvent(Guid.Parse("caaec2b9-84ce-478f-a916-4dc38bb7bbe9"));
 
             ITIndeedEntities dc = new ITIndeedEntities();
 
             var eventShowings = dc.tblEventShowings;
 
-            int expectedEventShowings = 6;
+            int expectedEventShowings = 5;
 
             int actualEventShowings = eventShowings.Count();
 

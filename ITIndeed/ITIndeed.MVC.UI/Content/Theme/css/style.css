@@ -1257,3 +1257,9 @@ a.scrollup:hover{
 .pb{
     padding-bottom:1.5em;
 }
+.pr{
+    padding-right:1.5em;
+}
+.inline-block {
+    display: inline-block;
+}

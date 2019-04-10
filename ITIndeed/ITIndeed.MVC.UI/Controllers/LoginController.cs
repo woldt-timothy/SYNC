@@ -28,7 +28,7 @@ namespace ITIndeed.MVC.UI.Controllers
 
 
         [HttpPost]
-        public ActionResult Login(User user, string returnurl)
+        public ActionResult Login(User user/*, string returnurl*/)
         {
             try
             {
@@ -37,10 +37,12 @@ namespace ITIndeed.MVC.UI.Controllers
                     ViewBag.Message = "Welcome. You're logged in.";
                     Session["user"] = user;
 
-                    return RedirectToAction(returnurl);
 
-                    //return View(user);
+                    //Georgia An Tim Debug Session 04042019
                     //return Redirect(returnurl);
+
+                    return View(user);
+                    //return View(returnurl);
                 }
                 else
                 {

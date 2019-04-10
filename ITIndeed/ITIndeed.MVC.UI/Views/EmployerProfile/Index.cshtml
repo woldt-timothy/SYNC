@@ -4,24 +4,30 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div id="breadcrumb">
+    <div class="container">
+        <div class="breadcrumb">
+            <li><a href="../../Content/Theme/index.html">Home</a></li>
+            <li>@ViewBag.Title</li>
+        </div>
+    </div>
+</div>
 <div class="container">
-    <h2>Index</h2>
-    <br />
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    <h2>Employer Search</h2>
+    <hr />
     <p>
         @using (Html.BeginForm("Index", "EmployerProfile", FormMethod.Get))
         {
-            <b>Search By:</b>
-            <br />
-            @*@Html.RadioButton("searchBy", "OrganizationName", true)<text> Organization Name</text>*@
-            <input class="" checked="checked" id="searchBy" name="searchBy" type="radio" value="OrganizationName"><text> Organization Name</text>
-            <br />
-            @*@Html.RadioButton("searchBy", "Industry")<text>Industry</text>*@
-            <input id="searchBy" name="searchBy" type="radio" value="Industry"><text>Industry</text>
-            <br />
-            @Html.TextBox("search")<input type="submit" value="Search" />
+            <div class="col-md-4 inline-block">
+                <input class="" id="search" name="search" type="text" value="">
+                <input type="submit" value="Search">
+            </div>
+            <div class="col-md-6">
+                <b class="pr">Search By:</b>
+                <input class="pr" checked="checked" id="searchBy" name="searchBy" type="radio" value="OrganizationName"><text class="pr"> Organization Name</text>
+                <input class="pr" id="searchBy" name="searchBy" type="radio" value="Industry"><text class="pr">Industry</text>
+            </div>
+            <br /><br />
 
         }
 

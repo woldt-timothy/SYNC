@@ -367,6 +367,7 @@
     <Content Include="Views\EmployerProfile\Create.cshtml" />
     <Content Include="Views\EmployerProfile\Edit.cshtml" />
     <Content Include="Views\EmployerProfile\Delete.cshtml" />
+    <Content Include="Views\Event\AddUserToEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
