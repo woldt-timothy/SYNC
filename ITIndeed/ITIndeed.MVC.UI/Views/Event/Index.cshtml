@@ -20,6 +20,7 @@
     </p>
     <table class="table">
         <tr>
+            <th></th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -67,6 +68,6 @@
 
     </table>
 
-    <input type="button" value="Add User to Event" onclick="location.href='@Url.Action("AddUserToEvent", "Event")'" />
+    <input type="button" class="btn btn-primary" value="Add User to Event" onclick="location.href='@Url.Action("AddUserToEvent", "Event")'" />
 
 </div>

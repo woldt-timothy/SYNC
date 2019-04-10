@@ -9,9 +9,10 @@
     <link href="/Content/Theme/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/Content/Theme/css/font-awesome.min.css" rel="stylesheet" />
     <link href="/Content/Theme/css/animate.css" rel="stylesheet" />
+    <link href="/Content/Theme/css/prettyPhoto.css" rel="stylesheet"/>
     <link href="/Content/Theme/css/style.css" rel="stylesheet" />
 
-    <script src="/Scripts/modernizr-2.8.3.js"></script>
+    @*<script src="/Scripts/modernizr-2.8.3.js"></script>*@
 </head>
 <body>
     @RenderBody()
@@ -43,6 +44,8 @@
                                 <li role="presentation">@Html.ActionLink("Login", "Login", "Login")</li>
                                 <li role="presentation">@Html.ActionLink("Logout", "Logout", "Login")</li>
                                 <li role="presentation">@Html.ActionLink("Events", "Index", "Event")</li>
+
+
                             </ul>
                         </div>
                     </div>
@@ -104,7 +107,13 @@
 
     @*@Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/Content/Theme/js")*@
-    <script src="/Scripts/jquery-3.3.1.js"></script>
+    @*<script src="/Scripts/jquery-3.3.1.js"></script>*@
+    <script src="/Content/Theme/js/jquery-2.1.1.min.js"></script>
+    <script src="/Content/Theme/js/bootstrap.min.js"></script>
+    <script src="/Content/Theme/js/jquery.prettyPhoto.js"></script>
+    <script src="/Content/Theme/js/jquery.isotope.min.js"></script>
+    <script src="/Content/Theme/js/wow.min.js"></script>
+    <script src="/Content/Theme/js/functions.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
