@@ -50,6 +50,17 @@
         <dd>
             @Html.DisplayFor(model => model.UserId)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(modelItem => modelItem.Users[0].UserName)
+        </dt>
+
+        @for (var i = 0; i < Model.Users.Count(); i++)
+        {
+        <dd>
+            @Html.DisplayFor(modelItem => modelItem.Users[i].UserName)
+        </dd>
+
+        }
 
     </dl>
 </div>
