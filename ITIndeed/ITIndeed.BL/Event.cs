@@ -22,8 +22,9 @@ namespace ITIndeed.BL
         public DateTime EndDate { get; set; }
         public Guid UserId { get; set; }
         public List<User> Users { get; set; }
+        public string Location { get; set; }
+        public int InterestedCount { get; set; }
 
-        public string SelectedName { get; set; }
 
         // Constructors
 
@@ -97,12 +98,19 @@ namespace ITIndeed.BL
                     Users = new List<User>();
 
                     var eventShowings = dc.tblEventShowings.Where(e => e.EventId == this.Id);
-
-                    foreach (var eventShowing in eventShowings)
+                    if (eventShowings != null)
                     {
-                        tblUser user = dc.tblUsers.Where(u => u.Id == eventShowing.UserId).FirstOrDefault();
-                        Users.Add(new User(user.Id, user.UserName));
+                        foreach (var eventShowing in eventShowings)
+                        {
+                            tblUser user = dc.tblUsers.Where(u => u.Id == eventShowing.UserId).FirstOrDefault();
+                            if (user != null)
+                            {
+                                Users.Add(new User(user.Id, user.UserName));
+                            }
+                            
+                        }
                     }
+                 
                 }
             }
             catch (Exception ex)
