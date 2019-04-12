@@ -141,10 +141,6 @@ namespace ITIndeed.MVC.UI.Controllers
                 if (Authenticate.IsAuthenticated())
                 {
 
-                    
-
-
-
                     Event ev = new Event();
                     ev.Id = id;
                     ev.LoadUsers();
