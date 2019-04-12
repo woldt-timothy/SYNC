@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 
 namespace ITIndeed.BL
 {
@@ -29,10 +30,7 @@ namespace ITIndeed.BL
         public Guid UserId { get; set; }
         public Byte[] ProfilePicture{ get; set; }
 
-
-
-
-    public Employer()
+        public Employer()
         {
 
         }
@@ -49,7 +47,6 @@ namespace ITIndeed.BL
             Industry = industry;
             ProfilePicture = profilePicture;
         }
-
 
 
         //***Marker For Tim //This is good to go

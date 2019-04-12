@@ -67,11 +67,15 @@ namespace ITIndeed.MVC.UI.Controllers
 
         // POST: EmployerProfile/Create
         [HttpPost]
-        public ActionResult Create(Employer e)
+        public ActionResult Create(Employer e, HttpPostedFileBase upload)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (upload != null && upload.ContentLength > 0)
+                {
+
+                }
+
                 e.EmployerInsert();
                 return RedirectToAction("Index");
             }

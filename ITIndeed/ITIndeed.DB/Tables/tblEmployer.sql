@@ -8,5 +8,5 @@
     [UserId] UNIQUEIDENTIFIER NOT NULL, 
     [OrganizationName] VARCHAR(100) NOT NULL, 
     [Industry] VARCHAR(100) NOT NULL, 
-    [ProfilePicture] IMAGE NULL
+    [ProfilePicture] VARBINARY(MAX) NULL
 )

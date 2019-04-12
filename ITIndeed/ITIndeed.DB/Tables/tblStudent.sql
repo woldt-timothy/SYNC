@@ -8,5 +8,5 @@
     [School] VARCHAR(50) NOT NULL, 
     [Field] VARCHAR(50) NOT NULL, 
     [UserId] UNIQUEIDENTIFIER NOT NULL, 
-    [ProfilePicture] IMAGE NULL
+    [ProfilePicture] VARBINARY(MAX) NULL
 )
