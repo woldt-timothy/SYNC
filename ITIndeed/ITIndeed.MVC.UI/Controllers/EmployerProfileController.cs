@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -58,30 +59,34 @@ namespace ITIndeed.MVC.UI.Controllers
         }
 
         // GET: EmployerProfile/Create
+        [HttpGet]
         public ActionResult Create()
         {
-            Employer employer = new Employer();
+            EmployerStudentProfileImage espi = new EmployerStudentProfileImage();
+            espi.employer = new Employer();
 
-            return View(employer);
+            return View(espi);
         }
 
         // POST: EmployerProfile/Create
         [HttpPost]
-        public ActionResult Create(Employer e, HttpPostedFileBase upload)
+        public ActionResult Create(EmployerStudentProfileImage espi)
         {
             try
             {
-                if (upload != null && upload.ContentLength > 0)
+                using (MemoryStream ms = new MemoryStream())
                 {
-
+                    espi.ImageFile.InputStream.CopyTo(ms);
+                    espi.employer.ProfilePicture = ms.GetBuffer();
+                    ms.Close();
                 }
 
-                e.EmployerInsert();
+                espi.employer.EmployerInsert();
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(e);
+                return View(espi);
             }
         }
 
