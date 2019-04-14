@@ -141,7 +141,9 @@ namespace ITIndeed.BL
 
 
         //***This is good to go
-        // Please talk with me before changing it --Thanks--Tim
+        // Please talk with me before changing it --Thanks--Tim // NEED TO FIND A WAY TO CHANGE PASSWORD? LIKE SECURITY QUESTIONS OR EMAIL OR SOMETHING
+
+       
 
         public void EmployerUpdate()
         {

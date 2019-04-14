@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using ITIndeed.BL;
 using ITIndeed.MVC.UI.Models;
+using System.Drawing;
 
 namespace ITIndeed.MVC.UI.Controllers
 {
@@ -52,10 +53,16 @@ namespace ITIndeed.MVC.UI.Controllers
         // GET: EmployerProfile/Details/5
         public ActionResult Details(Guid id)
         {
-            Employer employer = new Employer();
-            employer.EmployerLoadById(id);
+            EmployerStudentProfileImage espi = new EmployerStudentProfileImage();
+            espi.employer = new Employer();
+            espi.employer.EmployerLoadById(id);
 
-            return View(employer);
+            MemoryStream ms = new MemoryStream(espi.employer.ProfilePicture);
+            Image i = Image.FromStream(ms);
+            string filepath = Server.MapPath("~/Image/") + "pfpImage.jpg";
+            i.Save(filepath);
+
+            return View(espi);
         }
 
         // GET: EmployerProfile/Create
@@ -74,11 +81,14 @@ namespace ITIndeed.MVC.UI.Controllers
         {
             try
             {
-                using (MemoryStream ms = new MemoryStream())
+                if(espi.ImageFile != null)
                 {
-                    espi.ImageFile.InputStream.CopyTo(ms);
-                    espi.employer.ProfilePicture = ms.GetBuffer();
-                    ms.Close();
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        espi.ImageFile.InputStream.CopyTo(ms);
+                        espi.employer.ProfilePicture = ms.GetBuffer();
+                        ms.Close();
+                    }
                 }
 
                 espi.employer.EmployerInsert();
@@ -93,25 +103,35 @@ namespace ITIndeed.MVC.UI.Controllers
         // GET: EmployerProfile/Edit/5
         public ActionResult Edit(Guid id)
         {
-            Employer employer = new Employer();
-            employer.EmployerLoadById(id);
+            EmployerStudentProfileImage espi = new EmployerStudentProfileImage();
+            espi.employer = new Employer();
+            espi.employer.EmployerLoadById(id);
 
-            return View(employer);
+            return View(espi);
         }
 
         // POST: EmployerProfile/Edit/5
         [HttpPost]
-        public ActionResult Edit(Guid id, Employer e)
+        public ActionResult Edit(Guid id, EmployerStudentProfileImage espi)
         {
             try
             {
-                // TODO: Add update logic here
-                e.EmployerUpdate();
+                if (espi.ImageFile != null)
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        espi.ImageFile.InputStream.CopyTo(ms);
+                        espi.employer.ProfilePicture = ms.GetBuffer();
+                        ms.Close();
+                    }
+                }
+
+                espi.employer.EmployerUpdate();
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(e);
+                return View(espi);
             }
         }
 
