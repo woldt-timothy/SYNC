@@ -1263,3 +1263,13 @@ a.scrollup:hover{
 .inline-block {
     display: inline-block;
 }
+.profile dt, .profile dd{
+    font-size: 1.5em;
+}
+.Event dt, .Event dd{
+    font-size: 1.2em;
+}
+/*.eventlist dd, eventlist li{
+    padding-left:0;
+    margin-left:0;
+}*/

@@ -54,8 +54,6 @@ namespace ITIndeed.BL
         }
 
         //***Marker For Tim //This is good to go
-        //***User ID == student.UserId != student.BaseUserId // Same Goes with UserName
-
         public bool StudentLoadById(Guid studentID)
         {
             try
@@ -70,7 +68,7 @@ namespace ITIndeed.BL
                     {
                         this.StudentID = student.Id;
                         this.StudentFirstName = student.StudentFirstName;
-                        this.StudentLastName = student.StudentFirstName;
+                        this.StudentLastName = student.StudentLastName;
                         this.Phone = student.Phone;
                         this.Email = student.Email;
                         this.School = student.School;
@@ -94,7 +92,7 @@ namespace ITIndeed.BL
                 throw ex;
             }
         }
-
+        
         //***Marker For Tim //This is good to go
         public bool StudentInsert()
         {
