@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ITIndeed.BL;
 using ITIndeed.MVC.UI.Models;
 using System.Drawing;
+using System.IO;
 
 namespace ITIndeed.MVC.UI.Controllers
 {
@@ -57,10 +57,17 @@ namespace ITIndeed.MVC.UI.Controllers
             espi.employer = new Employer();
             espi.employer.EmployerLoadById(id);
 
-            MemoryStream ms = new MemoryStream(espi.employer.ProfilePicture);
-            Image i = Image.FromStream(ms);
             string filepath = Server.MapPath("~/Image/") + "pfpImage.jpg";
-            i.Save(filepath);
+            System.IO.File.Delete(filepath);
+
+            if (espi.employer.ProfilePicture != null)
+            {
+                MemoryStream ms = new MemoryStream(espi.employer.ProfilePicture);
+                Image i = Image.FromStream(ms);
+                
+                i.Save(filepath);
+                ms.Close();
+            }
 
             return View(espi);
         }

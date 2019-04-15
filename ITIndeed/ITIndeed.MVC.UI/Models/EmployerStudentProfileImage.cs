@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace ITIndeed.MVC.UI.Models
 {
-    public partial class EmployerStudentProfileImage
+    public class EmployerStudentProfileImage
     {
         public Employer employer { get; set; }
         public Student student { get; set; }
