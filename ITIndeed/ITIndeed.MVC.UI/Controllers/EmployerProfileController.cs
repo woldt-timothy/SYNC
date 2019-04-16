@@ -57,7 +57,7 @@ namespace ITIndeed.MVC.UI.Controllers
             espi.employer = new Employer();
             espi.employer.EmployerLoadById(id);
 
-            string filepath = Server.MapPath("~/Image/") + "pfpImage.jpg";
+            string filepath = Server.MapPath("~/pfpImageFolder/") + "pfpImage.jpg";
             System.IO.File.Delete(filepath);
 
             if (espi.employer.ProfilePicture != null)

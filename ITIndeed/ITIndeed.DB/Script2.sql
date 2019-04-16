@@ -1,1 +1,1 @@
-﻿select * from tblEmployer
+﻿select * from tblStudent

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ITIndeed.BL;
+using ITIndeed.MVC.UI.Models;
 
 namespace ITIndeed.MVC.UI.Controllers
 {
@@ -24,56 +27,94 @@ namespace ITIndeed.MVC.UI.Controllers
         // GET: StudentProfile/Details/5
         public ActionResult Details(Guid id)
         {
-            Student student = new Student();
-            student.StudentLoadById(id);
-            return View(student);
-        }
+            EmployerStudentProfileImage espi = new EmployerStudentProfileImage();
+            espi.student = new Student();
+            espi.student.StudentLoadById(id);
 
+            string filepath = Server.MapPath("~/pfpImageFolder/") + "pfpImage.jpg";
+            System.IO.File.Delete(filepath);
+
+            if (espi.student.ProfilePicture != null)
+            {
+                MemoryStream ms = new MemoryStream(espi.student.ProfilePicture);
+                Image i = Image.FromStream(ms);
+
+                i.Save(filepath);
+                ms.Close();
+            }
+
+            return View(espi);
+        }
+        
         // GET: StudentProfile/Create
+        [HttpGet]
         public ActionResult Create()
         {
-            Student student = new Student();
-            return View(student);
+            EmployerStudentProfileImage espi = new EmployerStudentProfileImage();
+            espi.student = new Student();
+
+            return View(espi);
         }
 
         // POST: StudentProfile/Create
         [HttpPost]
-        public ActionResult Create(Student s)
+        public ActionResult Create(EmployerStudentProfileImage espi)
         {
             try
             {
-                // TODO: Add insert logic here
-                s.StudentInsert();
+                if (espi.ImageFile != null)
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        espi.ImageFile.InputStream.CopyTo(ms);
+                        espi.student.ProfilePicture = ms.GetBuffer();
+                        ms.Close();
+                    }
+                }
+
+                espi.student.StudentInsert();
+
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(s);
+                return View(espi);
             }
         }
 
         // GET: StudentProfile/Edit/5
         public ActionResult Edit(Guid id)
         {
-            Student student = new Student();
-            student.StudentLoadById(id);
-            return View(student);
+            EmployerStudentProfileImage espi = new EmployerStudentProfileImage();
+            espi.student = new Student();
+            espi.student.StudentLoadById(id);
+
+            return View(espi);
         }
 
         // POST: StudentProfile/Edit/5
         [HttpPost]
-        public ActionResult Edit(Guid id, Student s)
+        public ActionResult Edit(Guid id, EmployerStudentProfileImage espi)
         {
             try
             {
-                // TODO: Add update logic here
-                s.StudentUpdate();
+                if (espi.ImageFile != null)
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        espi.ImageFile.InputStream.CopyTo(ms);
+                        espi.student.ProfilePicture = ms.GetBuffer();
+                        ms.Close();
+                    }
+                }
+
+                espi.student.StudentUpdate();
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(s);
+                return View(espi);
             }
         }
 
