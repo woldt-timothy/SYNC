@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ITIndeed.BL;
+using ITIndeed.MVC.UI.Models;
 
 namespace ITIndeed.MVC.UI.Controllers
 {
@@ -22,13 +23,46 @@ namespace ITIndeed.MVC.UI.Controllers
         }
 
         // GET: Student/Details/5
-        public ActionResult Details(Guid id)
+        public ActionResult Details(Guid? id)
         {
+            //Guid guid = new Guid();
+            User user;
 
-            Student student = new Student();
-            student.StudentLoadById(id);
-            return View(student);
+            if (id == null & Session["user"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+
+            }
+            else if (Session["user"] != null)
+            {
+                //if (Authenticate.IsAuthenticated())
+                //   {
+                user = new User();
+                user = (User)Session["user"];
+
+                //if (user == null)
+                //{
+                //    return RedirectToAction("Login", "Login");
+                //}
+                //else
+                //{
+                    Student student = new Student();
+                    student.StudentLoadUserById(user.BaseUserID);
+                    return View(student);
+                //}
+                //}
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            
+
+          
+
+
         }
+
 
         // GET: Student/Create
         public ActionResult Create()

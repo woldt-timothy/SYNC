@@ -95,6 +95,47 @@ namespace ITIndeed.BL
             }
         }
 
+
+
+        public bool StudentLoadUserById(Guid baseUserId)
+        {
+            try
+            {
+                using (ITIndeedEntities dc = new ITIndeedEntities())
+                {
+                    tblUser user = dc.tblUsers.Where(u => u.Id == baseUserId).FirstOrDefault();
+                    tblStudent student = dc.tblStudents.Where(s => s.UserId == user.Id).FirstOrDefault();
+                    
+
+
+                    if (student != null & user != null)
+                    {
+                        this.StudentID = student.Id;
+                        this.StudentFirstName = student.StudentFirstName;
+                        this.StudentLastName = student.StudentFirstName;
+                        this.Phone = student.Phone;
+                        this.Email = student.Email;
+                        this.School = student.School;
+                        this.FieldOfStudy = student.Field;
+                        this.UserId = student.UserId;
+                        this.UserName = user.UserName;
+                        this.Password = user.Password;
+                        this.ProfilePicture = (Byte[])(student.ProfilePicture);
+
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         //***Marker For Tim //This is good to go
         public bool StudentInsert()
         {

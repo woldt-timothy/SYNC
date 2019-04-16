@@ -18,9 +18,9 @@ namespace ITIndeed.BL.Test
             Byte[] arrBYTE = new Byte[10000];
 
             Student student = new Student();
-            student.UserName = "tim6";
+            student.UserName = "jordanIsAwesome";
             student.Password = "maple";
-            student.StudentFirstName = "tim6";
+            student.StudentFirstName = "jdog6";
             student.StudentLastName = "Clyde4446";
             student.Email = "bonnytheman@fvtc,edu4446";
             student.FieldOfStudy = "Computer Engineering4446";
@@ -36,7 +36,7 @@ namespace ITIndeed.BL.Test
 
             var users = dc.tblUsers;
 
-            int expectedUsers = 9;
+            int expectedUsers = 25;
 
             int actualUsers = users.Count();
 
@@ -44,7 +44,7 @@ namespace ITIndeed.BL.Test
 
             var students = dc.tblStudents;
 
-            int expectedStudents = 8;
+            int expectedStudents = 13;
 
             int actualStudents = students.Count();
 
@@ -145,6 +145,27 @@ namespace ITIndeed.BL.Test
 
 
             Assert.AreEqual(expected, actual);
+
+
+        }
+
+
+        [TestMethod]
+        public void LoadUserByIdTest()
+        {
+            Student student = new Student();
+            student.StudentLoadUserById(Guid.Parse("61a26bf2-f0e5-4ce1-bbdf-e858c42761fb"));
+
+
+            string expected = "jdog6";
+            string actual = student.StudentFirstName;
+
+
+
+            Assert.AreEqual(expected, actual);
+
+
+
 
 
         }
