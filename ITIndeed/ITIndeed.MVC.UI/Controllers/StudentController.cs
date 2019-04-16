@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ITIndeed.BL;
 using ITIndeed.MVC.UI.Models;
 
+
 namespace ITIndeed.MVC.UI.Controllers
 {
     public class StudentController : Controller
@@ -27,6 +28,7 @@ namespace ITIndeed.MVC.UI.Controllers
         {
             //Guid guid = new Guid();
             User user;
+
 
             if (id == null & Session["user"] == null)
             {
@@ -56,11 +58,8 @@ namespace ITIndeed.MVC.UI.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
+
             
-
-          
-
-
         }
 
 
