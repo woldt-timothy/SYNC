@@ -70,7 +70,7 @@ namespace ITIndeed.BL
                     {
                         this.StudentID = student.Id;
                         this.StudentFirstName = student.StudentFirstName;
-                        this.StudentLastName = student.StudentFirstName;
+                        this.StudentLastName = student.StudentLastName;
                         this.Phone = student.Phone;
                         this.Email = student.Email;
                         this.School = student.School;
