@@ -74,6 +74,7 @@
     <None Include="DefaultData\Student.sql" />
     <None Include="DefaultData\User.sql" />
     <None Include="ITIndeed.DB.publish.xml" />
+    <None Include="Script2.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Script.PreDeployment1.sql" />

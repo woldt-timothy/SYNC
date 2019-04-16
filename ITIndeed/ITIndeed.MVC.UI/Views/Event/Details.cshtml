@@ -4,59 +4,66 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div id="breadcrumb">
+    <div class="container">
+        <div class="breadcrumb">
+            <li><a href="../../Content/Theme/index.html">Home</a></li>
+            <li>@ViewBag.Title</li>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h2>@Html.DisplayFor(model => model.Name)</h2>
 
-<h2>Details</h2>
+    <div class="Event">
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name) of Event
+            </dt>
 
-<div>
-    <h4>Event</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(modelItem => modelItem.Users[0].UserName)
-        </dt>
-
-        @for (var i = 0; i < Model.Users.Count(); i++)
-        {
             <dd>
-                @Html.DisplayFor(modelItem => modelItem.Users[i].UserName)
+                @Html.DisplayFor(model => model.Name)
             </dd>
 
-        }
+            <dt>
+                @Html.DisplayNameFor(model => model.Type):
+            </dt>
 
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.Type)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate):
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EndDate):
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EndDate)
+            </dd>
+            <div class="pt">
+                <dt>
+                    @*@Html.DisplayNameFor(modelItem => modelItem.Users[0].UserName)*@
+                    People Attending:
+                </dt>
+                    @for (var i = 0; i < Model.Users.Count(); i++)
+                    {
+                        <dd>
+                                @Html.DisplayFor(modelItem => modelItem.Users[i].UserName)
+                        </dd>
+                    }
+            </div>
+        </dl>
+    </div>
+    <p class="text-primary">
+        <a href="/Event" class="text-primary">Back to List of Events</a>
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
