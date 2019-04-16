@@ -32,5 +32,6 @@ namespace ITIndeed.PL
         public virtual DbSet<tblStudent> tblStudents { get; set; }
         public virtual DbSet<tblStudentPicture> tblStudentPictures { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
+        public virtual DbSet<tblUserInterested> tblUserInteresteds { get; set; }
     }
 }

@@ -66,6 +66,7 @@
     <Build Include="Tables\tblStudent.sql" />
     <Build Include="Tables\tblEvent.sql" />
     <Build Include="Tables\tblEventShowing.sql" />
+    <Build Include="Tables\tblUserInterested.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DefaultData\Employer.sql" />
@@ -75,6 +76,7 @@
     <None Include="DefaultData\User.sql" />
     <None Include="ITIndeed.DB.publish.xml" />
     <None Include="Script2.sql" />
+    <None Include="DefaultData\UserInterested.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Script.PreDeployment1.sql" />

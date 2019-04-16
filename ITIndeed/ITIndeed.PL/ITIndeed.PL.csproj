@@ -90,12 +90,9 @@
     <Compile Include="tblUser.cs">
       <DependentUpon>ITIndeedEntities.tt</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ITIndeed.DB\ITIndeed.DB.sqlproj">
-      <Project>{6b6d21fc-fe9b-4eae-bb2f-d556f131eb49}</Project>
-      <Name>ITIndeed.DB</Name>
-    </ProjectReference>
+    <Compile Include="tblUserInterested.cs">
+      <DependentUpon>ITIndeedEntities.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -122,6 +119,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ITIndeed.DB\ITIndeed.DB.sqlproj">
+      <Project>{6b6d21fc-fe9b-4eae-bb2f-d556f131eb49}</Project>
+      <Name>ITIndeed.DB</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

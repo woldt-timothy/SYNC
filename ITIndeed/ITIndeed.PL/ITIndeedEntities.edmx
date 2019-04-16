@@ -73,6 +73,14 @@
           <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="tblUserInterested">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EventId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="ITIndeedModelStoreContainer">
           <EntitySet Name="tblEmployer" EntityType="Self.tblEmployer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblEmployerPicture" EntityType="Self.tblEmployerPicture" Schema="dbo" store:Type="Tables" />
@@ -81,6 +89,7 @@
           <EntitySet Name="tblStudent" EntityType="Self.tblStudent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblStudentPicture" EntityType="Self.tblStudentPicture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserInterested" EntityType="Self.tblUserInterested" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -94,6 +103,7 @@
           <EntitySet Name="tblStudents" EntityType="ITIndeedModel.tblStudent" />
           <EntitySet Name="tblStudentPictures" EntityType="ITIndeedModel.tblStudentPicture" />
           <EntitySet Name="tblUsers" EntityType="ITIndeedModel.tblUser" />
+          <EntitySet Name="tblUserInteresteds" EntityType="ITIndeedModel.tblUserInterested" />
         </EntityContainer>
         <EntityType Name="tblEmployer">
           <Key>
@@ -162,6 +172,14 @@
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblUserInterested">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="EventId" Type="Guid" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -240,6 +258,15 @@
               <MappingFragment StoreEntitySet="tblUser">
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserInteresteds">
+            <EntityTypeMapping TypeName="ITIndeedModel.tblUserInterested">
+              <MappingFragment StoreEntitySet="tblUserInterested">
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

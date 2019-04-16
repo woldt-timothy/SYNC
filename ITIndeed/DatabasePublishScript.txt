@@ -136,6 +136,20 @@ CREATE TABLE [dbo].[tblUser]
 );
 
 
+GO
+PRINT N'Creating [dbo].[tblUserInterested]...';
+
+
+GO
+CREATE TABLE [dbo].[tblUserInterested]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [UserId] UNIQUEIDENTIFIER NOT NULL, 
+    [EventId] UNIQUEIDENTIFIER NOT NULL
+)
+
+
+
 
 GO
 /*
@@ -157,6 +171,18 @@ BEGIN
 	(NEWID(), 'Jess', 'Jones','(920)222-2222','jess@email.com',NEWID(), 'Oshkosh Truck', 'Manufacturing', convert(varbinary, 'employerprofilepicture2.jpg')),
 	(NEWID(), 'Abby', 'Williams','(920)333-3333','abby@email.com',NEWID(), 'Plexus', 'Manufacturing', convert(varbinary, 'employerprofilepicture2.jpg'))
 END
+
+BEGIN
+	INSERT INTO [dbo].tblUserInterested(Id,UserId,EventId)
+	VALUES
+	(NEWID(), NEWID(), NEWID()),
+	(NEWID(), NEWID(), NEWID()),
+	(NEWID(), NEWID(), NEWID()),
+	(NEWID(), NEWID(), NEWID()),
+	(NEWID(), NEWID(), NEWID()),
+	(NEWID(), NEWID(), NEWID())
+END
+
 BEGIN
 	INSERT INTO [dbo].tblEvent(Id,Name,Type,StartDate,EndDate)
 	VALUES
