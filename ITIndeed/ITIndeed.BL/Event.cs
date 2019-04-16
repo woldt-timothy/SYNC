@@ -22,6 +22,10 @@ namespace ITIndeed.BL
         public DateTime EndDate { get; set; }
         public Guid UserId { get; set; }
         public List<User> Users { get; set; }
+
+
+        //Going to have to change methods in Event Class to reflect database chnages to tblEvent and Addition of tblEventShowing to use these properties(2 Below)
+        //going to hold off for today - tim - 04162019
         public string Location { get; set; }
         public int InterestedCount { get; set; }
 
@@ -53,6 +57,88 @@ namespace ITIndeed.BL
         }
 
         // Methods
+
+
+        public bool AddUserInterestedInEvent(Guid userId) // Add a user interested to this event
+        {
+            try
+            {
+                using (ITIndeedEntities dc = new ITIndeedEntities())
+                {
+                    tblUserInterested eventInterested = dc.tblUserInteresteds.Where(e => (e.UserId == userId) && (e.EventId == this.Id)).FirstOrDefault(); // Check to see if user already joined event
+
+                    if (eventInterested == null)
+                    {
+                        eventInterested = new tblUserInterested();
+                        eventInterested.Id = Guid.NewGuid();
+                        eventInterested.UserId = userId;
+                        eventInterested.EventId = this.Id;
+
+                        dc.tblUserInteresteds.Add(eventInterested);
+                        dc.SaveChanges();
+
+                        return true;
+                    }
+                    else
+                    {
+                        return false; // User is already interested in event.
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+        public void LoadUsersInterested() // Load list of users interested in the event // Makes User Object
+        {
+            try
+            {
+                using (ITIndeedEntities dc = new ITIndeedEntities())
+                {
+                    Users = new List<User>();
+
+                    var eventInteresteds = dc.tblUserInteresteds.Where(e => e.EventId == this.Id);
+
+                    foreach (var eventInterested in eventInteresteds)
+                    {
+                        tblUser user = dc.tblUsers.Where(u => u.Id == eventInterested.UserId).FirstOrDefault();
+                        Users.Add(new User(user.Id, user.UserName));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+        public void LoadCountOfUsersInterested() // return Count of Users Interested
+        {
+            try
+            {
+                using (ITIndeedEntities dc = new ITIndeedEntities())
+                {
+
+                    var count = dc.tblUserInteresteds.Where(e => e.EventId == this.Id).Count(); // Check to see if user already joined event
+
+                        this.InterestedCount = count;
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
 
 
         public bool AddUserToEvent(Guid userId) // Add a user to this event

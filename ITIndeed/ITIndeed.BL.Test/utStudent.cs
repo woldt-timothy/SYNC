@@ -44,7 +44,7 @@ namespace ITIndeed.BL.Test
 
             var students = dc.tblStudents;
 
-            int expectedStudents = 13;
+            int expectedStudents = 2;
 
             int actualStudents = students.Count();
 

@@ -196,7 +196,7 @@ namespace ITIndeed.BL.Test
 
 
 
-          [TestMethod]
+        [TestMethod]
         public void LoadEventsForAUser()
         {
             //event is a keyword
@@ -207,6 +207,72 @@ namespace ITIndeed.BL.Test
             int expected = 2;
 
             int actual = events.Count();
+
+
+            Assert.AreEqual(expected, actual);
+
+
+
+        }
+
+
+        [TestMethod]
+        public void AddUserInterestedInEvent()
+        {
+            //event is a keyword
+            Event eventObject = new Event();
+            eventObject.Id = Guid.Parse("5955eca0-87fc-413f-a47f-8f93436afa89");
+            eventObject.AddUserInterestedInEvent(Guid.Parse("ea9ad35d-a654-4b6c-9b25-53e0b24175cd"));
+
+            ITIndeedEntities dc = new ITIndeedEntities();
+
+            var userInterestedInEvent = dc.tblUserInteresteds;
+
+            int expecteduserInterestedInEvent = 7;
+
+            int actualuserInterestedInEvent = userInterestedInEvent.Count();
+
+
+            Assert.AreEqual(expecteduserInterestedInEvent, actualuserInterestedInEvent);
+
+
+
+        }
+
+
+        [TestMethod]
+        public void LoadUserInterestedInEvent()
+        {
+            //event is a keyword
+            Event @event = new Event();
+            @event.Id = Guid.Parse("5955eca0-87fc-413f-a47f-8f93436afa89");
+            @event.LoadUsersInterested();
+
+
+            int expected = 1;
+
+            int actual = @event.Users.Count();
+
+
+            Assert.AreEqual(expected, actual);
+
+
+
+        }
+
+
+        [TestMethod]
+        public void LoadCountUserInterested()
+        {
+            //event is a keyword
+            Event @event = new Event();
+            @event.Id = Guid.Parse("5955eca0-87fc-413f-a47f-8f93436afa89");
+            @event.LoadCountOfUsersInterested();
+
+
+            int expected = 1;
+
+            int actual = @event.InterestedCount;
 
 
             Assert.AreEqual(expected, actual);
