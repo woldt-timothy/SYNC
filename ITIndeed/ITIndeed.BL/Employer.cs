@@ -91,10 +91,49 @@ namespace ITIndeed.BL
             }
         }
 
+        public bool EmployerLoadUserById(Guid baseUserId)
+        {
+            try
+            {
+                using (ITIndeedEntities dc = new ITIndeedEntities())
+                {
+                    tblEmployer employer = dc.tblEmployers.Where(e => e.Id == UserId).FirstOrDefault();
+                    tblUser user = dc.tblUsers.Where(u => u.Id == baseUserId).FirstOrDefault();
+
+                    if (employer != null & user != null)
+                    {
+                        this.EmployerId = employer.Id;
+                        this.RepresentativeFirstName = employer.RepresentativeFirstName;
+                        this.RepresentativeLastName = employer.RepresentativeLastName;
+                        this.Phone = employer.Phone;
+                        this.Email = employer.Email;
+                        this.OrganizationName = employer.OrganizationName;
+                        this.Industry = employer.Industry;
+                        this.Password = user.Password;
+                        this.UserName = user.UserName;
+                        this.UserId = employer.UserId;
+                        this.ProfilePicture = employer.ProfilePicture;
 
 
-        //***Marker For Tim //This is good to go
-        public bool EmployerInsert()
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+
+            //***Marker For Tim //This is good to go
+            public bool EmployerInsert()
         {
             try
             {

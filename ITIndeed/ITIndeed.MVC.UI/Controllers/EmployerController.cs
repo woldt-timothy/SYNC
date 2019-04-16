@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ITIndeed.BL;
+using ITIndeed.MVC.UI;
 
 namespace ITIndeed.MVC.UI.Controllers
 {
@@ -23,12 +24,36 @@ namespace ITIndeed.MVC.UI.Controllers
         }
 
         // GET: Employee/Details/5
-        public ActionResult Details(Guid id)
+        public ActionResult Details(Guid? id)
         {
-            Employer employer = new Employer();
-            employer.EmployerLoadById(id);
 
-            return View(employer);
+            User user;
+
+            if (id == null & Session["user"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+
+            }
+            else if (Session["user"] != null)
+            {
+                
+                user = new User();
+                user = (User)Session["user"];
+
+                
+                Employer employer = new Employer();
+                employer.EmployerLoadUserById(user.BaseUserID);
+                return View(employer);
+                
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            
+
+            
         }
 
         // GET: Employee/Create
