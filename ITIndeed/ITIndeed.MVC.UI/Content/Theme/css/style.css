@@ -1260,6 +1260,33 @@ a.scrollup:hover{
 .pr{
     padding-right:1.5em;
 }
+.pl{
+    padding-left:1.5em;
+}
+.mt {
+    margin-top: 1.5em;
+}
+
+.mb {
+    margin-bottom: 1.5em;
+}
+
+.mr {
+    margin-right: 1.5em;
+}
+
+.ml {
+    margin-left: 1.5em;
+}
+.loginbtn{
+    padding-left:0;
+}
+.facebookbtn {
+    padding-left: .7em;
+}
+.facebookbtn input{
+    background-color:cornflowerblue;
+}
 .inline-block {
     display: inline-block;
 }
@@ -1273,3 +1300,28 @@ a.scrollup:hover{
     padding-left:0;
     margin-left:0;
 }*/
+/*.circle {
+    border-radius: 50% 50% 50% 50%;
+    width: 200px;
+    height: 200px;
+    max-width: 100%;
+    max-height: 100%;
+}*/
+.figure {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.figure img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+.profile-header{
+    font-size: 4em;
+}
+

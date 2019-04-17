@@ -4,75 +4,84 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Details</h2>
-
-<div>
-    <h4>Employer</h4>
-    <hr />
-    <dl class="dl-horizontal">
-
-        <img src="~/pfpImageFolder/pfpImage.jpg" />
-
-        <dt>
-            @Html.DisplayNameFor(model => model.employer.RepresentativeFirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.employer.RepresentativeFirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.employer.RepresentativeLastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.employer.RepresentativeLastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.employer.Phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.employer.Phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.employer.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.employer.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.employer.OrganizationName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.employer.OrganizationName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.employer.Industry)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.employer.Industry)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.employer.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.employer.UserName)
-        </dd>
-
-    </dl>
+<div id="breadcrumb">
+    <div class="container">
+        <div class="breadcrumb">
+            <li><a href="../../Content/Theme/index.html">Home</a></li>
+            <li>@ViewBag.Title</li>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.employer.EmployerId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="container">
+    <div class="col-md-4 pt ">
+        <div class="figure">
+            <img class="circle" src="~/pfpImageFolder/pfpImage.jpg" />
+        </div>
+    </div>
+    <div class="col-md-6 pt profile-header">
+        <h2>@Html.DisplayFor(model => model.employer.OrganizationName)</h2>
+        <h4>Employer - @Html.DisplayFor(model => model.employer.RepresentativeFirstName) @Html.DisplayFor(model => model.employer.RepresentativeLastName)</h4>
+    </div>
+    <div class="col-md-12">
+
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.employer.RepresentativeFirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.employer.RepresentativeFirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.employer.RepresentativeLastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.employer.RepresentativeLastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.employer.OrganizationName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.employer.OrganizationName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.employer.Industry)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.employer.Industry)
+            </dd>
+
+            <hr />
+
+            <h3>Contact @Html.DisplayFor(model => model.employer.RepresentativeFirstName):</h3>
+            <dt>
+                @Html.DisplayNameFor(model => model.employer.Phone):
+            </dt>
+
+            <dd>
+                <a href="tel:@Html.DisplayFor(model => model.employer.Phone)" class="text-primary">@Html.DisplayFor(model => model.employer.Phone)</a>
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.employer.Email):
+            </dt>
+
+            <dd>
+                <a href="mailto:@Html.DisplayFor(model => model.employer.Email)" target="_top" class="text-primary">@Html.DisplayFor(model => model.employer.Email)</a>
+            </dd>
+        </dl>
+
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.employer.EmployerId }) |
+            @Html.ActionLink("Back to List of Employers", "Index")
+        </p>
+    </div>
+</div>
