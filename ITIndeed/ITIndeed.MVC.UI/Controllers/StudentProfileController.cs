@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using ITIndeed.BL;
@@ -73,6 +75,9 @@ namespace ITIndeed.MVC.UI.Controllers
                 }
 
                 espi.student.StudentInsert();
+                ///Gage - I added the line below - it does not affect this method, all it does is call the method on line
+                /// 151 to send the email upon account creation of a student
+                SendEmail(espi.student.Email);
 
                 return RedirectToAction("Index");
             }
@@ -140,6 +145,45 @@ namespace ITIndeed.MVC.UI.Controllers
             catch
             {
                 return View(s);
+            }
+        }
+
+
+        public bool SendEmail(string Email)
+        {
+            try
+            {
+
+                string toEmail, subject, emailBody;
+                toEmail = Email;
+                subject = "Thanks for signing up with Sync!";
+                emailBody = "Thanks for signing up with Sync!";
+
+
+                string senderEmail = System.Configuration.ConfigurationManager.AppSettings["SenderEmail"].ToString();
+                string senderPassword = System.Configuration.ConfigurationManager.AppSettings["SenderPassword"].ToString();
+
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                client.EnableSsl = true;
+                client.Timeout = 100000;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential(senderEmail, senderPassword);
+
+                MailMessage mailMessage = new MailMessage(senderEmail, toEmail, subject, emailBody);
+                //mailMessage.IsBodyHtml = true;
+                //mailMessage.BodyEncoding = UTF8Encoding.UTF8;
+                client.Send(mailMessage);
+
+                return true;
+
+
+
+            }
+            catch (Exception e)
+            {
+
+                return false;
             }
         }
     }
