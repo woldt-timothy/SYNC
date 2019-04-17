@@ -27,6 +27,7 @@ namespace ITIndeed.MVC.UI.Controllers
         {
             Event _event = new Event();
             _event.LoadById(id);
+            _event.LoadCountOfUsersInterested();
             _event.LoadUsers();
             return View(_event);
         }
@@ -152,6 +153,46 @@ namespace ITIndeed.MVC.UI.Controllers
                 {
                     return RedirectToAction("Login", "Login");
                 }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+
+        public ActionResult AddUserInterestedInEvent(Guid id)
+        {
+            try
+            {
+                User user;
+
+                if (Session["user"] == null)
+                {
+                    return RedirectToAction("Login", "Login");
+
+                }
+                else if (Session["user"] != null)
+                {
+
+                    user = new User();
+                    user = (User)Session["user"];
+
+                    Event ev = new Event();
+                    ev.Id = id;
+                    ev.AddUserInterestedInEvent(user.BaseUserID);
+
+                    string route;
+                    route = id.ToString();
+
+                    return RedirectToAction("Details/" + route);
+
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Login");
+                }
+                
             }
             catch (Exception e)
             {
