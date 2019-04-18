@@ -15,6 +15,8 @@
     @*<script src="/Scripts/modernizr-2.8.3.js"></script>*@
 </head>
 <body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
     @RenderBody()
     <header>
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -41,7 +43,7 @@
                                 <li role="presentation"><a href="../../Content/Theme/blog.html">Blog</a></li>
                                 <li role="presentation"><a href="../../Content/Theme/contact.html">Contact</a></li>
                                 <li role="presentation">@Html.ActionLink("Employer Search", "Index", "EmployerProfile")</li>
-                                
+
                                 <li role="presentation">@Html.ActionLink("Events", "Index", "Event")</li>
                                 <li role="presentation">
                                     <p>
@@ -52,7 +54,7 @@
                                                 <li class="dropdown-header"><a href="Login/Login">Login</a></li>
                                                 <li class="dropdown-header"><a href="Login/Logout">Logout</a></li>
                                                 @*<li>@Html.ActionLink("Login", "Login", "Login")</li>
-                <li>@Html.ActionLink("Logout", "Logout", "Login")</li>*@
+                                                    <li>@Html.ActionLink("Logout", "Logout", "Login")</li>*@
                                             </ul>
                                         </div>
                                     </p>
@@ -89,7 +91,7 @@
         <!--/#conatcat-info-->*@
 
     <footer>
-        <div class="footer navbar-fixed-bottom">
+        <div class="footer  navbar-fixed-bottom">
             <div class="container">
                 <div class="social-icon">
                     <div class="col-md-4">

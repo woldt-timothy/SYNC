@@ -591,7 +591,8 @@ a:hover {
 /* --- footer --- */
 .footer {
 	background:#1BBD36;
-	padding:15px 22px;
+	padding:0px 22px;
+    margin-top: 15px;
 }
 
 ul.social-network {
