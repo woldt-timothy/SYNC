@@ -170,7 +170,6 @@
     <Content Include="Content\Theme\css\font-awesome.min.css" />
     <Content Include="Content\Theme\css\prettyPhoto.css" />
     <Content Include="Content\Theme\css\style.css" />
-    <Content Include="Content\Theme\EmployerProfile.html" />
     <Content Include="Content\Theme\EmployerStudentChoice.html" />
     <Content Include="Content\Theme\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Theme\fonts\glyphicons-halflings-regular.svg" />

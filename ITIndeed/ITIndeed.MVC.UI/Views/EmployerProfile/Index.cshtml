@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ITIndeed.BL.Employer>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Employer Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div id="breadcrumb">
@@ -12,7 +12,7 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container employer">
     <h2>Employer Search</h2>
     <hr />
     <p>
@@ -34,25 +34,13 @@
     </p>
     <table class="table">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.RepresentativeFirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RepresentativeLastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
+            <th></th>
             <th>
                 @Html.DisplayNameFor(model => model.OrganizationName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Industry)
             </th>
-            <th>Action</th>
 
         </tr>
 
@@ -68,30 +56,26 @@
 
             foreach (var item in Model)
             {
-                <tr>
+                <tr class="e">
+                    <td class="pr">
+                        <a class="text-primary" href="/EmployerProfile/Details/@Html.DisplayFor(model => item.EmployerId)">
+                            <div class="figure">
+                                <img class="circle" src="~/pfpImageFolder/pfpImage.jpg" />
+                            </div>
+                        </a>
+                    </td>                       
                     <td>
-                        @Html.DisplayFor(modelItem => item.RepresentativeFirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RepresentativeLastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Phone)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.OrganizationName)
+                        <a class="text-primary" href="/EmployerProfile/Details/@Html.DisplayFor(model => item.EmployerId)">@Html.DisplayFor(model => item.OrganizationName)</a>
+                        
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Industry)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.EmployerId }) |
                         @Html.ActionLink("Details", "Details", new { id = item.EmployerId }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.EmployerId })
-                    </td>
+                    </td>*@
                 </tr>
             }
         }

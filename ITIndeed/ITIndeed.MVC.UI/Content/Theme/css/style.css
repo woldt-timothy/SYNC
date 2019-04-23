@@ -1325,4 +1325,67 @@ a.scrollup:hover{
 .profile-header{
     font-size: 4em;
 }
+.employer table th {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    vertical-align: middle !important;
+    font-size: 30px;
+    background-color: whitesmoke;
+}
+.e {
+    vertical-align: middle !important;
+    height: 200px;
+    margin-bottom: 1.5em;
+    border-bottom: 0px solid #ddd;
+    border-top: 0px solid #ddd;
+}
+.employer table td {
+    font-family: Helvetica;
+    text-align: center;
+    font-size: 25px;
+    vertical-align: middle !important;
+    height: 200px;
+    margin-top: auto;
+}
+.e td, .e th {
+    border-bottom: 0px solid #ddd;
+    border-top: 0px solid #ddd;
+}
+.e td a:hover{
+    background-color: darkseagreen;
+    color: white;
+}
+.event table th {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    vertical-align: middle !important;
+    font-size: 20px;
+    background-color: #1bbd36;
+    color:white;
+}
 
+.event table td {
+    font-family: Helvetica;
+    text-align: center;
+    font-size: 18px;
+    margin-top: auto;
+    padding: 20px !important;
+    vertical-align: middle !important;
+}
+.ev tr:nth-child(odd) {
+    background-color: whitesmoke;
+}
+.evd a{
+   color:#337ab7 ;
+}
+.evd a:hover {
+    background-color: #ddd;
+    color: #1BBD36;
+}
+.tblCreate td {
+    background-color: white !important;
+}
+.tblCreate td a {
+    background-color: whitesmoke !important;
+    color: #1bbd36;
+}

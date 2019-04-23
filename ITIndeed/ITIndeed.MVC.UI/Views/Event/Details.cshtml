@@ -12,9 +12,10 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container evd">
     <h2>@Html.DisplayFor(model => model.Name)</h2>
-
+    <a href="/Event/Edit/@Html.DisplayFor(model => model.Id)" class="text-primary">Edit</a> |
+    <a href="/Event/Delete/@Html.DisplayFor(model => model.Id)" class="text-primary">Delete</a>
     <div class="Event">
         <hr />
         <dl class="dl-horizontal">
@@ -62,7 +63,7 @@
                 }
             </div>
             <div class="pt">
-                <dt>Interested:</dt>
+                <dt>People Interested:</dt>
                 <dd>
                     @Html.DisplayFor(model => model.InterestedCount)
                 </dd>
