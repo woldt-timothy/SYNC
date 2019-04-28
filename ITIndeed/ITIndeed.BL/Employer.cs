@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
+using System.Web;
+using System.Drawing;
 
 namespace ITIndeed.BL
 {
@@ -28,7 +30,22 @@ namespace ITIndeed.BL
         public string OrganizationName { get; set; }
         public string Industry { get; set; }
         public Guid UserId { get; set; }
-        public Byte[] ProfilePicture{ get; set; }
+        public Byte[] ProfilePicture { get; set; }
+        public string ProfilePictureView
+        {
+            get
+            {
+                if (ProfilePicture != null)
+                {
+                    return "data:image/jpeg;base64," + Convert.ToBase64String(ProfilePicture);
+                }
+                else
+                {
+                    return "/Images/blank-profile-picture.jpg";
+                }
+            }
+        }
+        public HttpPostedFileBase UploadedImageFile { get; set; }
 
         public Employer()
         {
@@ -47,7 +64,6 @@ namespace ITIndeed.BL
             Industry = industry;
             ProfilePicture = profilePicture;
         }
-
 
         //***Marker For Tim //This is good to go
         //***User ID == employer.UserId != employer.BaseUserId // Same Goes with UserName

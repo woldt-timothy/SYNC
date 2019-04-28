@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace ITIndeed.BL
 {
@@ -28,6 +29,21 @@ namespace ITIndeed.BL
         public string FieldOfStudy { get; set; }
         public Guid UserId { get; set; }
         public Byte[] ProfilePicture { get; set; }
+        public string ProfilePictureView
+        {
+            get
+            {
+                if (ProfilePicture != null)
+                {
+                    return "data:image/jpeg;base64," + Convert.ToBase64String(ProfilePicture);
+                }
+                else
+                {
+                    return "/Images/blank-profile-picture.jpg";
+                }
+            }
+        }
+        public HttpPostedFileBase UploadedImageFile { get; set; }
 
         // Constructors
 

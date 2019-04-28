@@ -60,7 +60,7 @@
                     <td class="pr">
                         <a class="text-primary" href="/EmployerProfile/Details/@Html.DisplayFor(model => item.EmployerId)">
                             <div class="figure">
-                                <img class="circle" src="~/pfpImageFolder/pfpImage.jpg" />
+                                @Html.Raw("<img class='circle' src='" + item.ProfilePictureView + "' />")
                             </div>
                         </a>
                     </td>                       

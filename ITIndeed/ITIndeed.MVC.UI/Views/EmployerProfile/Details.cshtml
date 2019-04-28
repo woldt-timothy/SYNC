@@ -1,4 +1,4 @@
-﻿@model ITIndeed.MVC.UI.Models.EmployerStudentProfileImage
+﻿@model ITIndeed.BL.Employer
 
 @{
     ViewBag.Title = "Details";
@@ -15,72 +15,71 @@
 <div class="container">
     <div class="col-md-4 pt ">
         <div class="figure">
-            <img class="circle" src="~/pfpImageFolder/pfpImage.jpg" />
+            @Html.Raw("<img class='circle' src='" + Model.ProfilePictureView + "' />")
         </div>
     </div>
     <div class="col-md-6 pt profile-header">
-        <h2>@Html.DisplayFor(model => model.employer.OrganizationName)</h2>
-        <h4>Employer - @Html.DisplayFor(model => model.employer.RepresentativeFirstName) @Html.DisplayFor(model => model.employer.RepresentativeLastName)</h4>
+        <h2>@Html.DisplayFor(model => model.OrganizationName)</h2>
+        <h4>Employer - @Html.DisplayFor(model => model.RepresentativeFirstName) @Html.DisplayFor(model => model.RepresentativeLastName)</h4>
     </div>
     <div class="col-md-12">
-
         <hr />
         <dl class="dl-horizontal">
 
             <dt>
-                @Html.DisplayNameFor(model => model.employer.RepresentativeFirstName)
+                @Html.DisplayNameFor(model => model.RepresentativeFirstName)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.employer.RepresentativeFirstName)
+                @Html.DisplayFor(model => model.RepresentativeFirstName)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.employer.RepresentativeLastName)
+                @Html.DisplayNameFor(model => model.RepresentativeLastName)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.employer.RepresentativeLastName)
+                @Html.DisplayFor(model => model.RepresentativeLastName)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.employer.OrganizationName)
+                @Html.DisplayNameFor(model => model.OrganizationName)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.employer.OrganizationName)
+                @Html.DisplayFor(model => model.OrganizationName)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.employer.Industry)
+                @Html.DisplayNameFor(model => model.Industry)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.employer.Industry)
+                @Html.DisplayFor(model => model.Industry)
             </dd>
 
             <hr />
 
-            <h3>Contact @Html.DisplayFor(model => model.employer.RepresentativeFirstName):</h3>
+            <h3>Contact @Html.DisplayFor(model => model.RepresentativeFirstName):</h3>
             <dt>
-                @Html.DisplayNameFor(model => model.employer.Phone):
+                @Html.DisplayNameFor(model => model.Phone):
             </dt>
 
             <dd>
-                <a href="tel:@Html.DisplayFor(model => model.employer.Phone)" class="text-primary">@Html.DisplayFor(model => model.employer.Phone)</a>
+                <a href="tel:@Html.DisplayFor(model => model.Phone)" class="text-primary">@Html.DisplayFor(model => model.Phone)</a>
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.employer.Email):
+                @Html.DisplayNameFor(model => model.Email):
             </dt>
 
             <dd>
-                <a href="mailto:@Html.DisplayFor(model => model.employer.Email)" target="_top" class="text-primary">@Html.DisplayFor(model => model.employer.Email)</a>
+                <a href="mailto:@Html.DisplayFor(model => model.Email)" target="_top" class="text-primary">@Html.DisplayFor(model => model.Email)</a>
             </dd>
         </dl>
 
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.employer.EmployerId }) |
+            @Html.ActionLink("Edit", "Edit", new { id = Model.EmployerId }) |
             @Html.ActionLink("Back to List of Employers", "Index")
         </p>
     </div>

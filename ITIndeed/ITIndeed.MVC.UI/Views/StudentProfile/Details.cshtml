@@ -15,7 +15,7 @@
 <div class="container profile">
     <div class="col-md-4 pt ">
         <div class="figure">
-            <img class="circle" src="~/pfpImageFolder/pfpImage.jpg" />
+            @Html.Raw("<img class='circle' src='" + Model.ProfilePictureView + "' />")
         </div>
     </div>
     <div class="col-md-6 pt profile-header">

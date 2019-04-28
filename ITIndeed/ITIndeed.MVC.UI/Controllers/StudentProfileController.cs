@@ -29,107 +29,88 @@ namespace ITIndeed.MVC.UI.Controllers
         // GET: StudentProfile/Details/5
         public ActionResult Details(Guid id)
         {
-            EmployerStudentProfileImage espi = new EmployerStudentProfileImage();
-            espi.student = new Student();
-            espi.student.StudentLoadById(id);
+            Student s = new Student();
+            s.StudentLoadById(id);
 
-            string filepath = Server.MapPath("~/pfpImageFolder/") + "pfpImage.jpg";
-            System.IO.File.Delete(filepath);
-
-            if (espi.student.ProfilePicture != null)
-            {
-                MemoryStream ms = new MemoryStream(espi.student.ProfilePicture);
-                Image i = Image.FromStream(ms);
-
-                i.Save(filepath);
-                ms.Close();
-            }
-
-            return View(espi);
+            return View(s);
         }
         
         // GET: StudentProfile/Create
         [HttpGet]
         public ActionResult Create()
         {
-            EmployerStudentProfileImage espi = new EmployerStudentProfileImage();
-            espi.student = new Student();
-
-            return View(espi);
+            return View(new Student());
         }
 
         // POST: StudentProfile/Create
         [HttpPost]
-        public ActionResult Create(EmployerStudentProfileImage espi)
+        public ActionResult Create(Student s)
         {
             try
             {
-                if (espi.ImageFile != null)
+                if (s.UploadedImageFile != null)
                 {
                     using (MemoryStream ms = new MemoryStream())
                     {
-                        espi.ImageFile.InputStream.CopyTo(ms);
-                        espi.student.ProfilePicture = ms.GetBuffer();
+                        s.UploadedImageFile.InputStream.CopyTo(ms);
+                        s.ProfilePicture = ms.GetBuffer();
                         ms.Close();
                     }
                 }
 
-                espi.student.StudentInsert();
-                ///Gage - I added the line below - it does not affect this method, all it does is call the method on line
-                /// 151 to send the email upon account creation of a student
-                SendEmail(espi.student.Email);
+                s.StudentInsert();
+                SendEmail(s.Email);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(espi);
+                return View(s);
             }
         }
 
         // GET: StudentProfile/Edit/5
         public ActionResult Edit(Guid id)
         {
-            EmployerStudentProfileImage espi = new EmployerStudentProfileImage();
-            espi.student = new Student();
-            espi.student.StudentLoadById(id);
+            Student s = new Student();
+            s.StudentLoadById(id);
 
-            return View(espi);
+            return View(s);
         }
 
         // POST: StudentProfile/Edit/5
         [HttpPost]
-        public ActionResult Edit(Guid id, EmployerStudentProfileImage espi)
+        public ActionResult Edit(Guid id, Student s)
         {
             try
             {
-                if (espi.ImageFile != null)
+                if (s.UploadedImageFile != null)
                 {
                     using (MemoryStream ms = new MemoryStream())
                     {
-                        espi.ImageFile.InputStream.CopyTo(ms);
-                        espi.student.ProfilePicture = ms.GetBuffer();
+                        s.UploadedImageFile.InputStream.CopyTo(ms);
+                        s.ProfilePicture = ms.GetBuffer();
                         ms.Close();
                     }
                 }
 
-                espi.student.StudentUpdate();
+                s.StudentUpdate();
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(espi);
+                return View(s);
             }
         }
 
         // GET: StudentProfile/Delete/5
         public ActionResult Delete(Guid id)
         {
-            Student student = new Student();
-            student.StudentLoadById(id);
+            Student s = new Student();
+            s.StudentLoadById(id);
 
-            return View(student);
+            return View(s);
         }
 
         // POST: StudentProfile/Delete/5

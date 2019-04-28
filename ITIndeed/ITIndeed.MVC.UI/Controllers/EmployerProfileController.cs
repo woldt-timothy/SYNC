@@ -55,107 +55,88 @@ namespace ITIndeed.MVC.UI.Controllers
         // GET: EmployerProfile/Details/5
         public ActionResult Details(Guid id)
         {
-            EmployerStudentProfileImage espi = new EmployerStudentProfileImage();
-            espi.employer = new Employer();
-            espi.employer.EmployerLoadById(id);
+            Employer e = new Employer();
+            e.EmployerLoadById(id);
 
-            string filepath = Server.MapPath("~/pfpImageFolder/") + "pfpImage.jpg";
-            System.IO.File.Delete(filepath);
-
-            if (espi.employer.ProfilePicture != null)
-            {
-                MemoryStream ms = new MemoryStream(espi.employer.ProfilePicture);
-                Image i = Image.FromStream(ms);
-                
-                i.Save(filepath);
-                ms.Close();
-            }
-
-            return View(espi);
+            return View(e);
         }
 
         // GET: EmployerProfile/Create
         [HttpGet]
         public ActionResult Create()
         {
-            EmployerStudentProfileImage espi = new EmployerStudentProfileImage();
-            espi.employer = new Employer();
-
-            return View(espi);
+            return View(new Employer());
         }
 
         // POST: EmployerProfile/Create
         [HttpPost]
-        public ActionResult Create(EmployerStudentProfileImage espi)
+        public ActionResult Create(Employer e)
         {
             try
             {
-                if(espi.ImageFile != null)
+                if (e.UploadedImageFile != null)
                 {
                     using (MemoryStream ms = new MemoryStream())
                     {
-                        espi.ImageFile.InputStream.CopyTo(ms);
-                        espi.employer.ProfilePicture = ms.GetBuffer();
+                        e.UploadedImageFile.InputStream.CopyTo(ms);
+                        e.ProfilePicture = ms.GetBuffer();
                         ms.Close();
                     }
                 }
 
-                espi.employer.EmployerInsert();
-
-                ///Gage - I added the line below - it does not affect this method, all it does is call the method on line
-                /// 178 to send the email upon account creation of a employer
-                SendEmail(espi.employer.Email);
+                e.EmployerInsert();
+                SendEmail(e.Email);
                 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(espi);
+                return View(e);
             }
         }
 
         // GET: EmployerProfile/Edit/5
         public ActionResult Edit(Guid id)
         {
-            EmployerStudentProfileImage espi = new EmployerStudentProfileImage();
-            espi.employer = new Employer();
-            espi.employer.EmployerLoadById(id);
+            Employer e = new Employer();
+            e.EmployerLoadById(id);
 
-            return View(espi);
+            return View(e);
         }
 
         // POST: EmployerProfile/Edit/5
         [HttpPost]
-        public ActionResult Edit(Guid id, EmployerStudentProfileImage espi)
+        public ActionResult Edit(Guid id, Employer e)
         {
             try
             {
-                if (espi.ImageFile != null)
+                if (e.UploadedImageFile != null)
                 {
                     using (MemoryStream ms = new MemoryStream())
                     {
-                        espi.ImageFile.InputStream.CopyTo(ms);
-                        espi.employer.ProfilePicture = ms.GetBuffer();
+                        e.UploadedImageFile.InputStream.CopyTo(ms);
+                        e.ProfilePicture = ms.GetBuffer();
                         ms.Close();
                     }
                 }
 
-                espi.employer.EmployerUpdate();
+                e.EmployerUpdate();
+
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(espi);
+                return View(e);
             }
         }
 
         // GET: EmployerProfile/Delete/5
         public ActionResult Delete(Guid id)
         {
-            Employer employer = new Employer();
-            employer.EmployerLoadById(id);
+            Employer e = new Employer();
+            e.EmployerLoadById(id);
 
-            return View(employer);
+            return View(e);
         }
 
         // POST: EmployerProfile/Delete/5
@@ -164,8 +145,6 @@ namespace ITIndeed.MVC.UI.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
                 e.EmployerDelete();
                 return RedirectToAction("Index");
             }

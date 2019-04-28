@@ -12,7 +12,6 @@ namespace ITIndeed.MVC.UI.Controllers
     {
         EmployerList employers;
 
-
         // GET: Employee
         public ActionResult Index()
         {
