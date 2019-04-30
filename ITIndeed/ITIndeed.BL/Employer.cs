@@ -113,7 +113,7 @@ namespace ITIndeed.BL
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    tblEmployer employer = dc.tblEmployers.Where(e => e.Id == UserId).FirstOrDefault();
+                    tblEmployer employer = dc.tblEmployers.Where(e => e.UserId == baseUserId).FirstOrDefault();
                     tblUser user = dc.tblUsers.Where(u => u.Id == baseUserId).FirstOrDefault();
 
                     if (employer != null & user != null)

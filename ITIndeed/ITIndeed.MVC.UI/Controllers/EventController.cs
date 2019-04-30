@@ -16,10 +16,17 @@ namespace ITIndeed.MVC.UI.Controllers
         // GET: Event
         public ActionResult Index()
         {
-            events = new EventList();
-            events.Load();
+            if (Authenticate.IsAuthenticated())
+            {
+                events = new EventList();
+                events.Load();
 
-            return View(events);
+                return View(events);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login", new { returnurl = HttpContext.Request.Url });
+            }
         }
 
         // GET: Event/Details/5

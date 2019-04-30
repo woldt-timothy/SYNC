@@ -63,11 +63,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\ITIndeed.PL\ITIndeed.PL.csproj">
       <Project>{262e3bdd-8a8a-4986-8274-281ba8c5435e}</Project>
       <Name>ITIndeed.PL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

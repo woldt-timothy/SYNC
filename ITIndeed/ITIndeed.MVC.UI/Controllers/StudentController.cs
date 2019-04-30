@@ -51,9 +51,25 @@ namespace ITIndeed.MVC.UI.Controllers
                 //}
                 //else
                 //{
+
+
+
+
                     Student student = new Student();
                     student.StudentLoadUserById(user.BaseUserID);
+
+                    if(student.Email != null)
+                    {
                     return View(student);
+                    }
+                    else
+                    {
+                    Employer employer = new Employer();
+                    employer.EmployerLoadUserById(user.BaseUserID);
+                    return RedirectToAction("Details", "Employer", new { id = employer.EmployerId });
+                }
+
+                    
                 //}
                 //}
             }
