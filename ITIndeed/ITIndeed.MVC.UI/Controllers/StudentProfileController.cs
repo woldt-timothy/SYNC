@@ -27,12 +27,58 @@ namespace ITIndeed.MVC.UI.Controllers
         }
 
         // GET: StudentProfile/Details/5
-        public ActionResult Details(Guid id)
+        public ActionResult Details(Guid? id)
         {
-            Student s = new Student();
-            s.StudentLoadById(id);
+            //Guid guid = new Guid();
+            User user;
 
-            return View(s);
+
+            if (id == null & Session["user"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+
+            }
+            else if (Session["user"] != null)
+            {
+                //if (Authenticate.IsAuthenticated())
+                //   {
+                user = new User();
+                user = (User)Session["user"];
+
+                //if (user == null)
+                //{
+                //    return RedirectToAction("Login", "Login");
+                //}
+                //else
+                //{
+
+
+
+
+                    Student student = new Student();
+                    student.StudentLoadUserById(user.BaseUserID);
+
+                    if(student.Email != null)
+                    {
+                    return View(student);
+                    }
+                    else
+                    {
+                    Employer employer = new Employer();
+                    employer.EmployerLoadUserById(user.BaseUserID);
+                    return RedirectToAction("Details", "EmployerProfile", new { id = employer.EmployerId });
+                }
+
+                    
+                //}
+                //}
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            
         }
         
         // GET: StudentProfile/Create
