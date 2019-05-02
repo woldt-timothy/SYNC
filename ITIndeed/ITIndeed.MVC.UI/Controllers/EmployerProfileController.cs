@@ -148,7 +148,7 @@ namespace ITIndeed.MVC.UI.Controllers
 
                 e.EmployerUpdate(id);
 
-                return RedirectToAction("Details" + id);
+                return RedirectToAction("Details/" + id);
             }
             catch
             {
