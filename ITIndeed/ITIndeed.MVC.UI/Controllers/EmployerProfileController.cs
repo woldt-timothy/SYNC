@@ -76,7 +76,7 @@ namespace ITIndeed.MVC.UI.Controllers
                 tempGuid = Guid.Parse(tempString);
 
                 Employer employer = new Employer();
-                employer.EmployerLoadUserById(tempGuid);
+                employer.EmployerLoadById(tempGuid);
                 return View(employer);
 
             }
@@ -146,9 +146,9 @@ namespace ITIndeed.MVC.UI.Controllers
                     }
                 }
 
-                e.EmployerUpdate();
+                e.EmployerUpdate(id);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Details" + id);
             }
             catch
             {

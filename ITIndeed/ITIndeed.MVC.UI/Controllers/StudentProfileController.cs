@@ -53,7 +53,7 @@ namespace ITIndeed.MVC.UI.Controllers
                 //{
 
 
-
+                    
 
                     Student student = new Student();
                     student.StudentLoadUserById(user.BaseUserID);
@@ -142,7 +142,7 @@ namespace ITIndeed.MVC.UI.Controllers
 
                 s.StudentUpdate();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }
             catch
             {

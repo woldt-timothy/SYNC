@@ -107,13 +107,13 @@ namespace ITIndeed.BL
             }
         }
 
-        public bool EmployerLoadUserById(Guid employerId)
+        public bool EmployerLoadUserById(Guid userId)
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    tblEmployer employer = dc.tblEmployers.Where(e => e.Id == employerId).FirstOrDefault();
+                    tblEmployer employer = dc.tblEmployers.Where(e => e.UserId == userId).FirstOrDefault();
                     tblUser user = dc.tblUsers.Where(u => u.Id == employer.UserId).FirstOrDefault();
 
                     if (employer != null & user != null)
@@ -200,13 +200,13 @@ namespace ITIndeed.BL
 
        
 
-        public void EmployerUpdate()
+        public void EmployerUpdate(Guid employerId)
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    tblEmployer employer = dc.tblEmployers.Where(e => e.Id == this.EmployerId).FirstOrDefault();
+                    tblEmployer employer = dc.tblEmployers.Where(e => e.Id == employerId).FirstOrDefault();
                     tblUser user = dc.tblUsers.Where(u => u.Id == employer.UserId).FirstOrDefault();
 
 

@@ -125,7 +125,7 @@ namespace ITIndeed.MVC.UI.Controllers
                 // TODO: Add update logic here
                 s.StudentUpdate();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Details" + id);
             }
             catch
             {

@@ -95,8 +95,8 @@ namespace ITIndeed.MVC.UI.Controllers
             try
             {
                 // TODO: Add update logic here
-                e.EmployerUpdate();
-                return RedirectToAction("Index");
+                e.EmployerUpdate(id);
+                return RedirectToAction("Details");
             }
             catch
             {
