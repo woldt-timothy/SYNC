@@ -271,6 +271,7 @@
     <Content Include="Content\Theme\images\prettyPhoto\light_square\sprite.png" />
     <Content Include="Content\Theme\images\services\1.jpg" />
     <Content Include="Content\Theme\images\services\2.jpg" />
+    <Content Include="Content\Theme\images\services\Georgia.jpg" />
     <Content Include="Content\Theme\images\services\3.jpg" />
     <Content Include="Content\Theme\images\slider\bg1.jpg" />
     <Content Include="Content\Theme\images\slider\bg3.jpg" />

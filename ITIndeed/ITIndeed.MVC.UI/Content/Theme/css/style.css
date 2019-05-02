@@ -1292,7 +1292,7 @@ a.scrollup:hover{
     display: inline-block;
 }
 .profile dt, .profile dd{
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 .Event dt, .Event dd{
     font-size: 1.2em;
@@ -1346,6 +1346,10 @@ a.scrollup:hover{
     vertical-align: middle !important;
     height: 200px;
     margin-top: auto;
+    border-top-style: none !important;
+    border-top-color: white !important;
+    padding-top: 1.5em !important;
+    padding-bottom: 1.5em !important;
 }
 .e td, .e th {
     border-bottom: 0px solid #ddd;
@@ -1388,4 +1392,16 @@ a.scrollup:hover{
 .tblCreate td a {
     background-color: whitesmoke !important;
     color: #1bbd36;
+}
+.picTD{
+    margin-right:2em !important;
+}
+/*.border-left {
+    border-left-style: dashed !important;
+    border-left-color: cornflowerblue !important;
+    border-left-width: 1px !important;
+}*/
+.aboutpic {
+    width: 300px;
+    height: 300px;
 }

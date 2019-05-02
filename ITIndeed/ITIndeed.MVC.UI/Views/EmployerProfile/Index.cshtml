@@ -32,9 +32,9 @@
         }
 
     </p>
-    <table class="table">
+    <table class="table pb mb">
         <tr>
-            <th></th>
+            <th class="picTD"></th>
             <th>
                 @Html.DisplayNameFor(model => model.OrganizationName)
             </th>
@@ -57,7 +57,7 @@
             foreach (var item in Model)
             {
                 <tr class="e">
-                    <td class="pr">
+                    <td class="picTD">
                         <a class="text-primary" href="/EmployerProfile/Details/@Html.DisplayFor(model => item.EmployerId)">
                             <div class="figure">
                                 @Html.Raw("<img class='circle' src='" + item.ProfilePictureView + "' />")
@@ -66,9 +66,9 @@
                     </td>                       
                     <td>
                         <a class="text-primary" href="/EmployerProfile/Details/@Html.DisplayFor(model => item.EmployerId)">@Html.DisplayFor(model => item.OrganizationName)</a>
-                        
+
                     </td>
-                    <td>
+                    <td class="border-left">
                         @Html.DisplayFor(modelItem => item.Industry)
                     </td>
                     @*<td>

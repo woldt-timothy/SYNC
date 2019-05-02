@@ -1,25 +1,25 @@
 ﻿@model ITIndeed.BL.Employer
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = @Html.DisplayFor(model => model.OrganizationName);
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div id="breadcrumb">
     <div class="container">
         <div class="breadcrumb">
             <li><a href="../../Content/Theme/index.html">Home</a></li>
-            <li>@ViewBag.Title</li>
+            <li>@Html.DisplayFor(model => model.OrganizationName)</li>
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container profile">
     <div class="col-md-4 pt ">
         <div class="figure">
             @Html.Raw("<img class='circle' src='" + Model.ProfilePictureView + "' />")
         </div>
     </div>
     <div class="col-md-6 pt profile-header">
-        <h2>@Html.DisplayFor(model => model.OrganizationName)</h2>
+        <h1><b>@Html.DisplayFor(model => model.OrganizationName)</b></h1>
         <h4>Employer - @Html.DisplayFor(model => model.RepresentativeFirstName) @Html.DisplayFor(model => model.RepresentativeLastName)</h4>
     </div>
     <div class="col-md-12">
@@ -43,7 +43,7 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.OrganizationName)
+                Organization
             </dt>
 
             <dd>
