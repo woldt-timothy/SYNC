@@ -107,14 +107,14 @@ namespace ITIndeed.BL
             }
         }
 
-        public bool EmployerLoadUserById(Guid baseUserId)
+        public bool EmployerLoadUserById(Guid employerId)
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    tblEmployer employer = dc.tblEmployers.Where(e => e.UserId == baseUserId).FirstOrDefault();
-                    tblUser user = dc.tblUsers.Where(u => u.Id == baseUserId).FirstOrDefault();
+                    tblEmployer employer = dc.tblEmployers.Where(e => e.Id == employerId).FirstOrDefault();
+                    tblUser user = dc.tblUsers.Where(u => u.Id == employer.UserId).FirstOrDefault();
 
                     if (employer != null & user != null)
                     {

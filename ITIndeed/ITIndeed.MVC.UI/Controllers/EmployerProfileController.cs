@@ -69,9 +69,14 @@ namespace ITIndeed.MVC.UI.Controllers
                 user = new User();
                 user = (User)Session["user"];
 
+                string tempString;
+                tempString = id.ToString();
+
+                Guid tempGuid;
+                tempGuid = Guid.Parse(tempString);
 
                 Employer employer = new Employer();
-                employer.EmployerLoadUserById(user.BaseUserID);
+                employer.EmployerLoadUserById(tempGuid);
                 return View(employer);
 
             }
