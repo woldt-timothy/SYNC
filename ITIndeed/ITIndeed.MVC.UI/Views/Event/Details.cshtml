@@ -55,11 +55,14 @@
                     @*@Html.DisplayNameFor(modelItem => modelItem.Users[0].UserName)*@
                     People Attending:
                 </dt>
-                @for (var i = 0; i < Model.Users.Count(); i++)
+                @for (var i = 0; i < Model.Students.Count(); i++)
                 {
-                    <dd>
-                        @Html.DisplayFor(modelItem => modelItem.Users[i].UserName)
-                    </dd>
+                <dd>
+                    <a class="text-primary" href='@Url.Action("DetailsForEmployers", "StudentProfile" , new { id = Model.Students[i].StudentID })'>  @Html.DisplayFor(modelItem => modelItem.Students[i].FullName)</a>
+
+
+                    @*@Html.DisplayFor(modelItem => modelItem.Students[i].FullName)*@
+                </dd>
                 }
             </div>
             <div class="pt">

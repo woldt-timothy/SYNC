@@ -55,6 +55,28 @@ namespace ITIndeed.BL.Test
 
         }
 
+        [TestMethod]
+        public void StudentsAttendingEvent()
+        {
+            //event is a keyword
+            Event eventObject = new Event();
+            eventObject.Id = Guid.Parse("1468c5d6-8cca-47d5-965d-4dbdc4996691");
+
+            eventObject.LoadStudents();
+
+
+
+            int expectedStudents = 4;
+
+            int actualStudents = eventObject.Students.Count();
+
+
+            Assert.AreEqual(expectedStudents, actualStudents);
+
+
+
+        }
+
 
 
         [TestMethod]

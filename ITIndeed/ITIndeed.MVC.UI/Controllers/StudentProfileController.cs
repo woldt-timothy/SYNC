@@ -80,7 +80,23 @@ namespace ITIndeed.MVC.UI.Controllers
 
             
         }
-        
+
+
+        public ActionResult DetailsForEmployers(Guid id)
+        {
+            //Guid guid = new Guid();
+           
+                Student student = new Student();
+                student.StudentLoadById(id);
+
+                return View(student);
+            
+          
+
+
+        }
+
+
         // GET: StudentProfile/Create
         [HttpGet]
         public ActionResult Create()

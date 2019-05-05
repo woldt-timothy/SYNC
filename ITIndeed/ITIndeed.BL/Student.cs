@@ -15,6 +15,8 @@ namespace ITIndeed.BL
 
     public class Student: User
     {
+        private string field;
+
         // Properties
 
         public Guid StudentID { get; set; }
@@ -22,6 +24,8 @@ namespace ITIndeed.BL
         public string StudentFirstName { get; set; }
         [DisplayName("Last Name")]
         public string StudentLastName { get; set; }
+        [DisplayName("Name")]
+        public string FullName { get { return StudentFirstName + " " + StudentLastName; } }
         public string Phone { get; set; }
         public string Email { get; set; }
         public string School { get; set; }
@@ -67,6 +71,15 @@ namespace ITIndeed.BL
             FieldOfStudy = fieldOfStudy;
             UserId = userID;
             ProfilePicture = profilePicture;
+        }
+
+        public Student(Guid baseUserID, string userName, string password, string email, string field, string phone, string school, Guid userId) : base(baseUserID, userName, password)
+        {
+            Email = email;
+            this.field = field;
+            Phone = phone;
+            School = school;
+            UserId = userId;
         }
 
         //***Marker For Tim //This is good to go
@@ -128,7 +141,7 @@ namespace ITIndeed.BL
                     {
                         this.StudentID = student.Id;
                         this.StudentFirstName = student.StudentFirstName;
-                        this.StudentLastName = student.StudentFirstName;
+                        this.StudentLastName = student.StudentLastName;
                         this.Phone = student.Phone;
                         this.Email = student.Email;
                         this.School = student.School;

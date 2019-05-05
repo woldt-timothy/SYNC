@@ -35,7 +35,7 @@ namespace ITIndeed.MVC.UI.Controllers
             Event _event = new Event();
             _event.LoadById(id);
             _event.LoadCountOfUsersInterested();
-            _event.LoadUsers();
+            _event.LoadStudents();
             return View(_event);
         }
 

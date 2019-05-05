@@ -136,7 +136,7 @@ namespace ITIndeed.BL.Test
             employer.EmployerId = Guid.Parse("38ffe608-d859-47b6-a5b7-909301ea1c47");
             employer.UserName = "STUFF1";
             employer.Industry = "STUFF1";
-            employer.EmployerUpdate();
+            //employer.EmployerUpdate();
 
 
             employer.EmployerLoadById(Guid.Parse("38ffe608-d859-47b6-a5b7-909301ea1c47"));

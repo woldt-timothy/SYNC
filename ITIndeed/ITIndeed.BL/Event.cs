@@ -22,6 +22,7 @@ namespace ITIndeed.BL
         public DateTime EndDate { get; set; }
         public Guid UserId { get; set; }
         public List<User> Users { get; set; }
+        public List<Student> Students { get; set; }
 
 
         //Going to have to change methods in Event Class to reflect database chnages to tblEvent and Addition of tblEventShowing to use these properties(2 Below)
@@ -197,6 +198,38 @@ namespace ITIndeed.BL
                         }
                     }
                  
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public void LoadStudents() // Load list of student attending the event
+        {
+            try
+            {
+                using (ITIndeedEntities dc = new ITIndeedEntities())
+                {
+                    Students = new List<Student>();
+
+                    var eventShowings = dc.tblEventShowings.Where(e => e.EventId == this.Id);
+                    if (eventShowings != null)
+                    {
+                        foreach (var eventShowing in eventShowings)
+                        {
+                            tblUser user = dc.tblUsers.Where(u => u.Id == eventShowing.UserId).FirstOrDefault();
+                            tblStudent student = dc.tblStudents.Where(s => s.UserId == user.Id).FirstOrDefault();
+                            if (student != null)
+                            {
+                                Students.Add(new Student(student.Id, student.StudentFirstName, student.StudentLastName, student.Phone, student.Email, student.UserId, student.School, student.Field, student.ProfilePicture));
+                            }
+
+                        }
+                    }
+
                 }
             }
             catch (Exception ex)
