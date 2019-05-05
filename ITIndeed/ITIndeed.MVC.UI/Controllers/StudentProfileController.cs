@@ -44,6 +44,7 @@ namespace ITIndeed.MVC.UI.Controllers
                 //   {
                 user = new User();
                 user = (User)Session["user"];
+                
 
                 //if (user == null)
                 //{
@@ -123,7 +124,7 @@ namespace ITIndeed.MVC.UI.Controllers
                 s.StudentInsert();
                 SendEmail(s.Email);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "StudentProfile");
             }
             catch
             {
