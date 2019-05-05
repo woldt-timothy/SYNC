@@ -41,7 +41,8 @@ namespace ITIndeed.MVC.UI.Controllers
                     //Georgia An Tim Debug Session 04042019
                     //return Redirect(returnurl);
 
-                    return View(user);
+                    //   return View(user);
+                    return RedirectToAction("Details", "StudentProfile");
                     //return View(returnurl);
                 }
                 else
