@@ -124,16 +124,31 @@ namespace ITIndeed.MVC.UI.Controllers
         // GET: EmployerProfile/Edit/5
         public ActionResult Edit(Guid id)
         {
-            Employer e = new Employer();
-            e.EmployerLoadById(id);
+            User userEdit = new User();
+            userEdit = (User)Session["user"];
 
-            return View(e);
+            Employer employerEdit = new Employer();
+            employerEdit.EmployerLoadById(id);
+
+            if (employerEdit.UserId != userEdit.BaseUserID)
+            {
+                return RedirectToAction("Details/" + id);
+            }
+            else
+            {
+                Employer e = new Employer();
+                e.EmployerLoadById(id);
+
+                return View(e);
+            }
+            
         }
 
         // POST: EmployerProfile/Edit/5
         [HttpPost]
         public ActionResult Edit(Guid id, Employer e)
         {
+
             try
             {
                 if (e.UploadedImageFile != null)
