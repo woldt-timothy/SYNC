@@ -51,7 +51,7 @@ namespace ITIndeed.MVC.UI.Controllers
 
             if (employer.EmployerId == Guid.Parse("00000000-0000-0000-0000-000000000000"))
             {
-                return RedirectToAction("");
+                return Redirect("Index");
             }
             else
             {
