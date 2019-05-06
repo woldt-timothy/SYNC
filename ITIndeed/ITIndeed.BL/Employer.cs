@@ -107,6 +107,49 @@ namespace ITIndeed.BL
             }
         }
 
+
+        //this is just a quick hack - we can fix this later - tim 05062019
+        public bool EmployerLoadUserById2(Guid userId)
+        {
+            try
+            {
+                using (ITIndeedEntities dc = new ITIndeedEntities())
+                {
+                    tblEmployer employer = dc.tblEmployers.Where(e => e.UserId == userId).FirstOrDefault();
+                    tblUser user = dc.tblUsers.Where(u => u.Id == userId).FirstOrDefault();
+
+                    if (employer != null & user != null)
+                    {
+                        this.EmployerId = employer.Id;
+                        this.RepresentativeFirstName = employer.RepresentativeFirstName;
+                        this.RepresentativeLastName = employer.RepresentativeLastName;
+                        this.Phone = employer.Phone;
+                        this.Email = employer.Email;
+                        this.OrganizationName = employer.OrganizationName;
+                        this.Industry = employer.Industry;
+                        this.Password = user.Password;
+                        this.UserName = user.UserName;
+                        this.UserId = employer.UserId;
+                        this.ProfilePicture = employer.ProfilePicture;
+
+
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+
         public bool EmployerLoadUserById(Guid userId)
         {
             try

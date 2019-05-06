@@ -42,8 +42,25 @@ namespace ITIndeed.MVC.UI.Controllers
         // GET: Event/Create
         public ActionResult Create()
         {
-            Event _event = new Event();
-            return View(_event);
+            User userEdit = new User();
+            userEdit = (User)Session["user"];
+
+            Employer employer = new Employer();
+            employer.EmployerLoadUserById2(userEdit.BaseUserID);
+
+
+            if (employer.EmployerId == Guid.Parse("00000000-0000-0000-0000-000000000000"))
+            {
+                return RedirectToAction("");
+            }
+            else
+            {
+                
+                Event _event = new Event();
+                return View(_event);
+            }
+
+            
         }
 
         // POST: Event/Create
