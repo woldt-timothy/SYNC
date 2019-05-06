@@ -273,7 +273,7 @@ namespace ITIndeed.BL
 
     public class EmployerList : List<Employer>
     {
-
+        //this is what is taking so long
 
         //***Marker //This is good to go
         public void EmployerListLoad()
