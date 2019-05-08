@@ -135,10 +135,23 @@ namespace ITIndeed.MVC.UI.Controllers
         // GET: StudentProfile/Edit/5
         public ActionResult Edit(Guid id)
         {
-            Student s = new Student();
-            s.StudentLoadById(id);
+            User userEdit = new User();
+            userEdit = (User)Session["user"];
 
-            return View(s);
+            Student studentEdit = new Student();
+            studentEdit.StudentLoadById(id);
+
+            if (studentEdit.UserId != userEdit.BaseUserID)
+            {
+                return RedirectToAction("DetailsForEmployers/" + studentEdit.StudentID);
+            }
+            else
+            {
+                Student s = new Student();
+                s.StudentLoadById(id);
+
+                return View(s);
+            }
         }
 
         // POST: StudentProfile/Edit/5
