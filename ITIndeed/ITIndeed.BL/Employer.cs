@@ -52,7 +52,7 @@ namespace ITIndeed.BL
 
         }
 
-        public Employer(Guid employerId, string representativeFirstName, string representativeLastName, string phone, string email, string organizationName, string industry, Guid userId, Byte[] profilePicture)
+        public Employer(Guid employerId, string representativeFirstName, string representativeLastName, string phone, string email, string organizationName, string industry, Guid userId)
         {
             EmployerId = employerId;
             RepresentativeFirstName = representativeFirstName;
@@ -62,7 +62,22 @@ namespace ITIndeed.BL
             UserId = userId;
             OrganizationName = organizationName;
             Industry = industry;
-            ProfilePicture = profilePicture;
+        }
+
+        public void LoadUserImage()
+        {
+            try
+            {
+                using (ITIndeedEntities dc = new ITIndeedEntities())
+                {
+                    this.ProfilePicture = dc.tblEmployers.Where(e => e.Id == this.EmployerId).FirstOrDefault().ProfilePicture;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         //***Marker For Tim //This is good to go
@@ -89,7 +104,6 @@ namespace ITIndeed.BL
                         this.Password = user.Password;
                         this.UserName = user.UserName;
                         this.UserId = employer.UserId;
-                        this.ProfilePicture = employer.ProfilePicture;
 
 
                         return true;
@@ -128,7 +142,6 @@ namespace ITIndeed.BL
                         this.Password = user.Password;
                         this.UserName = user.UserName;
                         this.UserId = employer.UserId;
-                        this.ProfilePicture = employer.ProfilePicture;
 
 
                         return true;
@@ -280,10 +293,56 @@ namespace ITIndeed.BL
         {
             try
             {
+                this.Clear();
+
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    dc.tblEmployers.ToList().ForEach(e => Add(new Employer(e.Id, e.RepresentativeFirstName, e.RepresentativeLastName, e.Phone, e.Email, e.OrganizationName, e.Industry, e.UserId, e.ProfilePicture)));
+                    dc.tblEmployers.ToList().ForEach(e => Add(new Employer(e.Id, e.RepresentativeFirstName, e.RepresentativeLastName, e.Phone, e.Email, e.OrganizationName, e.Industry, e.UserId)));
                 }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public void LoadByOrganization()
+        {
+            try
+            {
+                using (ITIndeedEntities dc = new ITIndeedEntities())
+                {
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public void LoadByIndustry()
+        {
+            try
+            {
+                using (ITIndeedEntities dc = new ITIndeedEntities())
+                {
+                    dc.tblEmployers.ToList().ForEach(e => Add(new Employer(e.Id, e.RepresentativeFirstName, e.RepresentativeLastName, e.Phone, e.Email, e.OrganizationName, e.Industry, e.UserId)));
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public void ClearUserImages()
+        {
+            try
+            {
+                this.ForEach(e => e.ProfilePicture = null);
             }
             catch (Exception ex)
             {

@@ -16,34 +16,53 @@ namespace ITIndeed.MVC.UI.Controllers
     {
 
         EmployerList employers;
+        List<Employer> filteredEmployers;
+        //int pageSize;
+        //int pageNumber;
 
         // GET: EmployerProfile
-        public ActionResult Index(string searchBy, string search)
+        public ActionResult Index(string searchBy, string search, int pageSize = 5, int pageNumber = 1)
         {
             if (Authenticate.IsAuthenticated())
             {
-                employers = new EmployerList();
-                employers.EmployerListLoad();
+                /*if (pageSize == 0)
+                    pageSize = 5;
+                if (size != null)
+                    pageSize = size;
+
+                if (pageSize == null)
+                    pageSize = 5;*/
+
+                if (employers == null)
+                {
+                    employers = new EmployerList();
+                    employers.EmployerListLoad();
+                }
+
+                if (filteredEmployers == null)
+                {
+                    filteredEmployers = new List<Employer>();
+                    filteredEmployers = employers;
+                }
 
                 if (searchBy == "Industry")
                 {
-                    return View(employers.Where(x => x.Industry.StartsWith(search) || search == null).ToList());
-                    //return View(employers.Where(x => x.OrganizationName.StartsWith(search)).ToList());
+                    filteredEmployers = employers.Where(x => x.Industry.StartsWith(search) || search == null).ToList();
                 }
-                else
+                else if(search != null)
                 {
-                    if (search == null)
-                    {
-                        return View(employers);
-                    }
-                    else
-                    {
-                        return View(employers.Where(x => x.OrganizationName.StartsWith(search) || search == null).ToList());
-                    }
+                    filteredEmployers = employers.Where(x => x.OrganizationName.StartsWith(search) || search == null).ToList();
                 }
 
+                if (filteredEmployers.Count < pageSize)
+                    pageSize = filteredEmployers.Count;
+                
+                filteredEmployers = filteredEmployers.GetRange(pageSize * (pageNumber - 1), pageSize);
 
-                //return View(employers);
+                ViewBag.PageNumber = pageNumber;
+                ViewBag.PageSize = pageSize;
+
+                return View(filteredEmployers);
             }
             else
             {

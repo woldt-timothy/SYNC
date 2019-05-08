@@ -27,9 +27,21 @@
                 <input class="pr" checked="checked" id="searchBy" name="searchBy" type="radio" value="OrganizationName"><text class="pr"> Organization Name</text>
                 <input class="pr" id="searchBy" name="searchBy" type="radio" value="Industry"><text class="pr">Industry</text>
             </div>
+            <div class="col-md-8">
+                <b class="pr">Show Results:</b>
+                <select class="pr" id="pageSize" name="pageSize">
+                    <option class="pr" id="pageSize" value=5>Show 5</option>
+                    <option class="pr" id="pageSize" value=10>Show 10</option>
+                    <option class="pr" id="pageSize" value=20>Show 20</option>
+                </select>
+            </div>
             <br /><br />
 
         }
+
+    <p class="">
+        @Html.ActionLink("Next Page", "Index", new { pageNumber = ViewBag.PageNumber, pageSize = ViewBag.PageSize })
+    </p>
 
     </p>
     <table class="table pb mb">
@@ -60,10 +72,10 @@
                     <td class="picTD">
                         <a class="text-primary" href="/EmployerProfile/Details/@Html.DisplayFor(model => item.EmployerId)">
                             <div class="figure">
-                                @Html.Raw("<img class='circle' src='" + item.ProfilePictureView + "' />")
+                                <!--Html.Raw("<img class='circle' src='" + item.ProfilePictureView + "' />")-->
                             </div>
                         </a>
-                    </td>                       
+                    </td>
                     <td>
 
                         <a class="text-primary" href="/EmployerProfile/Details/@Html.DisplayFor(model => item.EmployerId)">@Html.DisplayFor(model => item.OrganizationName)</a>
@@ -73,12 +85,15 @@
                         @Html.DisplayFor(modelItem => item.Industry)
                     </td>
                     @*<td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.EmployerId }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.EmployerId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.EmployerId })
-                    </td>*@
+                            @Html.ActionLink("Edit", "Edit", new { id = item.EmployerId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.EmployerId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.EmployerId })
+                        </td>*@
                 </tr>
             }
         }
     </table>
+
+
+
 </div>
