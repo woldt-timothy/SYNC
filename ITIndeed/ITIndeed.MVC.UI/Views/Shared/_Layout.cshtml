@@ -48,11 +48,12 @@
                                         <div class="btn-group">
                                             <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Profile<span class="caret"></span></button>
                                             <ul class="dropdown-menu">
-                                                <li class="dropdown-header"><a onclick="location.href='@Url.Action("Details", "StudentProfile")'">Profile</a></li>
+                                                @*<li class="dropdown-header"><a onclick="location.href='@Url.Action("Details", "StudentProfile")'">Profile</a></li>*@
+                                                <li class="dropdown-header"><a href="../../StudentProfile/Details">Profile</a></li>
                                                 <li class="dropdown-header">@Html.ActionLink("Login", "Login", "Login")</li>
                                                 <li class="dropdown-header">@Html.ActionLink("Logout", "Logout", "Login")</li>
                                                 @*<li>@Html.ActionLink("Login", "Login", "Login")</li>
-                                                    <li>@Html.ActionLink("Logout", "Logout", "Login")</li>*@
+        <li>@Html.ActionLink("Logout", "Logout", "Login")</li>*@
                                             </ul>
                                         </div>
                                     </p>
