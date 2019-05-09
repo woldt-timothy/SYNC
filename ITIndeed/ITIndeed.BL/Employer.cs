@@ -346,7 +346,7 @@ namespace ITIndeed.BL
 
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    dc.tblEmployers.ToList().ForEach(e => Add(new Employer(e.Id, e.RepresentativeFirstName, e.RepresentativeLastName, e.Phone, e.Email, e.OrganizationName, e.Industry, e.UserId)));
+                    dc.tblEmployers.ToList().ForEach(e => Add(new Employer(e.Id, e.RepresentativeFirstName, e.RepresentativeLastName, e.Phone, e.Email, e.OrganizationName, e.Industry, e.UserId, e.ProfilePicture)));
                 }
             }
             catch (Exception ex)
