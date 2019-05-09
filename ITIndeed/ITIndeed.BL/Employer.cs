@@ -52,7 +52,7 @@ namespace ITIndeed.BL
 
         }
 
-        public Employer(Guid employerId, string representativeFirstName, string representativeLastName, string phone, string email, string organizationName, string industry, Guid userId)
+        public Employer(Guid employerId, string representativeFirstName, string representativeLastName, string phone, string email, string organizationName, string industry, Guid userId, Byte[] profilePicture)
         {
             EmployerId = employerId;
             RepresentativeFirstName = representativeFirstName;
@@ -62,6 +62,7 @@ namespace ITIndeed.BL
             UserId = userId;
             OrganizationName = organizationName;
             Industry = industry;
+            ProfilePicture = profilePicture;
         }
 
         public void LoadUserImage()
@@ -104,6 +105,7 @@ namespace ITIndeed.BL
                         this.Password = user.Password;
                         this.UserName = user.UserName;
                         this.UserId = employer.UserId;
+                        this.ProfilePicture = employer.ProfilePicture;
 
 
                         return true;
@@ -185,6 +187,7 @@ namespace ITIndeed.BL
                         this.Password = user.Password;
                         this.UserName = user.UserName;
                         this.UserId = employer.UserId;
+                        this.ProfilePicture = employer.ProfilePicture;
 
 
                         return true;
@@ -329,6 +332,9 @@ namespace ITIndeed.BL
 
     public class EmployerList : List<Employer>
     {
+
+        public int TotalCount { get; set; }
+
         //this is what is taking so long
 
         //***Marker //This is good to go
@@ -350,12 +356,43 @@ namespace ITIndeed.BL
             }
         }
 
-        public void LoadByOrganization()
+        /*public void LoadByPaging(int pageSize, int pageNumber)
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
+                    dc.tblEmployers
+                        .Skip(pageSize * (pageNumber - 1))
+                        .Take(pageSize)
+                        .ToList().ForEach(e => Add(new Employer(e.Id, e.RepresentativeFirstName, e.RepresentativeLastName, e.Phone, e.Email, e.OrganizationName, e.Industry, e.UserId)));
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }*/
+
+        // pageSize * (pageNumber - 1) <-- gages fancy equation
+
+        public void LoadByOrganization(string input, int pageSize, int pageNumber)
+        {
+            try
+            {
+                this.Clear();
+
+                using (ITIndeedEntities dc = new ITIndeedEntities())
+                {
+                    //TotalCount = dc.tblEmployers.Where(e => e.OrganizationName.ToUpper().Contains(input.ToUpper()) || string.IsNullOrEmpty(input)).Count();
+
+                    dc.tblEmployers
+                        .Where(e => e.OrganizationName.ToUpper().Contains(input.ToUpper()) || string.IsNullOrEmpty(input))
+                        .OrderBy(e => e.OrganizationName)
+                        .Skip(pageSize * (pageNumber - 1))
+                        .Take(pageSize)
+                        .ToList().ForEach(e => Add(new Employer(e.Id, e.RepresentativeFirstName, e.RepresentativeLastName, e.Phone, e.Email, e.OrganizationName, e.Industry, e.UserId, e.ProfilePicture)));
                 }
             }
             catch (Exception ex)
@@ -365,13 +402,22 @@ namespace ITIndeed.BL
             }
         }
 
-        public void LoadByIndustry()
+        public void LoadByIndustry(string input, int pageSize, int pageNumber)
         {
             try
             {
+                this.Clear();
+
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    dc.tblEmployers.ToList().ForEach(e => Add(new Employer(e.Id, e.RepresentativeFirstName, e.RepresentativeLastName, e.Phone, e.Email, e.OrganizationName, e.Industry, e.UserId)));
+                    //TotalCount = dc.tblEmployers.Where(e => e.Industry.ToUpper().Contains(input.ToUpper()) || string.IsNullOrEmpty(input)).Count();
+
+                    dc.tblEmployers
+                        .Where(e => e.Industry.ToUpper().Contains(input.ToUpper()) || string.IsNullOrEmpty(input))
+                        .OrderBy(e => e.Industry)
+                        .Skip(pageSize * (pageNumber - 1))
+                        .Take(pageSize)
+                        .ToList().ForEach(e => Add(new Employer(e.Id, e.RepresentativeFirstName, e.RepresentativeLastName, e.Phone, e.Email, e.OrganizationName, e.Industry, e.UserId, e.ProfilePicture)));
                 }
             }
             catch (Exception ex)

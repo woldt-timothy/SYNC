@@ -16,59 +16,59 @@ namespace ITIndeed.MVC.UI.Controllers
     {
 
         EmployerList employers;
-        List<Employer> filteredEmployers;
-        //int pageSize;
-        //int pageNumber;
 
         // GET: EmployerProfile
         public ActionResult Index(string searchBy, string search, int pageSize = 5, int pageNumber = 1)
         {
             if (Authenticate.IsAuthenticated())
             {
-                /*if (pageSize == 0)
-                    pageSize = 5;
-                if (size != null)
-                    pageSize = size;
-
-                if (pageSize == null)
-                    pageSize = 5;*/
-
-                if (employers == null)
-                {
-                    employers = new EmployerList();
-                    employers.EmployerListLoad();
-                }
-
-                if (filteredEmployers == null)
-                {
-                    filteredEmployers = new List<Employer>();
-                    filteredEmployers = employers;
-                }
+                employers = new EmployerList();
 
                 if (searchBy == "Industry")
                 {
-                    filteredEmployers = employers.Where(x => x.Industry.StartsWith(search) || search == null).ToList();
+                    employers.LoadByIndustry(search, pageSize, pageNumber);
+                    ViewData["Industry"] = "checked";
+                    Session["searchBy"] = "Industry";
                 }
-                else if(search != null)
+                else
                 {
-                    filteredEmployers = employers.Where(x => x.OrganizationName.StartsWith(search) || search == null).ToList();
+                    employers.LoadByOrganization(search, pageSize, pageNumber);
+                    ViewData["OrganizationName"] = "checked";
+                    Session["searchBy"] = "OrganizationName";
                 }
 
-                if (filteredEmployers.Count < pageSize)
-                    pageSize = filteredEmployers.Count;
+                // TODO FOR GAGE: Show results view for page listings
+                // TODO FOR GAGE: Compress images to thumbnail size?
+
+                if (employers.Count < pageSize)
+                    ViewData["PageNextCheck"] = "hidden";
+                if (pageNumber < 2)
+                    ViewData["PagePreviousCheck"] = "hidden";
                 
-                filteredEmployers = filteredEmployers.GetRange(pageSize * (pageNumber - 1), pageSize);
+                ViewData[pageSize.ToString()] = "selected";
 
-                ViewBag.PageNumber = pageNumber;
-                ViewBag.PageSize = pageSize;
+                Session["search"] = search;
+                Session["pageSize"] = pageSize;
+                Session["pageNumber"] = pageNumber;
 
-                return View(filteredEmployers);
+                return View(employers);
             }
             else
             {
                 return RedirectToAction("Login", "Login", new { returnurl = HttpContext.Request.Url });
             }
-            
+        }
+
+        public ActionResult PageNext()
+        {
+            int pn = (int)Session["pageNumber"] + 1;
+            return RedirectToAction("Index", new { searchBy = Session["searchBy"], search = Session["search"], pageSize = Session["pageSize"], pageNumber = pn });
+        }
+
+        public ActionResult PagePrevious()
+        {
+            int pn = (int)Session["pageNumber"] - 1;
+            return RedirectToAction("Index", new { searchBy = Session["searchBy"], search = Session["search"], pageSize = Session["pageSize"], pageNumber = pn });
         }
 
         // GET: EmployerProfile/Details/5

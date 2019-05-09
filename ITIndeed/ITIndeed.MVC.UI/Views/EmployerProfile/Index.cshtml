@@ -19,20 +19,21 @@
         @using (Html.BeginForm("Index", "EmployerProfile", FormMethod.Get))
         {
             <div class="col-md-4 inline-block">
-                <input class="" id="search" name="search" type="text" value="">
+                <input class="" id="search" name="search" type="text" value="@Session["search"]">
                 <input type="submit" value="Search">
             </div>
             <div class="col-md-6">
                 <b class="pr">Search By:</b>
-                <input class="pr" checked="checked" id="searchBy" name="searchBy" type="radio" value="OrganizationName"><text class="pr"> Organization Name</text>
-                <input class="pr" id="searchBy" name="searchBy" type="radio" value="Industry"><text class="pr">Industry</text>
+                <input @ViewData["OrganizationName"] class="pr" id="searchBy" name="searchBy" type="radio" value="OrganizationName"><text class="pr"> Organization Name</text>
+                <input @ViewData["Industry"] class="pr" id="searchBy" name="searchBy" type="radio" value="Industry"><text class="pr">Industry</text>
             </div>
             <div class="col-md-8">
                 <b class="pr">Show Results:</b>
                 <select class="pr" id="pageSize" name="pageSize">
-                    <option class="pr" id="pageSize" value=5>Show 5</option>
-                    <option class="pr" id="pageSize" value=10>Show 10</option>
-                    <option class="pr" id="pageSize" value=20>Show 20</option>
+                    <option @ViewData["5"] class="pr" id="pageSize" value=5>Show 5</option>
+                    <option @ViewData["10"] class="pr" id="pageSize" value=10>Show 10</option>
+                    <option @ViewData["20"] class="pr" id="pageSize" value=20>Show 20</option>
+                    <option @ViewData["50"] class="pr" id="pageSize" value=50>Show 50</option>
                 </select>
             </div>
             <br /><br />
@@ -40,7 +41,8 @@
         }
 
     <p class="">
-        @Html.ActionLink("Next Page", "Index", new { pageNumber = ViewBag.PageNumber, pageSize = ViewBag.PageSize })
+        <a @ViewData["PagePreviousCheck"] href="/EmployerProfile/PagePrevious">Previous Page</a> ||
+        <a @ViewData["PageNextCheck"] href="/EmployerProfile/PageNext">Next Page</a>
     </p>
 
     </p>
@@ -72,7 +74,7 @@
                     <td class="picTD">
                         <a class="text-primary" href="/EmployerProfile/Details/@Html.DisplayFor(model => item.EmployerId)">
                             <div class="figure">
-                                <!--Html.Raw("<img class='circle' src='" + item.ProfilePictureView + "' />")-->
+                                Html.Raw("<img class='circle' src='" + item.ProfilePictureView + "' />")
                             </div>
                         </a>
                     </td>
