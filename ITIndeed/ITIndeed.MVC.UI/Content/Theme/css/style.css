@@ -22,8 +22,9 @@ body {
 	background-color:#fff;
 	overflow-x:hidden;
 }
-form-control{
-    color:red;
+form-control {
+    color: red;
+    width: 100% !important;
 }
 hi,h2,h3,h4,h5,h6 {
 	color:#333;
@@ -1404,4 +1405,7 @@ a.scrollup:hover{
 .aboutpic {
     width: 300px;
     height: 300px;
+}
+.link-font{
+    font-size: 14px;
 }
