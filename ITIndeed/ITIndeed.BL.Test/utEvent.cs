@@ -27,6 +27,7 @@ namespace ITIndeed.BL.Test
 
 
             Assert.AreEqual(expectedEventShowings, actualEventShowings);
+            //test
 
 
 
