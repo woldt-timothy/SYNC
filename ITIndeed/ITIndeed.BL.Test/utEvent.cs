@@ -26,7 +26,7 @@ namespace ITIndeed.BL.Test
             int actualEventShowings = eventShowings.Count();
 
 
-            Assert.AreEqual(expectedEventShowings, actualEventShowings);
+            Assert.AreEqual(expectedEventShowings, actualEventShowings);//
             //test
 
 
