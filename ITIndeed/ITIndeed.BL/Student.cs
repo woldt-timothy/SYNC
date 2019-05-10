@@ -10,15 +10,9 @@ using System.Web;
 
 namespace ITIndeed.BL
 {
-
-        //Student Inherits from User
-
     public class Student: User
     {
         private string field;
-
-        // Properties
-
         public Guid StudentID { get; set; }
         [DisplayName("First Name")]
         public string StudentFirstName { get; set; }
@@ -49,16 +43,11 @@ namespace ITIndeed.BL
         }
         public HttpPostedFileBase UploadedImageFile { get; set; }
 
-        // Constructors
 
         public Student()
         {
 
         }
-
-
-
-
 
         public Student(Guid studentID, string studentFirstName, string studentLastName, string phone, string email, Guid userID, string school, string fieldOfStudy, Byte[] profilePicture)
         {
@@ -82,9 +71,7 @@ namespace ITIndeed.BL
             UserId = userId;
         }
 
-        //***Marker For Tim //This is good to go
-        //***User ID == student.UserId != student.BaseUserId // Same Goes with UserName
-
+        //***User ID == student.UserId != student.BaseUserId // Same with UserName
         public bool StudentLoadById(Guid studentID)
         {
             try
@@ -93,7 +80,6 @@ namespace ITIndeed.BL
                 {
                     tblStudent student = dc.tblStudents.Where(s => s.Id == studentID).FirstOrDefault();
                     tblUser user = dc.tblUsers.Where(u => u.Id == student.UserId).FirstOrDefault();
-
 
                     if (student != null & user != null)
                     {
@@ -119,12 +105,9 @@ namespace ITIndeed.BL
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
-
-
 
         public bool StudentLoadUserById(Guid baseUserId)
         {
@@ -135,8 +118,6 @@ namespace ITIndeed.BL
                     tblUser user = dc.tblUsers.Where(u => u.Id == baseUserId).FirstOrDefault();
                     tblStudent student = dc.tblStudents.Where(s => s.UserId == user.Id).FirstOrDefault();
                     
-
-
                     if (student != null & user != null)
                     {
                         this.StudentID = student.Id;
@@ -161,31 +142,24 @@ namespace ITIndeed.BL
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
-        //***Marker For Tim //This is good to go
+        
         public bool StudentInsert()
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-
-                    //Insert User, then take UserId and Insert it into Student Table // this can all be done through student object because student inherits from user
-                    //This code is good, Please talk with me before changing it --Thanks--Tim
                     tblUser user = new tblUser();
 
                     user.UserName = this.UserName;
                     user.Password = this.Password;
                     this.UserInsert();
 
-
                     tblUser userGetUserId = dc.tblUsers.Where(u => u.UserName == this.UserName).FirstOrDefault();
-
                     Guid guidUserId = userGetUserId.Id;
-
 
                     tblStudent student = new tblStudent();
                     student.Id = Guid.NewGuid();
@@ -200,7 +174,6 @@ namespace ITIndeed.BL
 
                     dc.tblStudents.Add(student);
 
-
                     dc.SaveChanges();
 
                     return true;
@@ -208,14 +181,10 @@ namespace ITIndeed.BL
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
 
-
-        //***This is good to go
-        // Please talk with me before changing it --Thanks--Tim
         public void StudentUpdate()
         {
             try
@@ -243,13 +212,10 @@ namespace ITIndeed.BL
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
 
-
-        //***Marker For Tim //This is good to go
         public void StudentDelete()
         {
             try
@@ -270,14 +236,12 @@ namespace ITIndeed.BL
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
     }
 
 
-    //***Marker //This is good to go
     public class StudentList : List<Student>
     {
         public void StudentListLoad()
@@ -291,7 +255,6 @@ namespace ITIndeed.BL
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
