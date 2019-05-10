@@ -237,7 +237,7 @@ namespace ITIndeed.MVC.UI.Controllers
 
 
             }
-            catch (Exception e)
+            catch
             {
 
                 return false;

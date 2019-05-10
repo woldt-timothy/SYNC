@@ -29,56 +29,36 @@ namespace ITIndeed.MVC.UI.Controllers
         // GET: Student/Details/5
         public ActionResult Details(Guid? id)
         {
-            //Guid guid = new Guid();
             User user;
-
 
             if (id == null & Session["user"] == null)
             {
                 return RedirectToAction("Login", "Login");
-
             }
             else if (Session["user"] != null)
             {
-                //if (Authenticate.IsAuthenticated())
-                //   {
                 user = new User();
                 user = (User)Session["user"];
 
-                //if (user == null)
-                //{
-                //    return RedirectToAction("Login", "Login");
-                //}
-                //else
-                //{
+                Student student = new Student();
+                student.StudentLoadUserById(user.BaseUserID);
 
-
-
-
-                    Student student = new Student();
-                    student.StudentLoadUserById(user.BaseUserID);
-
-                    if(student.Email != null)
-                    {
+                if (student.Email != null)
+                {
                     return View(student);
-                    }
-                    else
-                    {
+                }
+                else
+                {
                     Employer employer = new Employer();
                     employer.EmployerLoadUserById(user.BaseUserID);
+
                     return RedirectToAction("Details", "Employer", new { id = employer.EmployerId });
                 }
-
-                    
-                //}
-                //}
             }
             else
             {
                 return RedirectToAction("Login", "Login");
             }
-
-            
         }
 
 
@@ -110,9 +90,9 @@ namespace ITIndeed.MVC.UI.Controllers
         // GET: Student/Edit/5
         public ActionResult Edit(Guid id)
         {
-
             Student student = new Student();
             student.StudentLoadById(id);
+
             return View(student);
         }
 
@@ -180,18 +160,13 @@ namespace ITIndeed.MVC.UI.Controllers
                 client.Credentials = new NetworkCredential(senderEmail, senderPassword);
 
                 MailMessage mailMessage = new MailMessage(senderEmail, toEmail, subject, emailBody);
-                //mailMessage.IsBodyHtml = true;
-                //mailMessage.BodyEncoding = UTF8Encoding.UTF8;
+                
                 client.Send(mailMessage);
 
                 return true;
-
-
-
             }
-            catch (Exception e)
+            catch
             {
-
                 return false;
             }
         }
