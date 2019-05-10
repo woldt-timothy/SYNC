@@ -12,163 +12,110 @@ namespace ITIndeed.BL.Test
         [TestMethod]
         public void InsertTest()
         {
-            //Tests to see if both records were inserted
-
-
             Byte[] arrBYTE = new Byte[10000];
 
             Student student = new Student();
-            student.UserName = "jordanIsAwesome";
-            student.Password = "maple";
-            student.StudentFirstName = "jdog6";
-            student.StudentLastName = "Clyde4446";
-            student.Email = "bonnytheman@fvtc,edu4446";
-            student.FieldOfStudy = "Computer Engineering4446";
-            student.School = "Fox Valley Technical College4446";
+            student.UserName = "SallyTheStudent";
+            student.Password = "pass";
+            student.StudentFirstName = "Sally";
+            student.StudentLastName = "TheStudent";
+            student.Email = "sallythestudent@gmail.com";
+            student.FieldOfStudy = "Computer Programmer";
+            student.School = "SomeSchool";
             student.Phone = "666-666-6666";
             student.ProfilePicture = arrBYTE;
 
-            
             student.StudentInsert();
-
 
             ITIndeedEntities dc = new ITIndeedEntities();
 
             var users = dc.tblUsers;
-
             int expectedUsers = 25;
 
             int actualUsers = users.Count();
 
-            
-
             var students = dc.tblStudents;
-
             int expectedStudents = 2;
 
             int actualStudents = students.Count();
 
             Assert.AreEqual(expectedStudents + expectedUsers, actualStudents + actualUsers);
-
-
         }
-
 
         [TestMethod]
         public void LoadIDTest()
         {
-
-
-
             Student student = new Student();
-            student.StudentLoadById(Guid.Parse("c6c3c4be-7562-4067-84b9-ee496875bd33"));
+            student.StudentLoadById(Guid.Parse("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"));
 
-
-            string expected = "tim4";
+            string expected = "Sally";
             string actual = student.StudentFirstName;
 
-
-
             Assert.AreEqual(expected, actual);
-
-
         }
 
         [TestMethod]
         public void DeleteTest()
         {
-
             Student student = new Student();
-            student.StudentID = Guid.Parse("c6c3c4be-7562-4067-84b9-ee496875bd33");
+            student.StudentID = Guid.Parse("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa");
             student.StudentDelete();
-
 
             ITIndeedEntities dc = new ITIndeedEntities();
 
             var users = dc.tblUsers;
-
             int expectedUsers = 19;
 
             int actualUsers = users.Count();
 
 
-
             var students = dc.tblStudents;
-
             int expectedStudents = 14;
 
             int actualStudents = students.Count();
 
             Assert.AreEqual(expectedStudents + expectedUsers, actualStudents + actualUsers);
-
-
         }
-
 
         [TestMethod]
         public void UpdateTest()
         {
-
             Student student = new Student();
-            student.StudentID = Guid.Parse("d3061ddd-9cc3-4998-adef-1f0b8ded03cd");
-            student.UserName = "Test123!";
-            student.School= "TestSchool";
+            student.StudentID = Guid.Parse("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa");
+            student.UserName = "UserName";
+            student.School = "School";
             student.StudentUpdate();
 
-
-            student.StudentLoadById(Guid.Parse("d3061ddd-9cc3-4998-adef-1f0b8ded03cd"));
+            student.StudentLoadById(Guid.Parse("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"));
 
             string expected = "Test123!TestSchool";
             string actual = student.UserName + student.School;
 
             Assert.AreEqual(expected, actual);
-
-
         }
-
-
-
-
 
         [TestMethod]
         public void LoadTest()
         {
-            //Tests to if Number of Students is Equal to Number of Employees in Database
-
-
             StudentList students = new StudentList();
             students.StudentListLoad();
 
             int expected = 14;
             int actual = students.Count();
 
-
-
             Assert.AreEqual(expected, actual);
-
-
         }
-
 
         [TestMethod]
         public void LoadUserByIdTest()
         {
             Student student = new Student();
-            student.StudentLoadUserById(Guid.Parse("61a26bf2-f0e5-4ce1-bbdf-e858c42761fb"));
+            student.StudentLoadUserById(Guid.Parse("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"));
 
-
-            string expected = "jdog6";
+            string expected = "SallyTheStudent";
             string actual = student.StudentFirstName;
 
-
-
             Assert.AreEqual(expected, actual);
-
-
-
-
-
         }
-
     }
 }
