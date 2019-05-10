@@ -74,17 +74,14 @@ namespace ITIndeed.MVC.UI.Controllers
         // GET: EmployerProfile/Details/5
         public ActionResult Details(Guid? id)
         {
-
             User user;
 
             if (id == null & Session["user"] == null)
             {
                 return RedirectToAction("Login", "Login");
-
             }
             else if (Session["user"] != null)
             {
-
                 user = new User();
                 user = (User)Session["user"];
 
@@ -104,7 +101,7 @@ namespace ITIndeed.MVC.UI.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            }
+        }
 
         // GET: EmployerProfile/Create
         [HttpGet]
@@ -167,7 +164,6 @@ namespace ITIndeed.MVC.UI.Controllers
         [HttpPost]
         public ActionResult Edit(Guid id, Employer e)
         {
-
             try
             {
                 if (e.UploadedImageFile != null)
@@ -218,12 +214,10 @@ namespace ITIndeed.MVC.UI.Controllers
         {
             try
             {
-
                 string toEmail, subject, emailBody;
                 toEmail = Email;
                 subject = "Thanks for signing up with Sync!";
                 emailBody = "Thanks for signing up with Sync!";
-
 
                 string senderEmail = System.Configuration.ConfigurationManager.AppSettings["SenderEmail"].ToString();
                 string senderPassword = System.Configuration.ConfigurationManager.AppSettings["SenderPassword"].ToString();
@@ -236,21 +230,14 @@ namespace ITIndeed.MVC.UI.Controllers
                 client.Credentials = new NetworkCredential(senderEmail, senderPassword);
 
                 MailMessage mailMessage = new MailMessage(senderEmail, toEmail, subject, emailBody);
-                //mailMessage.IsBodyHtml = true;
-                //mailMessage.BodyEncoding = UTF8Encoding.UTF8;
+                
                 client.Send(mailMessage);
 
                 return true;
-
-
-
             }
             catch
             {
-
                 return false;
-
-
             }
         }
 
