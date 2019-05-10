@@ -11,7 +11,7 @@ namespace ITIndeed.BL
 {
     public class Event
     {
-        // Properties
+        /// Properties
 
         public Guid Id { get; set; }
         public string Name { get; set; }
