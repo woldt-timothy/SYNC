@@ -12,41 +12,28 @@ namespace ITIndeed.BL.Test
         [TestMethod]
         public void InsertTest()
         {
-
             //UserName cannot be the same for two Users//Business Rule
             User user = new User();
-            user.UserName = "DickyBoy1757";
-            user.Password = "maple";
+            user.UserName = "UserName";
+            user.Password = "Password";
             user.UserInsert();
 
             ITIndeedEntities dc = new ITIndeedEntities();
 
             var users = dc.tblUsers;
-
             int expected = 6;
-
             int actual = users.Count();
 
             Assert.AreEqual(expected, actual);
-
-            
-
-           
-
         }
-
 
         [TestMethod]
         public void UpdateTest()
         {
             User user = new User();
-
-            //Make sure NO SPACES when pasting GUIDs from database - taw - 03022019
-
-            user.BaseUserID = Guid.Parse("6b444af5-21be-4341-8e67-212630d15549");
-
-            user.UserName = "Dumb Jerk666";
-            user.Password = "PassWordUpdateTest17";
+            user.BaseUserID = Guid.Parse("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa");
+            user.UserName = "UserName";
+            user.Password = "Password";
             user.UserUpdate();
 
             ITIndeedEntities dc = new ITIndeedEntities();
@@ -54,130 +41,83 @@ namespace ITIndeed.BL.Test
             User otherUserObject = new User();
             otherUserObject.UserLoadById(user.BaseUserID);
 
-            string expected1 = "Dumb Jerk666";
+            string expected1 = "expected1";
             string actual1 = otherUserObject.UserName;
 
-
-            string expected2 = "OiVFS2q2V0c4dd7LcGDl97L6rx0=";
+            string expected2 = "expected2";
             string actual2 = otherUserObject.Password;
-
 
             Assert.AreEqual(expected1, actual1);
             Assert.AreEqual(expected2, actual2);
-
-
-
-
         }
-
 
         [TestMethod]
         public void DeleteTest()
         {
             User user = new User();
 
-            //Make sure NO SPACES when pasting GUIDs from database - taw - 03022019
+            user.BaseUserID = Guid.Parse("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa");
 
-            user.BaseUserID = Guid.Parse("b859717c-8065-43d2-9a5f-4eeb69e6bc6a");
-
-           
             user.UserDelete();
 
             ITIndeedEntities dc = new ITIndeedEntities();
 
-
             var users = dc.tblUsers;
-
             int expected = 10;
-
             int actual = users.Count();
 
             Assert.AreEqual(expected, actual);
-
-
-
-
         }
-
-
 
         [TestMethod]
         public void LoadByIdTest()
         {
             User user = new User();
 
-            //Make sure NO SPACES when pasting GUIDs from database - taw - 03022019
+            user.UserLoadById(Guid.Parse("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"));
 
-            user.UserLoadById(Guid.Parse("7158cfc3-e8a8-4606-9033-934410ad7c41"));
-
-
-            string expected = "jess2";
+            string expected = "expected";
             string actual = user.UserName;
 
-
             Assert.AreEqual(expected, actual);
-
-
         }
-
 
         [TestMethod]
         public void LoadUserNameTest()
         {
             User user = new User();
 
-            //Make sure NO SPACES when pasting GUIDs from database - taw - 03022019
+            user.UserLoadByUserName("UserName");
 
-            user.UserLoadByUserName("jess2");
-
-
-            string expected = "jess2";
+            string expected = "UserName";
             string actual = user.UserName;
 
-
             Assert.AreEqual(expected, actual);
-
-
         }
-
-
 
         [TestMethod]
         public void LoadUserList()
         {
-
             UserList users = new UserList();
-
             users.UserListLoad();
-
 
             int expected = 10;
             int actual = users.Count();
 
-
             Assert.AreEqual(expected, actual);
-
-
         }
-
 
         [TestMethod]
         public void LoginTest()
         {
-
             User user = new User();
 
-            user.UserName = "Dumb Jerk95";
-            user.Password = "maple";
-
+            user.UserName = "UserName";
+            user.Password = "Password";
 
             user.UserLogin();
 
             Assert.AreEqual(user.UserLogin(), true);
-        
-            
-
-
         }
 
     }
