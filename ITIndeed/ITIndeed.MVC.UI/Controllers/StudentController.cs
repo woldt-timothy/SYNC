@@ -14,7 +14,6 @@ namespace ITIndeed.MVC.UI.Controllers
 {
     public class StudentController : Controller
     {
-
         StudentList students;
 
         // GET: Student
@@ -60,7 +59,6 @@ namespace ITIndeed.MVC.UI.Controllers
                 return RedirectToAction("Login", "Login");
             }
         }
-
 
         // GET: Student/Create
         public ActionResult Create()

@@ -29,74 +29,45 @@ namespace ITIndeed.MVC.UI.Controllers
         // GET: StudentProfile/Details/5
         public ActionResult Details(Guid? id)
         {
-            //Guid guid = new Guid();
             User user;
-
 
             if (id == null & Session["user"] == null)
             {
                 return RedirectToAction("Login", "Login");
-
             }
             else if (Session["user"] != null)
             {
-                //if (Authenticate.IsAuthenticated())
-                //   {
                 user = new User();
                 user = (User)Session["user"];
-                
 
-                //if (user == null)
-                //{
-                //    return RedirectToAction("Login", "Login");
-                //}
-                //else
-                //{
+                Student student = new Student();
+                student.StudentLoadUserById(user.BaseUserID);
 
-
-                    
-
-                    Student student = new Student();
-                    student.StudentLoadUserById(user.BaseUserID);
-
-                    if(student.Email != null)
-                    {
+                if(student.Email != null)
+                {
                     return View(student);
-                    }
-                    else
-                    {
+                }
+                else
+                {
                     Employer employer = new Employer();
                     employer.EmployerLoadUserById(user.BaseUserID);
+
                     return RedirectToAction("Details", "EmployerProfile", new { id = employer.EmployerId });
                 }
-
-                    
-                //}
-                //}
             }
             else
             {
                 return RedirectToAction("Login", "Login");
             }
-
-            
         }
-
 
         public ActionResult DetailsForEmployers(Guid id)
         {
-            //Guid guid = new Guid();
-           
-                Student student = new Student();
-                student.StudentLoadById(id);
+            Student student = new Student();
+            student.StudentLoadById(id);
 
-                return View(student);
-            
-          
-
-
+            return View(student);
         }
-
 
         // GET: StudentProfile/Create
         [HttpGet]
@@ -205,17 +176,14 @@ namespace ITIndeed.MVC.UI.Controllers
             }
         }
 
-
         public bool SendEmail(string Email)
         {
             try
             {
-
                 string toEmail, subject, emailBody;
                 toEmail = Email;
                 subject = "Thanks for signing up with Sync!";
                 emailBody = "Thanks for signing up with Sync!";
-
 
                 string senderEmail = System.Configuration.ConfigurationManager.AppSettings["SenderEmail"].ToString();
                 string senderPassword = System.Configuration.ConfigurationManager.AppSettings["SenderPassword"].ToString();
@@ -228,18 +196,13 @@ namespace ITIndeed.MVC.UI.Controllers
                 client.Credentials = new NetworkCredential(senderEmail, senderPassword);
 
                 MailMessage mailMessage = new MailMessage(senderEmail, toEmail, subject, emailBody);
-                //mailMessage.IsBodyHtml = true;
-                //mailMessage.BodyEncoding = UTF8Encoding.UTF8;
+
                 client.Send(mailMessage);
 
                 return true;
-
-
-
             }
             catch
             {
-
                 return false;
             }
         }
