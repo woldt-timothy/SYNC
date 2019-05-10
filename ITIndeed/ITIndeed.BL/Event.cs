@@ -11,8 +11,6 @@ namespace ITIndeed.BL
 {
     public class Event
     {
-        /// Properties
-
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
@@ -23,15 +21,8 @@ namespace ITIndeed.BL
         public Guid UserId { get; set; }
         public List<User> Users { get; set; }
         public List<Student> Students { get; set; }
-
-
-        //Going to have to change methods in Event Class to reflect database chnages to tblEvent and Addition of tblEventShowing to use these properties(2 Below)
-        //going to hold off for today - tim - 04162019
         public string Location { get; set; }
         public int InterestedCount { get; set; }
-
-
-        // Constructors
 
         public Event()
         {
@@ -57,10 +48,7 @@ namespace ITIndeed.BL
             Type = type;
         }
 
-        // Methods
-
-
-        public bool AddUserInterestedInEvent(Guid userId) // Add a user interested to this event
+        public bool AddUserInterestedInEvent(Guid userId)
         {
             try
             {
@@ -82,7 +70,7 @@ namespace ITIndeed.BL
                     }
                     else
                     {
-                        return false; // User is already interested in event.
+                        return false; // User already interested in event.
                     }
                 }
             }
@@ -93,8 +81,7 @@ namespace ITIndeed.BL
             }
         }
 
-
-        public void LoadUsersInterested() // Load list of users interested in the event // Makes User Object
+        public void LoadUsersInterested()
         {
             try
             {
@@ -118,18 +105,15 @@ namespace ITIndeed.BL
             }
         }
 
-
-        public void LoadCountOfUsersInterested() // return Count of Users Interested
+        public void LoadCountOfUsersInterested()
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
+                    var count = dc.tblUserInteresteds.Where(e => e.EventId == this.Id).Count(); // User already joined event
 
-                    var count = dc.tblUserInteresteds.Where(e => e.EventId == this.Id).Count(); // Check to see if user already joined event
-
-                        this.InterestedCount = count;
-                    
+                    this.InterestedCount = count;
                 }
             }
             catch (Exception ex)
@@ -139,16 +123,13 @@ namespace ITIndeed.BL
             }
         }
 
-
-
-
-        public bool AddUserToEvent(Guid userId) // Add a user to this event
+        public bool AddUserToEvent(Guid userId)
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-                    tblEventShowing eventShowing = dc.tblEventShowings.Where(e => (e.UserId == userId) && (e.EventId == this.Id)).FirstOrDefault(); // Check to see if user already joined event
+                    tblEventShowing eventShowing = dc.tblEventShowings.Where(e => (e.UserId == userId) && (e.EventId == this.Id)).FirstOrDefault();
 
                     if (eventShowing == null)
                     {
@@ -164,7 +145,7 @@ namespace ITIndeed.BL
                     }
                     else
                     {
-                        return false; // User is already attending event.
+                        return false; // User already attending event.
                     }
                 }
             }
@@ -175,8 +156,7 @@ namespace ITIndeed.BL
             }
         }
 
-
-        public void LoadUsers() // Load list of users attending the event
+        public void LoadUsers() // Load users attending event
         {
             try
             {
@@ -207,7 +187,7 @@ namespace ITIndeed.BL
             }
         }
 
-        public void LoadStudents() // Load list of student attending the event
+        public void LoadStudents() // Load student attending event
         {
             try
             {
@@ -239,7 +219,6 @@ namespace ITIndeed.BL
             }
         }
 
-
         public bool LoadById(Guid id)
         {
             try
@@ -255,7 +234,7 @@ namespace ITIndeed.BL
                         this.Type = tevent.Type;
                         this.StartDate = tevent.StartDate;
                         this.EndDate = tevent.EndDate;
-                        //Gage The Error Came from trying to pull a UserId from the Event Table, the user ID is part of the tblEventShowing Junction table -- i.e. A user can have many events and an event can have many users // otherwise looks good    
+                        //Gage - Error Came from trying to pull a UserId from the Event Table, the user ID is part of the tblEventShowing Junction table -- i.e. A user can have many events and an event can have many users // otherwise looks good    
 
                         return true;
                     }
@@ -277,7 +256,6 @@ namespace ITIndeed.BL
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-
                     tblEvent tevent = new tblEvent();
                     tevent.Id = Guid.NewGuid();
                     tevent.Name = this.Name;
@@ -327,13 +305,11 @@ namespace ITIndeed.BL
 
         public void Delete()
         {
-
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
                     tblEvent tevent = dc.tblEvents.Where(e => e.Id == this.Id).FirstOrDefault();
-
 
                     if (tevent != null)
                     {
@@ -368,31 +344,26 @@ namespace ITIndeed.BL
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
 
-        // There might be a better way to do this --- But it works see unit test
+        // Better way to do this?
         public void LoadEventsForAUser(Guid id)
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-
                     var guidList = new List<Guid>();
 
                     dc.tblEventShowings.Where(es => es.UserId == id).ToList().ForEach(es => guidList.Add(es.EventId));
-
 
                     foreach (Guid g in guidList)
 
                     {
                         dc.tblEvents.Where(e => e.Id == g).ToList().ForEach(e => Add(new Event(g, e.Name, e.Type, e.StartDate, e.EndDate, id)));
                     }
-
-                    
                 }
             }
             catch (Exception ex)
@@ -402,7 +373,7 @@ namespace ITIndeed.BL
             }
         }
 
-
+        ///NOTES///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //Gage - This Method Did not Work - We haven't given the user the ability to add an event yet so I wasn't sure what this method does, I left the code though
 
 
@@ -424,15 +395,8 @@ namespace ITIndeed.BL
         //    }
         //}
 
-
-
-
-
-
-
+        ///NOTES
         //Load events the user is attending. --- The LoadEventsForAUser(Guid id) I created based off of your code accomplishes this though -- so no need to rewrite this one - thanks - tim
-
-
 
         //This method also did not work, but I left the code
 
