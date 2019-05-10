@@ -12,13 +12,8 @@ using System.Drawing;
 
 namespace ITIndeed.BL
 {
-
-    //Employer Inherits from User
-
     public class Employer : User
     {
-       
-
         public Guid EmployerId { get; set; }
         [DisplayName("First Name")]
         public string RepresentativeFirstName { get; set; }
@@ -81,9 +76,7 @@ namespace ITIndeed.BL
             }
         }
 
-        //***Marker For Tim //This is good to go
         //***User ID == employer.UserId != employer.BaseUserId // Same Goes with UserName
-
         public bool EmployerLoadById(Guid employerId)
         {
             try
@@ -107,7 +100,6 @@ namespace ITIndeed.BL
                         this.UserId = employer.UserId;
                         this.ProfilePicture = employer.ProfilePicture;
 
-
                         return true;
                     }
                     else
@@ -123,8 +115,7 @@ namespace ITIndeed.BL
             }
         }
 
-
-        //this is just a quick hack - we can fix this later - tim 05062019
+        //this is just a quick hack - we can fix this later - tim
         public bool EmployerLoadUserById2(Guid userId)
         {
             try
@@ -163,8 +154,6 @@ namespace ITIndeed.BL
                 throw ex;
             }
         }
-
-
 
         public bool EmployerLoadUserById(Guid userId)
         {
@@ -205,29 +194,20 @@ namespace ITIndeed.BL
             }
         }
 
-
-
-            //***Marker For Tim //This is good to go
-            public bool EmployerInsert()
+        public bool EmployerInsert()
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-
-                    //Insert User, then take UserId and Insert it into Employer Table // this can all be done through employer object because employer inherits from user
-                    //This code is good, Please talk with me before changing it --Thanks--Tim
                     tblUser user = new tblUser();
 
                     user.UserName = this.UserName;
                     user.Password = this.Password;
                     this.UserInsert();
 
-
                     tblUser userGetUserId = dc.tblUsers.Where(u => u.UserName == this.UserName).FirstOrDefault();
-
                     Guid guidUserId = userGetUserId.Id;
-
 
                     tblEmployer employer = new tblEmployer();
                     employer.Id = Guid.NewGuid();
@@ -253,12 +233,6 @@ namespace ITIndeed.BL
             }
         }
 
-
-        //***This is good to go
-        // Please talk with me before changing it --Thanks--Tim // NEED TO FIND A WAY TO CHANGE PASSWORD? LIKE SECURITY QUESTIONS OR EMAIL OR SOMETHING
-
-       
-
         public void EmployerUpdate(Guid employerId)
         {
             try
@@ -268,11 +242,8 @@ namespace ITIndeed.BL
                     tblEmployer employer = dc.tblEmployers.Where(e => e.Id == employerId).FirstOrDefault();
                     tblUser user = dc.tblUsers.Where(u => u.Id == employer.UserId).FirstOrDefault();
 
-
                     if (employer != null && user != null)
                     {
-
-
                         employer.RepresentativeFirstName = (this.RepresentativeFirstName == null) ? employer.RepresentativeFirstName : this.RepresentativeFirstName;
                         employer.RepresentativeLastName = (this.RepresentativeLastName == null) ? employer.RepresentativeLastName : this.RepresentativeLastName;
                         employer.Phone = (this.Phone == null) ? employer.Phone: this.Phone;
@@ -283,24 +254,15 @@ namespace ITIndeed.BL
                         user.Password = (this.Password == null) ? user.Password: this.Password;
                         employer.ProfilePicture = (this.ProfilePicture == null) ? employer.ProfilePicture: this.ProfilePicture;
 
-
-
                         dc.SaveChanges();
                     }
                 }
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
-
-
-
-        //***This is good to go
-       // Please talk with me before changing it --Thanks--Tim
-
 
         public void EmployerDelete()
         {
@@ -328,16 +290,11 @@ namespace ITIndeed.BL
     }
 
 
-
-
     public class EmployerList : List<Employer>
     {
-
         public int TotalCount { get; set; }
 
-        //this is what is taking so long
-
-        //***Marker //This is good to go
+        //this is what is taking so long // cache on server?
         public void EmployerListLoad()
         {
             try
@@ -356,6 +313,8 @@ namespace ITIndeed.BL
             }
         }
 
+        ///////////////////////////Notes for Gage/////*****//////
+        ///
         /*public void LoadByPaging(int pageSize, int pageNumber)
         {
             try
@@ -397,7 +356,6 @@ namespace ITIndeed.BL
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
