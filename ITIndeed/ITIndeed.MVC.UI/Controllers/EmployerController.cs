@@ -15,7 +15,6 @@ namespace ITIndeed.MVC.UI.Controllers
         // GET: Employee
         public ActionResult Index()
         {
-
             employers = new EmployerList();
             employers.EmployerListLoad();
 
@@ -25,34 +24,26 @@ namespace ITIndeed.MVC.UI.Controllers
         // GET: Employee/Details/5
         public ActionResult Details(Guid? id)
         {
-
             User user;
 
             if (id == null & Session["user"] == null)
             {
                 return RedirectToAction("Login", "Login");
-
             }
             else if (Session["user"] != null)
             {
-                
                 user = new User();
                 user = (User)Session["user"];
 
-                
                 Employer employer = new Employer();
                 employer.EmployerLoadUserById(user.BaseUserID);
+
                 return View(employer);
-                
             }
             else
             {
                 return RedirectToAction("Login", "Login");
             }
-
-            
-
-            
         }
 
         // GET: Employee/Create
@@ -71,6 +62,7 @@ namespace ITIndeed.MVC.UI.Controllers
             {
                 // TODO: Add insert logic here
                 e.EmployerInsert();
+
                 return RedirectToAction("../Content/Theme/index.html");
             }
             catch
@@ -96,6 +88,7 @@ namespace ITIndeed.MVC.UI.Controllers
             {
                 // TODO: Add update logic here
                 e.EmployerUpdate(id);
+
                 return RedirectToAction("Details");
             }
             catch
@@ -120,8 +113,8 @@ namespace ITIndeed.MVC.UI.Controllers
             try
             {
                 // TODO: Add delete logic here
-
                 e.EmployerDelete();
+
                 return RedirectToAction("Index");
             }
             catch

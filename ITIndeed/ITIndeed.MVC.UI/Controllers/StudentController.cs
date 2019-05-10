@@ -128,6 +128,7 @@ namespace ITIndeed.MVC.UI.Controllers
             {
                 // TODO: Add delete logic here
                 s.StudentDelete();
+
                 return RedirectToAction("Index");
             }
             catch
@@ -140,7 +141,6 @@ namespace ITIndeed.MVC.UI.Controllers
         {
             try
             {
-
                 string toEmail, subject, emailBody;
                 toEmail = Email;
                 subject = "Thanks for signing up with Sync!";

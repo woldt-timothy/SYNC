@@ -9,12 +9,10 @@ namespace ITIndeed.MVC.UI.Controllers
 {
     public class LoginController : Controller
     {
-     
-
-
         public ActionResult Logout()
         {
             Session["user"] = null;
+
             return View();
         }
 
@@ -22,10 +20,9 @@ namespace ITIndeed.MVC.UI.Controllers
         {
             User user = new User();
             ViewBag.ReturnUrl = returnurl;
+
             return View(user);
         }
-
-
 
         [HttpPost]
         public ActionResult Login(User user/*, string returnurl*/)
@@ -37,28 +34,22 @@ namespace ITIndeed.MVC.UI.Controllers
                     ViewBag.Message = "Welcome. You're logged in.";
                     Session["user"] = user;
 
-
-                    //Georgia An Tim Debug Session 04042019
-                    //return Redirect(returnurl);
-
-                    //   return View(user);
                     return RedirectToAction("Details", "StudentProfile");
-                    //return View(returnurl);
                 }
                 else
                 {
                     ViewBag.Message = "Sorry, wrong credentials.  Please try again.";
+
                     return View(user);
                 }
             }
             catch (Exception e)
             {
                 ViewBag.Message = e.Message;
-                return View(user);
 
+                return View(user);
             }
         }
-
 
         // GET: Login
         public ActionResult Index()
@@ -85,7 +76,6 @@ namespace ITIndeed.MVC.UI.Controllers
             try
             {
                 // TODO: Add insert logic here
-
                 return RedirectToAction("Index");
             }
             catch
@@ -107,7 +97,6 @@ namespace ITIndeed.MVC.UI.Controllers
             try
             {
                 // TODO: Add update logic here
-
                 return RedirectToAction("Index");
             }
             catch
@@ -129,7 +118,6 @@ namespace ITIndeed.MVC.UI.Controllers
             try
             {
                 // TODO: Add delete logic here
-
                 return RedirectToAction("Index");
             }
             catch

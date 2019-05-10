@@ -36,6 +36,7 @@ namespace ITIndeed.MVC.UI.Controllers
             _event.LoadById(id);
             _event.LoadCountOfUsersInterested();
             _event.LoadStudents();
+
             return View(_event);
         }
 
@@ -48,19 +49,16 @@ namespace ITIndeed.MVC.UI.Controllers
             Employer employer = new Employer();
             employer.EmployerLoadUserById2(userEdit.BaseUserID);
 
-
             if (employer.EmployerId == Guid.Parse("00000000-0000-0000-0000-000000000000"))
             {
                 return Redirect("Index");
             }
             else
             {
-                
                 Event _event = new Event();
+
                 return View(_event);
             }
-
-            
         }
 
         // POST: Event/Create
@@ -131,8 +129,6 @@ namespace ITIndeed.MVC.UI.Controllers
                 return View(e);
             }
         }
-
-
         
         public ActionResult AddUserToEvent(Guid id)
         {            
@@ -142,9 +138,11 @@ namespace ITIndeed.MVC.UI.Controllers
                 {
                     Event ev = new Event();
                     ev.Id = id;
+
                     User user = new User();
                     user = (User)Session["user"];
                     ev.AddUserToEvent(user.BaseUserID);
+
                     return RedirectToAction("Index");
                 }
                 else
@@ -169,7 +167,6 @@ namespace ITIndeed.MVC.UI.Controllers
                     Event ev = new Event();
                     ev.Id = id;
                     ev.LoadUsers();
-                    
                     
                     return RedirectToAction("Details");
                 }

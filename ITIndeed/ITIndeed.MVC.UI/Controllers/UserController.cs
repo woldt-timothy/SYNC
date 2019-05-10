@@ -10,22 +10,19 @@ using ITIndeed.BL;
 using ITIndeed.MVC.UI.Models;
 
 
-
 namespace ITIndeed.MVC.UI.Controllers
 {
     public class UserController : Controller
     {
-
         UserList users;
 
         // GET: User
         public ActionResult Index()
         {
-           
-                users = new UserList();
-                users.UserListLoad();
-                return View(users);
-          
+            users = new UserList();
+            users.UserListLoad();
+
+            return View(users); 
         }
 
         // GET: User/Details/5
@@ -41,6 +38,7 @@ namespace ITIndeed.MVC.UI.Controllers
         public ActionResult Create()
         {
             User user = new User();
+
             return View(user);
         }
 
@@ -52,7 +50,6 @@ namespace ITIndeed.MVC.UI.Controllers
             {
                 // TODO: Add insert logic here
                 user.UserInsert();
-                
 
                 return RedirectToAction("Index");
             }
@@ -67,6 +64,7 @@ namespace ITIndeed.MVC.UI.Controllers
         {
             User user = new User();
             user.UserLoadById(id);
+
             return View(user);
         }
 
