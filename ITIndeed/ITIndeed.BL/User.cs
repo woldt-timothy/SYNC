@@ -9,28 +9,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ITIndeed.BL
 {
-
-
-    /// <summary>
-    /// This class should never be instantiated i.e never do  User user = new User(); In reality, I believe it should be a static class or an abstract class, maybe we can fix later
-    /// That is part of the reason why I named the UserId BaseUserID for now
-    /// </summary>
-
-    public class User
+     public class User
     {
-        // Properties
-
-
-        /// <summary>
-        /// I CHANGED ALL OF THE IDs to be GUIDs - taw - 03022019
-        /// </summary>
-
         public Guid BaseUserID { get; set; }
         [DisplayName("User Name")]
         public string UserName { get; set; }
         public string Password { get; set; }
 
-        // Constructors
 
         public User()
         {
@@ -50,7 +35,6 @@ namespace ITIndeed.BL
             UserName = userName;
         }
 
-        // Methods
         public bool UserLoadById(Guid baseUserId)
         {
             try
@@ -75,10 +59,10 @@ namespace ITIndeed.BL
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
+
         private string GetHash()
         {
             using (var hash = new System.Security.Cryptography.SHA1Managed())
@@ -100,7 +84,7 @@ namespace ITIndeed.BL
                         tblUser user = dc.tblUsers.FirstOrDefault(u => u.UserName == this.UserName);
                         if (user != null)
                         {
-                            if (user.Password == this.GetHash()) // Checks if password is correct
+                            if (user.Password == this.GetHash()) // Checks Password Correct
                             {
                                 // Successful login
                                 BaseUserID = user.Id;
@@ -128,16 +112,9 @@ namespace ITIndeed.BL
             }
             catch (Exception e)
             {
-
                 throw e;
             }
         }
-
-
-
-
-
-
 
         public bool UserLoadByUserName(string username)
         {
@@ -162,18 +139,16 @@ namespace ITIndeed.BL
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
+
         public bool UserInsert()
         {
             try
             {
                 using (ITIndeedEntities dc = new ITIndeedEntities())
                 {
-
-                    ///CHECKS TO SEE IF THERE IS A USER IN THE DATABASE IF NOT THEN INSERTS A NEW USER WITH A GUID AS THE ID
                     if (dc.tblUsers.Where(u => u.UserName == this.UserName).FirstOrDefault() == null)
                     {
                         tblUser user = new tblUser();
@@ -194,10 +169,10 @@ namespace ITIndeed.BL
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
+
         public void UserUpdate()
         {
             try
@@ -217,10 +192,10 @@ namespace ITIndeed.BL
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
+
         public void UserDelete()
         {
             try
@@ -239,7 +214,6 @@ namespace ITIndeed.BL
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -258,7 +232,6 @@ namespace ITIndeed.BL
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
